@@ -10,8 +10,10 @@ package com.yairkukielka.feedhungry;
 public final class R {
     public static final class anim {
         public static final int fade_in=0x7f040000;
-        public static final int push_up_in=0x7f040001;
-        public static final int wave_scale=0x7f040002;
+        public static final int fade_in_short=0x7f040001;
+        public static final int fade_out=0x7f040002;
+        public static final int push_up_in=0x7f040003;
+        public static final int wave_scale=0x7f040004;
     }
     public static final class array {
         public static final int pageSizeListentries=0x7f0d0001;
@@ -923,6 +925,7 @@ containing a value of this type.
         public static final int ic_menu_share=0x7f020079;
         public static final int ic_menu_view=0x7f02007a;
         public static final int no_image=0x7f02007b;
+        public static final int no_image_transp=0x7f02007c;
     }
     public static final class id {
         public static final int abs__action_bar=0x7f060021;
@@ -1034,11 +1037,10 @@ containing a value of this type.
         public static final int drawer_list_item=0x7f030018;
         public static final int feed_entry_layout=0x7f030019;
         public static final int feed_list_row=0x7f03001a;
-        public static final int feed_list_row2=0x7f03001b;
-        public static final int feed_list_view=0x7f03001c;
-        public static final int loading_panel=0x7f03001d;
-        public static final int sherlock_spinner_dropdown_item=0x7f03001e;
-        public static final int sherlock_spinner_item=0x7f03001f;
+        public static final int feed_list_view=0x7f03001b;
+        public static final int loading_panel=0x7f03001c;
+        public static final int sherlock_spinner_dropdown_item=0x7f03001d;
+        public static final int sherlock_spinner_item=0x7f03001e;
     }
     public static final class menu {
         public static final int entry=0x7f0e0000;

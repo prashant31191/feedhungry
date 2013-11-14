@@ -92,6 +92,7 @@ public class EntryListFragment extends SherlockFragment {
 
 	@AfterViews
 	void afterViews() {
+		mEntries.clear();
 		metrics = new DisplayMetrics();
 		getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
@@ -109,6 +110,7 @@ public class EntryListFragment extends SherlockFragment {
 				b.putString(ENTRY_ID, e.getId());
 				intent.putExtras(b);
 				startActivity(intent);
+				EntryListFragment.this.getActivity().overridePendingTransition(R.anim.fade_in_short,R.anim.fade_out);
 			}
 		});
 

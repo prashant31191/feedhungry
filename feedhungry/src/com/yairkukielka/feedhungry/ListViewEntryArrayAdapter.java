@@ -56,7 +56,7 @@ public class ListViewEntryArrayAdapter extends ArrayAdapter<ListEntry> {
         boolean animate = false;
         if (v == null) {
             LayoutInflater vi = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = vi.inflate(R.layout.feed_list_row2, null);
+            v = vi.inflate(R.layout.feed_list_row, null);
             animate = true;            
         }
         
@@ -71,7 +71,7 @@ public class ListViewEntryArrayAdapter extends ArrayAdapter<ListEntry> {
         if (entry.getVisual() != null) {
             holder.image.setImageUrl(entry.getVisual(), mImageLoader);
         } else {
-            holder.image.setImageResource(R.drawable.no_image);
+            holder.image.setImageResource(R.drawable.no_image_transp);
         }
         
         holder.title.setText(entry.getTitle());
