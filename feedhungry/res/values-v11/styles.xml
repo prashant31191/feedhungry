@@ -5,13 +5,8 @@
     </style>
 
     <style name="backgroundActivated.minHeight">        
-<!--         <item name="android:minHeight">56dip</item> -->
+        <item name="android:textAppearance">?android:attr/textAppearanceSmall</item> 
 		<item name="android:minHeight">?android:attr/listPreferredItemHeight</item>
-    </style>
-
-    
-    <style name="feedhungry.textSize" parent="Theme.Sherlock">
-        <item name="android:textSize">16sp</item>
     </style>
     
 </resources>

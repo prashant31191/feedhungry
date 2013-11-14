@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:gravity="left|center_vertical"
+    android:padding="5dp"
     >
     <com.android.volley.toolbox.NetworkImageView 
 	    android:layout_width="100dp"
@@ -15,7 +16,7 @@
 	    android:layout_height="wrap_content"
 	    android:id="@+id/tv_title"
 	    android:maxLines="4"
-	    android:textSize="20sp"
+	    android:textAppearance="?android:attr/textAppearanceMedium"
 		android:ellipsize="end"
 		android:fontFamily="sans-serif-light"
 	    android:layout_marginLeft="5dp"

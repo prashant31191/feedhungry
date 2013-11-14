@@ -1034,10 +1034,11 @@ containing a value of this type.
         public static final int drawer_list_item=0x7f030018;
         public static final int feed_entry_layout=0x7f030019;
         public static final int feed_list_row=0x7f03001a;
-        public static final int feed_list_view=0x7f03001b;
-        public static final int loading_panel=0x7f03001c;
-        public static final int sherlock_spinner_dropdown_item=0x7f03001d;
-        public static final int sherlock_spinner_item=0x7f03001e;
+        public static final int feed_list_row2=0x7f03001b;
+        public static final int feed_list_view=0x7f03001c;
+        public static final int loading_panel=0x7f03001d;
+        public static final int sherlock_spinner_dropdown_item=0x7f03001e;
+        public static final int sherlock_spinner_item=0x7f03001f;
     }
     public static final class menu {
         public static final int entry=0x7f0e0000;
@@ -1120,8 +1121,8 @@ containing a value of this type.
         public static final int zero=0x7f0b0013;
     }
     public static final class style {
-        public static final int GenericProgressBackground=0x7f0c005c;
-        public static final int GenericProgressIndicator=0x7f0c005d;
+        public static final int GenericProgressBackground=0x7f0c005b;
+        public static final int GenericProgressIndicator=0x7f0c005c;
         public static final int Sherlock___TextAppearance_Small=0x7f0c0046;
         public static final int Sherlock___Theme=0x7f0c0051;
         public static final int Sherlock___Theme_DarkActionBar=0x7f0c0053;
@@ -1213,7 +1214,6 @@ containing a value of this type.
         public static final int Widget_Sherlock_TextView_SpinnerItem=0x7f0c0032;
         public static final int backgroundActivated=0x7f0c0059;
         public static final int backgroundActivated_minHeight=0x7f0c005a;
-        public static final int feedhungry_textSize=0x7f0c005b;
     }
     public static final class xml {
         public static final int preferences=0x7f050000;

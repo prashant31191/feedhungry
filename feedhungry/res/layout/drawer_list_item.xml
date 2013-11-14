@@ -6,9 +6,9 @@
  
 <TextView
     android:id="@+id/drawer_list_item_text"
-    style="@style/backgroundActivated.minHeight"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    style="@style/backgroundActivated.minHeight"
     android:layout_alignParentLeft="true"
     android:gravity="center_vertical"
 	android:fontFamily="sans-serif-light"

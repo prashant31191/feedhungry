@@ -194,6 +194,7 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 	 * Configures the action bar
 	 */
 	private void configureActionBar() {
+		//getSupportActionBar().setBackgroundDrawable(null);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setHomeButtonEnabled(true);
 		// Context context = getSupportActionBar().getThemedContext();
@@ -238,7 +239,7 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 		return new MyListener.TokenListener() {
 			@Override
 			public void onResponse(String accessTokenParam) {
-				Toast.makeText(MainActivity.this, "User log in OK", Toast.LENGTH_SHORT).show();
+				//Toast.makeText(MainActivity.this, "User log in OK", Toast.LENGTH_SHORT).show();
 				accessToken = accessTokenParam;
 				getSubscriptions(accessToken);
 			}
@@ -255,7 +256,7 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 		return new MyListener.ErrorTokenListener() {
 			@Override
 			public void onErrorResponse(String error) {
-				Toast.makeText(MainActivity.this, error, Toast.LENGTH_SHORT).show();
+				//Toast.makeText(MainActivity.this, error, Toast.LENGTH_SHORT).show();
 			}
 		};
 	}
@@ -296,7 +297,7 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 			public void onErrorResponse(VolleyError error) {
 				String errorMessage = getResources().getString(R.string.receiving_subscriptions_exception)
 						+ error.getMessage();
-				Toast.makeText(MainActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
+				//Toast.makeText(MainActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
 			}
 		};
 	}

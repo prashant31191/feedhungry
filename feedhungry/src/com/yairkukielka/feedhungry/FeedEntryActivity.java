@@ -25,6 +25,7 @@ import android.view.animation.AnimationUtils;
 import android.webkit.WebSettings.LayoutAlgorithm;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,8 +36,8 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.Response.Listener;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.googlecode.androidannotations.annotations.AfterViews;
@@ -63,10 +64,14 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 	private static final String DIV_PREFIX = "<div style='background-color:transparent;padding: 5px;color:#ccc;font-family: myFont'>";
 	private static final String DIV_SUFIX = "</div>";
 	private static final Format formatter = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+
+	private ProgressBar progress;
 	// the feed entry
 	private Entry entry;
 	// animation to show the feed content after the loading fragment shows
-	private Animation animation;
+	private Animation webViewAnimation;
+	// animation to show the title fading in
+	private Animation titleAnimation;
 	// fragment that shows while loading the entry content
 	private Fragment loadingFragment;
 	@Extra(ACCESS_TOKEN)
@@ -91,7 +96,9 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 	ViewGroup root;
 
 	@AfterViews
-	void afterViews() {
+	void afterViews() {	 
+
+		getSupportActionBar().setBackgroundDrawable(null);
 		// set webView invisible so we don't see the white frame before it
 		// loads.
 		webView.setVisibility(View.INVISIBLE);
@@ -103,7 +110,9 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 		// action bar icon navagable up
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		// animate webview content
-		animation = AnimationUtils.loadAnimation(this, R.anim.push_up_in);
+		webViewAnimation = AnimationUtils.loadAnimation(this, R.anim.push_up_in);
+		titleAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_in);
+		tvTitle.setAnimation(titleAnimation);
 		loadingFragment = new LoadingFragment_();
 		FragmentManager fragmentManager = getSupportFragmentManager();
 		fragmentManager.beginTransaction().replace(R.id.frame_webview, loadingFragment).commit();
@@ -155,14 +164,17 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 								"text/html", "utf-8", null);
 						webView.getSettings().setLayoutAlgorithm(LayoutAlgorithm.SINGLE_COLUMN);
 						webView.setBackgroundColor(color.transparent);
-						webView.setWebViewClient(new WebViewClient() {
+						webView.getSettings().setDefaultFontSize(18);//setTextZoom(WebSettings.TextSize.SMALLEST);
+						webView.setWebViewClient(new WebViewClient() {	
+							@Override					    
 							public void onPageFinished(WebView view, String url) {
 								FragmentManager fragmentManager = getSupportFragmentManager();
 								fragmentManager.beginTransaction().remove(loadingFragment).commit();
-								webView.setAnimation(animation);
+								webView.setAnimation(webViewAnimation);
 								webView.setVisibility(View.VISIBLE);
 								// mark entry as read
 								markEntry(MARK_READ, getMarkAsReadSuccessListener());
+						        //mProgressView.setVisibility(View.INVISIBLE);
 							}
 						});
 					}

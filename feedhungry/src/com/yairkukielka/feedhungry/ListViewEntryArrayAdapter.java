@@ -56,7 +56,7 @@ public class ListViewEntryArrayAdapter extends ArrayAdapter<ListEntry> {
         boolean animate = false;
         if (v == null) {
             LayoutInflater vi = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = vi.inflate(R.layout.feed_list_row, null);
+            v = vi.inflate(R.layout.feed_list_row2, null);
             animate = true;            
         }
         

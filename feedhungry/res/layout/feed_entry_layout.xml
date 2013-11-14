@@ -30,7 +30,7 @@
 		            android:layout_gravity="fill_horizontal"
 				    android:textStyle="bold"
 				    android:fontFamily="sans-serif-light"
-				    android:textAppearance="?android:attr/textAppearanceMedium"/>
+				    android:textAppearance="?android:attr/textAppearanceLarge"/>
 				
 				<TextView
 				    android:id="@+id/entry_author"
