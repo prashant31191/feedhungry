@@ -1,0 +1,20 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/menu_settings">
+        
+    <PreferenceCategory android:title="@string/preferences_category_summary">
+        <CheckBoxPreference
+            android:key="pref_key_only_unread"
+            android:title="@string/only_unread"
+            android:summary="@string/only_unread_summary"
+			android:defaultValue="false"/>
+        
+        <ListPreference
+            android:key="pref_key_page_size"
+            android:title="@string/pref_page_size"
+            android:summary="@string/pref_page_size_summary"
+            android:entries="@array/pageSizeListentries"
+            android:entryValues="@array/pageSizeListentries"
+            android:dialogTitle="@string/pref_page_size"
+            android:defaultValue="30" />
+    </PreferenceCategory>
+</PreferenceScreen>

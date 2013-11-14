@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:id="@+id/scroll_view_entry"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+		android:background="@android:color/black">
+        
+	<LinearLayout 
+	    android:id="@+id/entry_layout"
+	    android:orientation="vertical"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content">
+	 	    		        
+		    <RelativeLayout
+		        android:id="@+id/feed_entry_title_layout"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:paddingLeft="5dp" 
+		        android:paddingRight="3dp" 
+		        android:paddingTop="3dp" 
+		        android:paddingBottom="3dp" 
+		        android:layout_margin="3dp">
+		    
+				<TextView
+				    android:id="@+id/entry_title"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:text="@string/empty" 
+		            android:gravity="center_horizontal"      
+		            android:layout_gravity="fill_horizontal"
+				    android:textStyle="bold"
+				    android:fontFamily="sans-serif-light"
+				    android:textAppearance="?android:attr/textAppearanceMedium"/>
+				
+				<TextView
+				    android:id="@+id/entry_author"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:text="@string/empty" 
+				    android:layout_below="@id/entry_title" 
+				    android:fontFamily="sans-serif-thin"
+				    android:layout_marginRight="70dp"
+				    android:singleLine="true"
+				    android:ellipsize="end"
+				    android:gravity="left" 
+        			android:background="#7f000000"
+				    android:textAppearance="?android:attr/textAppearanceSmall"/>
+				
+				<TextView
+				    android:id="@+id/entry_date"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:text="@string/empty" 
+				    android:layout_below="@id/entry_title" 
+				    android:layout_alignParentRight="true" 
+				    android:fontFamily="sans-serif-thin"
+        			android:background="#7f000000"
+				    android:textAppearance="?android:attr/textAppearanceSmall"/>
+				<View
+				    android:layout_width="fill_parent"
+				    android:layout_height="1dp"
+				    android:background="#F555"
+				    android:layout_alignBottom="@id/entry_date"/>
+			</RelativeLayout>
+					
+		<FrameLayout 
+			    android:id="@+id/frame_webview"
+			    android:layout_width="match_parent"
+			    android:layout_height="match_parent">
+			
+			<WebView
+			    android:id="@+id/entry_webview"
+			    android:layout_width="match_parent"
+			    android:layout_height="match_parent">    
+			</WebView>
+		</FrameLayout>
+	
+	</LinearLayout>
+</ScrollView>

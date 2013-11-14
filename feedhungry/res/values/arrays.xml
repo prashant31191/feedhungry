@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string-array name="tags">
+		<item>Home</item>
+		<item>Email</item>
+		<item>Calendar</item>
+		<item>Browser</item>
+	</string-array>
+	
+	<string-array name="pageSizeListentries">
+		<item>20</item>
+		<item>30</item>
+		<item>40</item>
+		<item>50</item>
+	</string-array>
+
+</resources>

@@ -1,0 +1,48 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.yairkukielka.feedhungry"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="18" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:name="com.yairkukielka.feedhungry.app.App_Feedhungry"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.Sherlock" >
+
+        <!--
+        android:theme="@style/AppTheme"  
+		android:theme="@style/Theme.Sherlock"
+        -->
+        <activity
+            android:name=".MainActivity_"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <!-- A child of the main activity -->
+        <activity
+            android:name=".FeedEntryActivity_"
+            android:parentActivityName=".MainActivity_" >
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity_" />
+        </activity>
+        <activity android:name=".settings.PreferencesActivity" >
+        </activity>
+    </application>
+
+</manifest>

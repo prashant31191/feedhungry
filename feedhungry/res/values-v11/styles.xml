@@ -1,0 +1,13 @@
+<resources>
+
+    <style name="backgroundActivated">
+        <item name="android:background">?android:attr/activatedBackgroundIndicator</item>
+    </style>
+
+    <style name="backgroundActivated.minHeight">
+        
+        <item name="android:minHeight">48dip</item>
+<!--         <item name="android:minHeight">?android:attr/listPreferredItemHeight</item> -->
+    </style>
+
+</resources>
