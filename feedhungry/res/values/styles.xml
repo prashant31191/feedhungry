@@ -3,9 +3,14 @@
     <style name="backgroundActivated" />
 
     <style name="backgroundActivated.minHeight">
-        <item name="android:minHeight">48dip</item>
+        <item name="android:minHeight">56dip</item>
     </style>
 
+    
+    <style name="feedhungry.textSize" parent="Theme.Sherlock">
+        <item name="android:textSize">8sp</item>
+    </style>
+    
     <style name="GenericProgressBackground" parent="android:Theme">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">fill_parent</item>
@@ -20,4 +25,5 @@
         <item name="android:indeterminate">true</item>
     </style>
         
+    
 </resources>

@@ -1,13 +1,17 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <style name="backgroundActivated">
         <item name="android:background">?android:attr/activatedBackgroundIndicator</item>
     </style>
 
-    <style name="backgroundActivated.minHeight">
-        
-        <item name="android:minHeight">48dip</item>
-<!--         <item name="android:minHeight">?android:attr/listPreferredItemHeight</item> -->
+    <style name="backgroundActivated.minHeight">        
+<!--         <item name="android:minHeight">56dip</item> -->
+		<item name="android:minHeight">?android:attr/listPreferredItemHeight</item>
     </style>
 
+    
+    <style name="feedhungry.textSize" parent="Theme.Sherlock">
+        <item name="android:textSize">16sp</item>
+    </style>
+    
 </resources>
