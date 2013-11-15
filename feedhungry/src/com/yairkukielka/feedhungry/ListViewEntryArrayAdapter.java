@@ -19,21 +19,23 @@ package com.yairkukielka.feedhungry;
 import java.util.List;
 
 import android.content.Context;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.yairkukielka.feedhungry.feedly.ListEntry;
+import com.yairkukielka.feedhungry.toolbox.DateUtils;
 
 
 public class ListViewEntryArrayAdapter extends ArrayAdapter<ListEntry> {
+	private static final String HTML_OPEN_MARK = "<";
     private ImageLoader mImageLoader;
     private Context context;
     Animation animation;
@@ -71,10 +73,23 @@ public class ListViewEntryArrayAdapter extends ArrayAdapter<ListEntry> {
         if (entry.getVisual() != null) {
             holder.image.setImageUrl(entry.getVisual(), mImageLoader);
         } else {
-            holder.image.setImageResource(R.drawable.no_image_transp);
+        	//ViewGroup.LayoutParams lp = holder.image.getLayoutParams();
+        	holder.image.setLayoutParams(new LinearLayout.LayoutParams(0, 0));
+        	
+            //holder.image.setImageResource(R.drawable.no_image_transp);
         }
         
+        String summary = getSummaryWithoutHTML(entry.getContent());
+        //Spanned summary = Html.fromHtml(entry.getContent());
+//        SpannableStringBuilder spanstr = new SpannableStringBuilder(entry.getTitle());
+//        spanstr.setSpan(new StyleSpan(Typeface.BOLD),0, entry.getTitle().length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);        
+//        spanstr.append(" ");
+//        spanstr.append(summary)
+//        holder.title.setText(spanstr);;
+
         holder.title.setText(entry.getTitle());
+        holder.summary.setText(summary);
+        holder.date.setText(DateUtils.dateToString(entry.getPublished()));
         
         
         if (v != null && animate) {
@@ -88,12 +103,26 @@ public class ListViewEntryArrayAdapter extends ArrayAdapter<ListEntry> {
     private class ViewHolder {
         NetworkImageView image;
         TextView title; 
+        TextView summary; 
+        TextView date; 
         
         public ViewHolder(View v) {
-            image = (NetworkImageView) v.findViewById(R.id.iv_thumb);
-            title = (TextView) v.findViewById(R.id.tv_title);
+            image = (NetworkImageView) v.findViewById(R.id.image_list_thumb);
+            title = (TextView) v.findViewById(R.id.tv_list_title);
+            summary = (TextView) v.findViewById(R.id.tv_list_summary);
+            date = (TextView) v.findViewById(R.id.tv_list_date);
             
             v.setTag(this);
         }
+    }
+    
+    private String getSummaryWithoutHTML(String s) {
+    	if (!(s == null || "".equals(s) || s.startsWith(HTML_OPEN_MARK))) {
+    		int index = s.indexOf(HTML_OPEN_MARK);
+    		if (index != -1) {
+    			return s.substring(0, index);
+    		}
+    	}
+		return "";
     }
 }

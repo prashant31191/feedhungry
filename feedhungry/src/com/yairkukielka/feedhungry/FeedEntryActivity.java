@@ -2,6 +2,7 @@ package com.yairkukielka.feedhungry;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.text.DateFormat;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
@@ -46,6 +47,7 @@ import com.googlecode.androidannotations.annotations.Extra;
 import com.googlecode.androidannotations.annotations.ViewById;
 import com.yairkukielka.feedhungry.app.MyVolley;
 import com.yairkukielka.feedhungry.feedly.Entry;
+import com.yairkukielka.feedhungry.toolbox.DateUtils;
 import com.yairkukielka.feedhungry.toolbox.NetworkUtils;
 
 @EActivity(R.layout.feed_entry_layout)
@@ -63,7 +65,6 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 	// "<head><style>@font-face {font-family: 'myFont';src: url('file:///android_asset/fonts/MyFont.otf');}body {font-family: 'myFont';}</style></head>";
 	private static final String DIV_PREFIX = "<div style='background-color:transparent;padding: 5px;color:#ccc;font-family: myFont'>";
 	private static final String DIV_SUFIX = "</div>";
-	private static final Format formatter = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
 
 	private ProgressBar progress;
 	// the feed entry
@@ -154,7 +155,7 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 						}
 						if (entry.getPublished() != null) {
 							try {
-								tvDate.setText(formatter.format(entry.getPublished()));
+								tvDate.setText(DateUtils.dateToString(entry.getPublished()));
 							} catch (IllegalArgumentException ie) {
 							}
 						}
