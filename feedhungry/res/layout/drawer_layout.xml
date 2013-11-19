@@ -11,14 +11,36 @@
         android:layout_height="match_parent" />
     <!-- The navigation drawer -->
 
-    <ExpandableListView
-        android:id="@+id/left_drawer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="left"
-        android:background="#B000"
-        android:choiceMode="singleChoice"
-        android:clipToPadding="false" />
-    <!-- quizás gravity left -->
-
+ 	<LinearLayout
+	    android:id="@+id/linear_layout"
+        android:layout_width="240dp"
+        android:layout_height="match_parent" 
+        android:orientation="vertical"
+	    android:layout_gravity="start"
+	    android:background="#C000"
+        >        
+        <RelativeLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content" >
+			<TextView
+			    android:id="@+id/tv_about_developer"
+			    style="@style/backgroundActivated.minHeight"
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    android:layout_alignParentLeft="true"
+			    android:layout_centerVertical="true"
+			    android:gravity="center_vertical"
+				android:fontFamily="sans-serif"
+				android:textStyle="bold"
+			    android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
+			    android:paddingRight="16dp"
+			    android:text="@string/about_developer" />
+			</RelativeLayout>
+	    <ExpandableListView
+	        android:id="@+id/expandable"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:choiceMode="singleChoice"/>
+		
+	</LinearLayout>
 </android.support.v4.widget.DrawerLayout>

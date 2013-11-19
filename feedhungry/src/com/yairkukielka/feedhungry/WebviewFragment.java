@@ -40,8 +40,8 @@ public class WebviewFragment extends SherlockFragment {
 	private static final String REDIRECT_URI_PATH = "&redirect_uri=";
 	private static final String REDIRECT_URI = "http://localhost";
 	private static final String SCOPE_PATH = "&scope=";
-	public static final String CLIENT_ID = "sandbox"; // feedly en producción
-	public static final String CLIENT_SECRET = "Z5ZSFRASVWCV3EFATRUY";
+	public static final String CLIENT_ID = "feedhungry";//"sandbox"; // feedly en producción;
+	public static final String CLIENT_SECRET = "FE01RP4J052ACM129GCW7KYB70MS";//"Z5ZSFRASVWCV3EFATRUY";
 	private static final String SCOPE = "https://cloud.feedly.com/subscriptions";
 	private static final String CLIENT_ID_PATH = "&client_id="; // feedly en
 																// producción

@@ -3,6 +3,8 @@ package com.yairkukielka.feedhungry.settings;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
+import android.preference.Preference;
+import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 
 import com.yairkukielka.feedhungry.R;
@@ -10,7 +12,9 @@ import com.yairkukielka.feedhungry.R;
 public class PreferencesActivity extends PreferenceActivity implements OnSharedPreferenceChangeListener {
 	public static final String KEY_ONLY_UNREAD = "pref_key_only_unread";
 	public static final String KEY_PAGE_SIZE = "pref_key_page_size";
-	public static final int PREFERENCES_CHANGED = 1;
+	public static final String KEY_LOGOUT = "pref_key_logout";
+	public static int PREFERENCES_CODE = 1;
+	public static boolean LOG_OUT = false;
 
 	@SuppressWarnings("deprecation")
 	@Override
@@ -28,13 +32,26 @@ public class PreferencesActivity extends PreferenceActivity implements OnSharedP
 
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-		setResult(PREFERENCES_CHANGED);
+		setResult(PREFERENCES_CODE);
 	}
 
 	@Override
 	public void onCreate(Bundle aSavedState) {
 		super.onCreate(aSavedState);
 		addPreferencesFromResource(R.xml.preferences);
+		
+		Preference logoutPref = (Preference) findPreference(KEY_LOGOUT);
+		logoutPref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+		             public boolean onPreferenceClick(Preference preference) {
+		            	 // return the code to reset the accessToken
+		            	 if (KEY_LOGOUT.equals(preference.getKey())) {
+		            		 LOG_OUT = true;
+		            	 }
+		            	 setResult(PREFERENCES_CODE);
+		            	 finish();
+		            	 return true;
+		             }
+		         });
 	}
 
 }

@@ -5,7 +5,6 @@ import java.util.List;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,14 +22,12 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 	private List<Category> _listDataHeader; // header titles
 	// child data in format of header title, child title
 	private HashMap<String, List<Subscription>> _listDataChild;
-	private DisplayMetrics _metrics;
 	
 	public ExpandableListAdapter(Context context, List<Category> listDataHeader,
-			HashMap<String, List<Subscription>> listChildData, DisplayMetrics metrics) {
+			HashMap<String, List<Subscription>> listChildData) {
 		this._context = context;
 		this._listDataHeader = listDataHeader;
 		this._listDataChild = listChildData;
-		this._metrics = metrics;
 	}
 
 	@Override
@@ -65,9 +62,14 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		// set unread items for this subscription
 		TextView txtUnreadListChild = (TextView) convertView
 				.findViewById(R.id.drawer_list_item_unread);
-		txtUnreadListChild.setText(childUnread.toString());
+		if (childUnread != 0) {
+			txtUnreadListChild.setVisibility(View.VISIBLE);
+			txtUnreadListChild.setText(childUnread.toString());
+		} else {
+			txtUnreadListChild.setVisibility(View.INVISIBLE);
+		}
 		
-		Animation animation = AnimationUtils.loadAnimation(_context, R.anim.fade_in);
+		Animation animation = AnimationUtils.loadAnimation(_context, R.anim.fade_in_title);
 		// animation = AnimationUtils.loadAnimation(context, R.anim.push_up_in);
 		animation.setDuration(500);
 		convertView.startAnimation(animation);
@@ -108,7 +110,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
 		// set category title
 		TextView lblListHeader = (TextView) convertView
-				.findViewById(R.id.group_item_text);
+				.findViewById(R.id.drawer_list_item_text);
 		lblListHeader.setTypeface(null, Typeface.BOLD);
 		lblListHeader.setText(headerTitle);
 
@@ -118,7 +120,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 			unread = unread + sub.getUnread();
 		}
 		TextView lblListUnread = (TextView) convertView
-				.findViewById(R.id.group_item_unread);
+				.findViewById(R.id.drawer_list_item_unread);
 		lblListUnread.setTypeface(null, Typeface.BOLD);
 		lblListUnread.setText(unread.toString());
 		

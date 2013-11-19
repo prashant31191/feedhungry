@@ -16,5 +16,7 @@
             android:entryValues="@array/pageSizeListentries"
             android:dialogTitle="@string/pref_page_size"
             android:defaultValue="30" />
+        
+        <Preference android:title="@string/logout" android:key="pref_key_logout"></Preference>
     </PreferenceCategory>
 </PreferenceScreen>

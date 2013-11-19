@@ -54,21 +54,15 @@ import com.yairkukielka.feedhungry.settings.PreferencesActivity;
 import com.yairkukielka.feedhungry.toolbox.NetworkUtils;
 
 /**
- * Demonstrates: 1. ListView which is populated by HTTP paginated requests; 2.
- * Usage of NetworkImageView; 3. "Endless" ListView pagination with read-ahead
- * 
- * Please note that for production environment you will need to add
- * functionality like handling rotation, showing/hiding (indeterminate) progress
- * indicator while loading, indicating that there are no more records, etc...
- * 
- * @author Ognyan Bankov (ognyan.bankov@bulpros.com)
- * 
+ * Shows the list of entries for a stream 
  */
 @EFragment(R.layout.feed_list_view)
 public class EntryListFragment extends SherlockFragment {
 	private static final String STREAM_PATH = "/v3/streams/contents?streamId=";
+	private static final String MIXES_PATH = "/v3/mixes/contents?streamId=";
 	public static final String STREAM_ID = "stream_id";
 	public static final String ACCESS_TOKEN = "accessToken";
+	public static final String IS_MIX = "mix";
 	private static final String ENTRY_ID = "entryId";
 	public static final String RESULTS_PAGE_SIZE = "RESULTS_PAGE_SIZE";
 	private static final String COUNT_PARAM = "&count=";
@@ -89,6 +83,8 @@ public class EntryListFragment extends SherlockFragment {
 	String streamId;
 	@FragmentArg(ACCESS_TOKEN)
 	String accessToken;
+	@FragmentArg(IS_MIX)
+	Boolean isMix;
 
 	@AfterViews
 	void afterViews() {
@@ -110,7 +106,7 @@ public class EntryListFragment extends SherlockFragment {
 				b.putString(ENTRY_ID, e.getId());
 				intent.putExtras(b);
 				startActivity(intent);
-				EntryListFragment.this.getActivity().overridePendingTransition(R.anim.fade_in_short,R.anim.fade_out);
+				EntryListFragment.this.getActivity().overridePendingTransition(R.anim.open_next, R.anim.close_main);
 			}
 		});
 
@@ -121,10 +117,27 @@ public class EntryListFragment extends SherlockFragment {
 
 	private void loadPage() {
 		RequestQueue queue = MyVolley.getRequestQueue();
-		JsonObjectRequest myReq = NetworkUtils.getJsonObjectRequest(MainActivity.ROOT_URL + STREAM_PATH + streamId
-				+ getPageSizeParameter() + getContinuationParameter() + getOnlyUnreadParameter(),
+		JsonObjectRequest myReq = NetworkUtils.getJsonObjectRequest(getPath(),
 				createMyReqSuccessListener(), createMyReqErrorListener(), accessToken);
 		queue.add(myReq);
+	}
+
+	/**
+	 * Builds the path for the url. Usually it will be a stream, but sometimes
+	 * it can be a mix (like for popular articles)
+	 * 
+	 * @return the path
+	 */
+	private String getPath() {
+		String path;
+		if (isMix) {
+			path = MainActivity.ROOT_URL + MIXES_PATH + streamId + getMixCountParameter() + getContinuationParameter()
+					+ getOnlyUnreadParameter();
+		} else {
+			path = MainActivity.ROOT_URL + STREAM_PATH + streamId + getPageSizeParameter() + getContinuationParameter()
+					+ getOnlyUnreadParameter();
+		}
+		return path;
 	}
 
 	private Response.Listener<JSONObject> createMyReqSuccessListener() {
@@ -145,6 +158,10 @@ public class EntryListFragment extends SherlockFragment {
 					}
 					if (response.has("continuation")) {
 						continuation = response.getString("continuation");
+					} else {
+						// to mark the end of the scrolling and to not ask for
+						// more entries
+						continuation = null;
 					}
 					JSONArray items = response.getJSONArray("items");
 					for (int i = 0; i < items.length(); i++) {
@@ -172,7 +189,7 @@ public class EntryListFragment extends SherlockFragment {
 	private void showErrorDialog(String error) {
 		mInError = true;
 		AlertDialog.Builder b = new AlertDialog.Builder(getActivity());
-		b.setMessage("Error occured: " + error);
+		b.setMessage(getResources().getString(R.string.receiving_subscriptions_exception));
 		b.show();
 	}
 
@@ -202,9 +219,20 @@ public class EntryListFragment extends SherlockFragment {
 		return "";
 	}
 
+	/**
+	 * Gets the url part of the parameter for the number of entries to retrieve from feedly servers for a stream
+	 * @return number of entries
+	 */
 	private String getPageSizeParameter() {
 		Integer pageSize = Integer.parseInt(getPrefPageSize(getActivity()));
 		return COUNT_PARAM + pageSize;
+	}
+	/**
+	 * Gets the parameter of the number of entries to retrieve from feedly servers for a mix
+	 * @return number of entries
+	 */
+	private String getMixCountParameter() {
+		return COUNT_PARAM + 10;
 	}
 
 	/**
@@ -222,6 +250,11 @@ public class EntryListFragment extends SherlockFragment {
 		return null;
 	}
 
+	/**
+	 * Gets, from preferences, the parameter of the number of entries to retrieve from feedly servers for a stream
+	 * @param context activity context
+	 * @return the parameter page size
+	 */
 	public static String getPrefPageSize(Context context) {
 		if (context != null) {
 			SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
@@ -229,6 +262,7 @@ public class EntryListFragment extends SherlockFragment {
 		}
 		return null;
 	}
+
 	/**
 	 * Detects when user is close to the end of the current page and starts
 	 * loading the next page so the user will not have to wait (that much) for
@@ -264,7 +298,10 @@ public class EntryListFragment extends SherlockFragment {
 					currentPage++;
 				}
 			}
-			if (!loading && (totalItemCount - visibleItemCount) <= (firstVisibleItem + visibleThreshold)) {
+			// continuation is null when Feedly API says there are no more
+			// entries to retrieve
+			if (!loading && continuation != null
+					&& (totalItemCount - visibleItemCount) <= (firstVisibleItem + visibleThreshold)) {
 				// I load the next page of gigs using a background task,
 				// but you can call any function here.
 				loadPage();

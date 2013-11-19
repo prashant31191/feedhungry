@@ -1,9 +1,7 @@
 package com.yairkukielka.feedhungry;
 
-import android.content.Context;
 import android.support.v4.app.Fragment;
 
-import com.googlecode.androidannotations.annotations.AfterViews;
 import com.googlecode.androidannotations.annotations.EFragment;
 
 /**
