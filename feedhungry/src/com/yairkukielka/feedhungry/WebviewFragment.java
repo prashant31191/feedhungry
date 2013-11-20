@@ -6,6 +6,7 @@ import java.util.Map;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences.Editor;
@@ -61,6 +62,7 @@ public class WebviewFragment extends SherlockFragment {
 		return fragment;
 	}
 
+	@SuppressLint("SetJavaScriptEnabled")
 	@AfterViews
 	void afterViews() {
 		thisActivity = this.getActivity();
@@ -89,7 +91,7 @@ public class WebviewFragment extends SherlockFragment {
 							mErrorTokenListener.onErrorResponse(error);
 						} else if (url.indexOf("code=") != -1) {
 							String code = mExtractCode(url);
-							getTokens(code);
+							getTokens(false, code);
 						}
 						// don't go to redirectUri
 						return true;
@@ -104,11 +106,14 @@ public class WebviewFragment extends SherlockFragment {
 			String authorizationUri = mReturnAuthorizationRequestUri();
 			webview.loadUrl(authorizationUri);
 
-		} else {			
-			mTokenListener.onResponse(accessToken);
-			Log.d(TAG, "ALREADY HAS ACCESS TOKEN");
+		} else {
+			refreshToken = thisActivity.getPreferences(Context.MODE_PRIVATE)
+					.getString(MainActivity.SHPREF_KEY_REFRESH_TOKEN, null);
+			// refresh the authentication token
+			getTokens(true, refreshToken);
 		}
 	}
+
 
 	/**
 	 * Spawns a worker thread in the volley library to get the access and
@@ -117,17 +122,22 @@ public class WebviewFragment extends SherlockFragment {
 	 * @param code
 	 *            access code
 	 */
-	private void getTokens(String code) {
+	private void getTokens(Boolean isRefresh, String code) {
 		JSONObject params = new JSONObject();
 		try {
-			params.put("code", code);
+			if (isRefresh) {
+				params.put("refresh_token", code);
+				params.put("grant_type", "refresh_token");
+			} else {
+				params.put("code", code);
+				params.put("state", "state-of-feedhungry");
+				params.put("grant_type", "authorization_code");
+				params.put("redirect_uri", REDIRECT_URI);
+			}
 			params.put("client_id", CLIENT_ID);
 			params.put("client_secret", CLIENT_SECRET);
-			params.put("redirect_uri", REDIRECT_URI);
-			params.put("grant_type", "authorization_code");//TODO "refresh_token" for refresh;
 		} catch (JSONException je) {
-			Log.e(TAG, "Error al recibir el token");
-			je.printStackTrace();
+			Log.e(TAG, "Error receiving tokens from Feedly");
 		}
 		RequestQueue queue = MyVolley.getRequestQueue();
 		JsonObjectRequest myReq = new JsonObjectRequest(Method.POST, MainActivity.ROOT_URL
@@ -142,6 +152,7 @@ public class WebviewFragment extends SherlockFragment {
 				};
 		queue.add(myReq);
 	}
+	
 
 	/**
 	 * Gets the access and refresh tokens. Spawns a worker thread in the volley
@@ -159,7 +170,9 @@ public class WebviewFragment extends SherlockFragment {
 				try {
 					userId = response.getString("id");
 					accessToken = response.getString("access_token");
-					refreshToken = response.getString("refresh_token");
+					if (response.has("refresh_token")) {
+						refreshToken = response.getString("refresh_token");
+					}
 				} catch (JSONException je) {
 					Log.e(TAG, "Error al parsear el access token");
 					je.printStackTrace();
@@ -169,17 +182,20 @@ public class WebviewFragment extends SherlockFragment {
 				e.putString(MainActivity.SHPREF_KEY_REFRESH_TOKEN, refreshToken);
 				e.commit();
 
-				//Toast.makeText(thisActivity, "Success", 1000).show();
 				mTokenListener.onResponse(accessToken);
 			}
 		};
 	}
 
+	/**
+	 * Creates an error listener
+	 * @return Error listnener
+	 */
 	private Response.ErrorListener createAuthTokenErrorListener() {
 		return new Response.ErrorListener() {
 			@Override
 			public void onErrorResponse(VolleyError error) {
-				Toast.makeText(thisActivity, "Failed to log in Feedly", Toast.LENGTH_SHORT).show();
+				Toast.makeText(thisActivity, getResources().getString(R.string.error_login), Toast.LENGTH_SHORT).show();
 				mErrorTokenListener.onErrorResponse(error.getMessage());
 			}
 		};
@@ -217,8 +233,5 @@ public class WebviewFragment extends SherlockFragment {
 		sb.append(SCOPE_PATH);
 		sb.append(SCOPE);
 		return sb.toString();
-	}
-
-	
-//	public Map<String, String> getHeaders()
+	}	
 }

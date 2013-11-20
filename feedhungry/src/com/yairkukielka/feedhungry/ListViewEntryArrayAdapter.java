@@ -73,10 +73,7 @@ public class ListViewEntryArrayAdapter extends ArrayAdapter<ListEntry> {
         if (entry.getVisual() != null) {
             holder.image.setImageUrl(entry.getVisual(), mImageLoader);
         } else {
-        	//ViewGroup.LayoutParams lp = holder.image.getLayoutParams();
         	holder.image.setLayoutParams(new LinearLayout.LayoutParams(0, 0));
-        	
-            //holder.image.setImageResource(R.drawable.no_image_transp);
         }
         
         String summary = getSummaryWithoutHTML(entry.getContent());
@@ -85,8 +82,13 @@ public class ListViewEntryArrayAdapter extends ArrayAdapter<ListEntry> {
 //        spanstr.setSpan(new StyleSpan(Typeface.BOLD),0, entry.getTitle().length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);        
 //        spanstr.append(" ");
 //        spanstr.append(summary)
-//        holder.title.setText(spanstr);;
+//        holder.title.setText(spanstr);
 
+        if (entry.isPopular()) {
+        	holder.popular.setVisibility(View.VISIBLE);
+        } else {
+        	holder.popular.setVisibility(View.INVISIBLE);
+		}
         holder.title.setText(entry.getTitle());
         holder.summary.setText(summary);
         holder.date.setText(DateUtils.dateToString(entry.getPublished()));
@@ -105,12 +107,14 @@ public class ListViewEntryArrayAdapter extends ArrayAdapter<ListEntry> {
         TextView title; 
         TextView summary; 
         TextView date; 
+        TextView popular; 
         
         public ViewHolder(View v) {
             image = (NetworkImageView) v.findViewById(R.id.image_list_thumb);
             title = (TextView) v.findViewById(R.id.tv_list_title);
             summary = (TextView) v.findViewById(R.id.tv_list_summary);
             date = (TextView) v.findViewById(R.id.tv_list_date);
+            popular = (TextView) v.findViewById(R.id.tv_list_popular);
             
             v.setTag(this);
         }

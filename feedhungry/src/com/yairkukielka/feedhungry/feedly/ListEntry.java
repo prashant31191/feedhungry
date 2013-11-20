@@ -21,6 +21,8 @@ public class ListEntry {
 	private String author;
 	private String content;
 	private String visual;
+	private String engagement;
+	private boolean popular;
 	
 	public ListEntry() {
 	}
@@ -35,6 +37,18 @@ public class ListEntry {
 				categories.add(c);
 			}
 		}
+		if (jobject.has("engagement")) {
+			engagement = jobject.getString("engagement");
+			try {				
+				Integer engInteger = Integer.valueOf(engagement);
+				if (engInteger > 18) {
+					popular = true;
+				}
+			} catch (NumberFormatException e) {	}
+		}
+		if (jobject.has("author")) {
+			author = jobject.getString("author");
+		}	
 		if (jobject.has("published")) {
 			published = DateUtils.getDateFromJson(jobject.getLong("published"));	
 		}
@@ -107,6 +121,18 @@ public class ListEntry {
 	}
 	public void setVisual(String visual) {
 		this.visual = visual;
+	}
+	public String getEngagement() {
+		return engagement;
+	}
+	public void setEngagement(String engagement) {
+		this.engagement = engagement;
+	}
+	public boolean isPopular() {
+		return popular;
+	}
+	public void setPopular(boolean popular) {
+		this.popular = popular;
 	}
 	
 }

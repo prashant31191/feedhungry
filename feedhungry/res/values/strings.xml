@@ -15,6 +15,8 @@
 	<string name="drawer_uncategorized">Uncategorized</string>
 	<string name="about_developer">About the developer</string>
 	
+	<!-- items list -->
+	<string name="popular">Popular</string>
 
 	<!-- no internet connection message -->
 	<string name="no_internet_connection">No Internet Connection</string>
@@ -26,8 +28,6 @@
 	<string name="pref_page_size">Page Size</string>
 	<string name="pref_page_size_summary">How many articles are read every connection</string>
 	<string name="logout">Log out</string>
-	
-	
 	
 	<!-- main action bar -->	
 	<string name="menu_refresh">refresh</string>
@@ -44,6 +44,8 @@
 	<string name="parsing_subscriptions_exception">Error parsing suscription</string>
 	<string name="receiving_subscriptions_exception">Error receiving subscriptions</string>
 	<string name="receiving_unread_subscriptions_exception">Error reading unread suscriptions</string>
+	<string name="error_login">Failed to log in</string>
+	<string name="error_loading_entry">Error loading entry</string>
 	
 	
 	

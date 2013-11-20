@@ -38,10 +38,12 @@ public class Entry {
 		}
 		title = jobject.getString("title");	
 		unread = jobject.getBoolean("unread");
-		JSONArray jsonCategories = jobject.getJSONArray("categories");
-		for (int i = 0; i < jsonCategories.length(); i++) {
-			Category c = new Category((JSONObject) jsonCategories.get(i));	
-			categories.add(c);
+		if (jobject.has("categories")) {
+			JSONArray jsonCategories = jobject.getJSONArray("categories");
+			for (int i = 0; i < jsonCategories.length(); i++) {
+				Category c = new Category((JSONObject) jsonCategories.get(i));	
+				categories.add(c);
+			}
 		}
 		if (jobject.has("published")) {
 			published = DateUtils.getDateFromJson(jobject.getLong("published"));	

@@ -29,6 +29,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -51,6 +52,7 @@ import com.yairkukielka.feedhungry.app.MyVolley;
 import com.yairkukielka.feedhungry.feedly.ListEntry;
 import com.yairkukielka.feedhungry.feedly.Stream;
 import com.yairkukielka.feedhungry.settings.PreferencesActivity;
+import com.yairkukielka.feedhungry.toolbox.DateUtils;
 import com.yairkukielka.feedhungry.toolbox.NetworkUtils;
 
 /**
@@ -64,13 +66,19 @@ public class EntryListFragment extends SherlockFragment {
 	public static final String ACCESS_TOKEN = "accessToken";
 	public static final String IS_MIX = "mix";
 	private static final String ENTRY_ID = "entryId";
+	private static final String ENTRY_TITLE = "entryTitle";
+	private static final String ENTRY_CONTENT = "entryContent";
+	private static final String ENTRY_AUTHOR = "entryAuthor";
+	private static final String STREAM_TITLE = "streamTitle";
+	private static final String ENTRY_DATE = "entryDate";	
+	public static final int POPULAR_ITEMS_PAGE_SIZE = 20;
 	public static final String RESULTS_PAGE_SIZE = "RESULTS_PAGE_SIZE";
 	private static final String COUNT_PARAM = "&count=";
 	private static final String CONTINUATION_PARAM = "&continuation=";
 	private static final String ONLY_UNREAD_PARAM = "&unreadOnly=";
 	public String continuation = null;
 	private DisplayMetrics metrics;
-	private Stream stream;
+	private String streamTitle;
 
 	@ViewById(R.id.lv_picasa)
 	ListView mLvPicasa;
@@ -100,10 +108,18 @@ public class EntryListFragment extends SherlockFragment {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				Intent intent = new Intent(EntryListFragment.this.getActivity(), FeedEntryActivity_.class);
-				ListEntry e = mEntries.get(position);
+				ListEntry listEntry = mEntries.get(position);
 				Bundle b = new Bundle();
 				b.putString(ACCESS_TOKEN, accessToken);
-				b.putString(ENTRY_ID, e.getId());
+				b.putString(ENTRY_ID, listEntry.getId());
+				b.putString(ENTRY_TITLE, listEntry.getTitle());
+				b.putString(ENTRY_CONTENT, listEntry.getContent());
+				b.putString(ENTRY_AUTHOR, listEntry.getAuthor());
+				b.putString(STREAM_TITLE, streamTitle);
+				try {
+					b.putString(ENTRY_DATE, DateUtils.dateToString(listEntry.getPublished()));	
+				} catch (IllegalArgumentException ie) {}
+				
 				intent.putExtras(b);
 				startActivity(intent);
 				EntryListFragment.this.getActivity().overridePendingTransition(R.anim.open_next, R.anim.close_main);
@@ -145,17 +161,18 @@ public class EntryListFragment extends SherlockFragment {
 			@Override
 			public void onResponse(JSONObject response) {
 				try {
-					stream = new Stream();
-					stream.setId(response.getString("id"));
+//					stream = new Stream();
+//					stream.setId(response.getString("id"));
 					if (response.has("title")) {
 						// global.all has no title
-						stream.setTitle(response.getString("title"));
+						streamTitle = response.getString("title");
+//						stream.setTitle(response.getString("title"));						
 					}
-					if (response.has("summary")) {
-						// global.all has no title
-						JSONObject summary = response.getJSONObject("summary");
-						stream.setSummary(summary.getString("content"));
-					}
+//					if (response.has("summary")) {
+//						// global.all has no title
+//						JSONObject summary = response.getJSONObject("summary");
+//						stream.setSummary(summary.getString("content"));
+//					}
 					if (response.has("continuation")) {
 						continuation = response.getString("continuation");
 					} else {
@@ -166,7 +183,7 @@ public class EntryListFragment extends SherlockFragment {
 					JSONArray items = response.getJSONArray("items");
 					for (int i = 0; i < items.length(); i++) {
 						ListEntry e = new ListEntry((JSONObject) items.get(i));
-						stream.add(e);
+//						stream.add(e);
 						mEntries.add(e);
 					}
 					mAdapter.notifyDataSetChanged();
@@ -232,7 +249,7 @@ public class EntryListFragment extends SherlockFragment {
 	 * @return number of entries
 	 */
 	private String getMixCountParameter() {
-		return COUNT_PARAM + 10;
+		return COUNT_PARAM + POPULAR_ITEMS_PAGE_SIZE;
 	}
 
 	/**

@@ -1,6 +1,7 @@
 package com.yairkukielka.feedhungry;
 
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Field;
 import java.net.URLEncoder;
 
 import org.json.JSONArray;
@@ -8,7 +9,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.R.color;
-import android.R.integer;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -44,7 +44,6 @@ import com.googlecode.androidannotations.annotations.Extra;
 import com.googlecode.androidannotations.annotations.ViewById;
 import com.yairkukielka.feedhungry.app.MyVolley;
 import com.yairkukielka.feedhungry.feedly.Entry;
-import com.yairkukielka.feedhungry.toolbox.DateUtils;
 import com.yairkukielka.feedhungry.toolbox.NetworkUtils;
 
 @EActivity(R.layout.feed_entry_layout)
@@ -55,7 +54,12 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 	private static final String MARK_READ = "markAsRead";
 	private static final String MARK_KEEP_UNREAD = "keepUnread";
 	private static final String ENTRY_ID = "entryId";
+	private static final String ENTRY_TITLE = "entryTitle";
+	private static final String ENTRY_CONTENT = "entryContent";
+	private static final String ENTRY_AUTHOR = "entryAuthor";
+	private static final String ENTRY_DATE = "entryDate";
 	public static final String ACCESS_TOKEN = "accessToken";
+	private static final String STREAM_TITLE = "streamTitle";
 	private static final String BY = " by ";
 	private static final String encoding = "utf-8";
 	private static final int TRANSPARENT_WINDOW = 140;
@@ -75,6 +79,17 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 	String accessToken;
 	@Extra(ENTRY_ID)
 	String entryId;
+	@Extra(ENTRY_CONTENT)
+	String entryContent;
+	@Extra(ENTRY_AUTHOR)
+	String entryAuthor;
+	@Extra(ENTRY_DATE)
+	String entryDate;
+	@Extra(ENTRY_TITLE)
+	String entryTitle;
+	@Extra(STREAM_TITLE)
+	String streamTitle;
+
 	/** title text view */
 	@ViewById(R.id.entry_title)
 	TextView tvTitle;
@@ -94,21 +109,12 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 	@ViewById(R.id.entry_bg_image_view)
 	NetworkImageView bgImage;
 
-	// @ViewById(R.id.scroll_view_entry)
-	// ViewGroup root;
-
 	@SuppressLint("SetJavaScriptEnabled")
 	@AfterViews
 	void afterViews() {
 
 		getSupportActionBar().setBackgroundDrawable(null);
-		// set webView invisible so we don't see the white frame before it
-		// loads.
-		webView.setVisibility(View.INVISIBLE);
 		webView.getSettings().setJavaScriptEnabled(true);
-		titleLayout.setVisibility(View.INVISIBLE);
-		// hide action bar
-		// getSupportActionBar().hide();
 		View.OnClickListener onClickListener = getOnClickListener();
 		titleLayout.setOnClickListener(onClickListener);
 		// tvTitle.setOnClickListener(onClickListener);
@@ -119,8 +125,41 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 		titleFadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_in_title);
 		loadingFragment = new LoadingFragment_();
 		FragmentManager fragmentManager = getSupportFragmentManager();
-		fragmentManager.beginTransaction().replace(R.id.frame_webview, loadingFragment).commit();
+		fragmentManager.beginTransaction().replace(R.id.frame_webview, loadingFragment).commitAllowingStateLoss();
+
+		if (streamTitle != null) {
+			setTitle(streamTitle);
+		}
+		tvTitle.setText(entryTitle);
+
+		if (entryAuthor != null) {
+			tvAuthor.setText(BY + entryAuthor);
+		}
+		if (entryDate != null) {
+			tvDate.setText(entryDate);
+		}
+		titleLayout.setAnimation(titleFadeInAnimation);
+
+		webView.getSettings().setLayoutAlgorithm(LayoutAlgorithm.SINGLE_COLUMN);
+		webView.setBackgroundColor(color.transparent);
+		webView.getSettings().setDefaultFontSize(18);
+		webView.setWebViewClient(new WebViewClient() {
+			@Override
+			public void onPageFinished(WebView view, String url) {
+				FragmentManager fragmentManager = getSupportFragmentManager();
+				if (null != fragmentManager.findFragmentById(loadingFragment.getId())) {
+					// this is to avoid errors when the user clicks back before
+					// this can commit (the activity would be destroyed already)
+					fragmentManager.beginTransaction().remove(loadingFragment).commitAllowingStateLoss();
+				}
+				webView.setAnimation(webViewAnimation);
+				// mark entry as read
+				markEntry(MARK_READ, getMarkAsReadSuccessListener());
+			}
+		});
+
 		loadPage();
+		loadEntryInInnerBrowser(entryContent);
 	}
 
 	private void loadPage() {
@@ -149,48 +188,16 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 					if (response.length() > 0) {
 						JSONObject jentry = (JSONObject) response.get(0);
 						entry = new Entry(jentry);
-
-						// setTitle(e.getOriginTitle());
-						tvTitle.setText(entry.getTitle());
-
-						if (entry.getAuthor() != null) {
-							tvAuthor.setText(BY + entry.getAuthor());
-						}
-						if (entry.getPublished() != null) {
-							try {
-								tvDate.setText(DateUtils.dateToString(entry.getPublished()));
-							} catch (IllegalArgumentException ie) {
-							}
-						}
-						titleLayout.setVisibility(View.VISIBLE);
-						titleLayout.setAnimation(titleFadeInAnimation);
 						if (entry.getVisual() != null) {
 							bgImage.setImageUrl(entry.getVisual(), MyVolley.getImageLoader());
 							bgImage.setAnimation(titleFadeInAnimation);
 							transparentView.getLayoutParams().height = TRANSPARENT_WINDOW;
 						}
-						webView.getSettings().setLayoutAlgorithm(LayoutAlgorithm.SINGLE_COLUMN);
-						webView.setBackgroundColor(color.transparent);
-						webView.getSettings().setDefaultFontSize(18);// setTextZoom(WebSettings.TextSize.SMALLEST);
-						// webView.getSettings().setLoadWithOverviewMode(true);
-						// webView.getSettings().setUseWideViewPort(true);
-						webView.setWebViewClient(new WebViewClient() {
-							@Override
-							public void onPageFinished(WebView view, String url) {
-								FragmentManager fragmentManager = getSupportFragmentManager();
-								fragmentManager.beginTransaction().remove(loadingFragment).commitAllowingStateLoss();
-								webView.setAnimation(webViewAnimation);
-								webView.setVisibility(View.VISIBLE);
-								// mark entry as read
-								markEntry(MARK_READ, getMarkAsReadSuccessListener());
-								// mProgressView.setVisibility(View.INVISIBLE);
-							}
-						});
-
-						loadEntryInInnerBrowser();
 					}
 				} catch (JSONException e) {
-					showErrorDialog(e.getMessage());
+					Log.e(TAG, "Error parsing feed entry");
+					Log.e(TAG, e.getMessage());
+					showErrorDialog(getResources().getString(R.string.error_loading_entry));
 				}
 			}
 		};
@@ -203,59 +210,37 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 	@Override
 	public void onBackPressed() {
 		if (webView.isFocused() && webView.canGoBack()) {
-			loadEntryInInnerBrowser();
+			loadEntryInInnerBrowser(entryContent);
 			webView.clearHistory();
 			// webView.goBack();
 		} else {
 			super.onBackPressed();
 			finish();
-			overridePendingTransition (R.anim.open_main, R.anim.close_next);
+			overridePendingTransition(R.anim.open_main, R.anim.close_next);
 		}
 	}
 
 	/**
 	 * Loads the entry in the internal browser
 	 */
-	private void loadEntryInInnerBrowser() {
-		webView.loadDataWithBaseURL("file:///android_asset/", getHtmlData(entry.getContent()), "text/html", "utf-8",
-				null);
+	private void loadEntryInInnerBrowser(String content) {
+		webView.loadDataWithBaseURL("file:///android_asset/", getHtmlData(content), "text/html", "utf-8", null);
 	}
-
-	/**
-	 * To allow going back in the webview history
-	 */
-	// @Override
-	// public boolean onKeyDown(int keyCode, KeyEvent event) {
-	// if(event.getAction() == KeyEvent.ACTION_DOWN){
-	// switch(keyCode)
-	// {
-	// case KeyEvent.KEYCODE_BACK:
-	// if(webView.canGoBack() == true){
-	// webView.goBack();
-	// }else{
-	// //finish();
-	//
-	// return super.onKeyDown(keyCode, event);
-	// }
-	// return true;
-	// }
-	//
-	// }
-	// return super.onKeyDown(keyCode, event);
-	// }
 
 	private Response.ErrorListener createMyReqErrorListener() {
 		return new Response.ErrorListener() {
 			@Override
 			public void onErrorResponse(VolleyError error) {
-				Toast.makeText(FeedEntryActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+				Log.e(TAG, "Error loading entry");
+				Log.e(TAG, error.getMessage());
+				showErrorDialog(getResources().getString(R.string.error_loading_entry));
 			}
 		};
 	}
 
 	private void showErrorDialog(String error) {
 		AlertDialog.Builder b = new AlertDialog.Builder(this);
-		b.setMessage("Error occured: " + error);
+		b.setMessage(error);
 		b.show();
 	}
 
@@ -306,10 +291,8 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			// app icon in action bar clicked; go home
-			// NavUtils.navigateUpFromSameTask(this);
 			finish();
-			overridePendingTransition (R.anim.open_main, R.anim.close_next);
+			overridePendingTransition(R.anim.open_main, R.anim.close_next);
 			return true;
 		case R.id.action_share:
 			shareEntry();
@@ -330,7 +313,6 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 			jsonRequest.put("type", "entries");
 			JSONArray entries = new JSONArray();
 			entries.put(entryId);
-			// new String[] { entryId }
 			jsonRequest.put("entryIds", entries);
 			JsonObjectRequest myReq = NetworkUtils.getJsonPostRequest(MainActivity.ROOT_URL + MARKERS_PATH,
 					jsonRequest, successListener, createMyReqErrorListener(), accessToken);

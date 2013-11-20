@@ -970,10 +970,10 @@ containing a value of this type.
         public static final int abs__textButton=0x7f060014;
         public static final int abs__title=0x7f06001c;
         public static final int abs__up=0x7f06000b;
-        public static final int action_mark_unread=0x7f060050;
-        public static final int action_refresh=0x7f060052;
-        public static final int action_settings=0x7f060051;
-        public static final int action_share=0x7f06004f;
+        public static final int action_mark_unread=0x7f060051;
+        public static final int action_refresh=0x7f060053;
+        public static final int action_settings=0x7f060052;
+        public static final int action_share=0x7f060050;
         public static final int content_frame=0x7f060038;
         public static final int developer_webview=0x7f060035;
         public static final int disableHome=0x7f060009;
@@ -998,10 +998,10 @@ containing a value of this type.
         public static final int item_webview=0x7f060033;
         public static final int linear_layout=0x7f060039;
         public static final int listMode=0x7f060002;
-        public static final int loadingPanel=0x7f06004d;
-        public static final int lv_picasa=0x7f06004c;
+        public static final int loadingPanel=0x7f06004e;
+        public static final int lv_picasa=0x7f06004d;
         public static final int normal=0x7f060001;
-        public static final int progressBar1=0x7f06004e;
+        public static final int progressBar1=0x7f06004f;
         public static final int scroll_view_entry=0x7f060040;
         public static final int showCustom=0x7f060008;
         public static final int showHome=0x7f060005;
@@ -1009,9 +1009,10 @@ containing a value of this type.
         public static final int tabMode=0x7f060003;
         public static final int transparent_view=0x7f060041;
         public static final int tv_about_developer=0x7f06003a;
-        public static final int tv_list_date=0x7f060049;
-        public static final int tv_list_summary=0x7f06004b;
-        public static final int tv_list_title=0x7f06004a;
+        public static final int tv_list_date=0x7f06004a;
+        public static final int tv_list_popular=0x7f060049;
+        public static final int tv_list_summary=0x7f06004c;
+        public static final int tv_list_title=0x7f06004b;
         public static final int useLogo=0x7f060004;
         public static final int wrap_content=0x7f060000;
     }
@@ -1107,35 +1108,40 @@ containing a value of this type.
         public static final int drawer_saved=0x7f0b0015;
         public static final int drawer_uncategorized=0x7f0b0017;
         public static final int empty=0x7f0b0012;
-        public static final int entry_menu_mark_unread=0x7f0b0022;
+        public static final int entry_menu_mark_unread=0x7f0b0023;
         /**  entry action bar 
          */
-        public static final int entry_menu_share=0x7f0b0021;
+        public static final int entry_menu_share=0x7f0b0022;
+        public static final int error_loading_entry=0x7f0b002a;
+        public static final int error_login=0x7f0b0029;
         /**  Message to show when cliked on keep as unread 
          */
-        public static final int kept_as_unread=0x7f0b0024;
-        public static final int logout=0x7f0b001f;
+        public static final int kept_as_unread=0x7f0b0025;
+        public static final int logout=0x7f0b0020;
         /**  main action bar 
          */
-        public static final int menu_refresh=0x7f0b0020;
+        public static final int menu_refresh=0x7f0b0021;
         public static final int menu_settings=0x7f0b000e;
         /**  no internet connection message 
          */
-        public static final int no_internet_connection=0x7f0b0019;
-        public static final int only_unread=0x7f0b001b;
-        public static final int only_unread_summary=0x7f0b001c;
+        public static final int no_internet_connection=0x7f0b001a;
+        public static final int only_unread=0x7f0b001c;
+        public static final int only_unread_summary=0x7f0b001d;
         /**  ERRORS 
          */
-        public static final int parsing_subscriptions_exception=0x7f0b0025;
-        public static final int pref_page_size=0x7f0b001d;
-        public static final int pref_page_size_summary=0x7f0b001e;
+        public static final int parsing_subscriptions_exception=0x7f0b0026;
+        /**  items list 
+         */
+        public static final int popular=0x7f0b0019;
+        public static final int pref_page_size=0x7f0b001e;
+        public static final int pref_page_size_summary=0x7f0b001f;
         /**  preferences 
          */
-        public static final int preferences_category_summary=0x7f0b001a;
+        public static final int preferences_category_summary=0x7f0b001b;
         public static final int prueba=0x7f0b000f;
-        public static final int receiving_subscriptions_exception=0x7f0b0026;
-        public static final int receiving_unread_subscriptions_exception=0x7f0b0027;
-        public static final int share_text=0x7f0b0023;
+        public static final int receiving_subscriptions_exception=0x7f0b0027;
+        public static final int receiving_unread_subscriptions_exception=0x7f0b0028;
+        public static final int share_text=0x7f0b0024;
         /**  drawer list 
          */
         public static final int zero=0x7f0b0013;

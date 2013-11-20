@@ -2,6 +2,7 @@ package com.yairkukielka.feedhungry;
 
 import android.annotation.SuppressLint;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -37,10 +38,15 @@ public class developerFragment extends SherlockFragment {
 		webView.setWebViewClient(new WebViewClient() {
 			@Override
 			public void onPageFinished(WebView view, String url) {
-				getFragmentManager().beginTransaction().remove(loadingFragment).commit();
+				FragmentManager fragmentManager = getFragmentManager();
+				if (null != fragmentManager.findFragmentById(loadingFragment.getId())) {
+					fragmentManager.beginTransaction().remove(loadingFragment).commit();
+				}
 				webView.setAnimation(webViewAnimation);
 				webView.setVisibility(View.VISIBLE);
 			}
 		});
 	}
+	
+	
 }

@@ -11,6 +11,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -78,7 +79,7 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 	private static final String FEEDLY_CATEGORIES = "Feedly Categories";
 	private boolean isMix;
 
-//	private DisplayMetrics metrics;
+	// private DisplayMetrics metrics;
 	ExpandableListAdapter listAdapter;
 	List<Category> categories;
 	HashMap<String, List<Subscription>> subscriptionsMap;
@@ -101,10 +102,7 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 
 	@AfterViews
 	void afterViews() {
-//		metrics = new DisplayMetrics();
-//		getWindowManager().getDefaultDisplay().getMetrics(metrics);
-		// ensures that your application is properly initialized with default
-		// settings
+		// ensures that your application is properly initialized with default settings
 		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 		configureNavigationDrawer();
 		// mDrawerList.setDivider(null);
@@ -131,67 +129,20 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 	 */
 	private void startConnection() {
 		mTitle = mDrawerTitle = getTitle();
-		//mDrawerLayout.openDrawer(linearLayout);
-		// Insert the fragment by replacing any existing fragment
+		// mDrawerLayout.openDrawer(linearLayout);
 		FragmentManager fragmentManager = getSupportFragmentManager();
 		fragmentManager.beginTransaction().replace(R.id.content_frame, loadingFragment).commit();
 		if (isInternetAvailable(this)) {// returns true if internet available
-			checkAccessToken(mSuccessTokenListener(), mErrorTokenListener());
+			if (accessToken != null) {
+				getSubscriptions();
+			} else {
+				getAccessToken(mSuccessTokenListener(), mErrorTokenListener());
+			}
+			//checkAccessToken(mSuccessTokenListener(), mErrorTokenListener());
 		} else {
 			Toast.makeText(this, getResources().getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show();
 		}
 	}
-
-	private class ActivityData {
-		List<Category> categories;
-		HashMap<String, List<Subscription>> subscriptionsMap;
-
-		public List<Category> getCategories() {
-			return categories;
-		}
-
-		public void setCategories(List<Category> categories) {
-			this.categories = categories;
-		}
-
-		public HashMap<String, List<Subscription>> getSubscriptionsMap() {
-			return subscriptionsMap;
-		}
-
-		public void setSubscriptionsMap(HashMap<String, List<Subscription>> subscriptionsMap) {
-			this.subscriptionsMap = subscriptionsMap;
-		}
-
-	}
-
-	@Override
-	public Object onRetainCustomNonConfigurationInstance() {
-		// final MyDataObject data = collectMyLoadedData();
-		// return data;
-		return activityData;
-	}
-
-	@Override
-	public void setTitle(CharSequence title) {
-		mTitle = title;
-		getSupportActionBar().setTitle(mTitle);
-	}
-
-	/**
-	 * Configures the action bar
-	 */
-	private void configureActionBar() {
-		// getSupportActionBar().setBackgroundDrawable(null);
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		getSupportActionBar().setHomeButtonEnabled(true);
-		// Context context = getSupportActionBar().getThemedContext();
-		// ArrayAdapter<CharSequence> list =
-		// ArrayAdapter.createFromResource(context, R.array.tags,
-		// (android.R.layout.simple_list_item_1));
-		// getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
-		// getSupportActionBar().setListNavigationCallbacks(list, this);
-	}
-
 	/**
 	 * Looks if there is an access token. If there is, it will be used to ask
 	 * for the user's subscritpions. If there isn't, WebviewFragment will be
@@ -202,20 +153,12 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 	 * @param mErrorTokenListener
 	 *            error listener
 	 */
-	private void checkAccessToken(MyListener.TokenListener mTokenListener,
+	private void getAccessToken(MyListener.TokenListener mTokenListener,
 			MyListener.ErrorTokenListener mErrorTokenListener) {
-		// getPreferences(Context.MODE_PRIVATE).edit().putString(SHPREF_KEY_ACCESS_TOKEN,
-		// null).commit();
-		accessToken = getPreferences(Context.MODE_PRIVATE).getString(SHPREF_KEY_ACCESS_TOKEN, null);
-		refreshToken = getPreferences(Context.MODE_PRIVATE).getString(SHPREF_KEY_REFRESH_TOKEN, null);
-		if (accessToken == null) {
-			Fragment fr = WebviewFragment.getInstance(mTokenListener, mErrorTokenListener);
-			FragmentManager fragmentManager = getSupportFragmentManager();
-			fragmentManager.beginTransaction().replace(R.id.content_frame, fr).commit();
-			paintDrawerSubscriptions();
-		} else {
-			getSubscriptions();
-		}
+		Fragment fr = WebviewFragment.getInstance(mTokenListener, mErrorTokenListener);
+		FragmentManager fragmentManager = getSupportFragmentManager();
+		fragmentManager.beginTransaction().replace(R.id.content_frame, fr).commit();
+		paintDrawerSubscriptions();
 	}
 
 	/**
@@ -228,8 +171,6 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 		return new MyListener.TokenListener() {
 			@Override
 			public void onResponse(String accessTokenParam) {
-				// Toast.makeText(MainActivity.this, "User log in OK",
-				// Toast.LENGTH_SHORT).show();
 				accessToken = accessTokenParam;
 				getSubscriptions();
 			}
@@ -246,12 +187,22 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 		return new MyListener.ErrorTokenListener() {
 			@Override
 			public void onErrorResponse(String error) {
-				// Toast.makeText(MainActivity.this, error,
-				// Toast.LENGTH_SHORT).show();
+				showErrorDialog(error);
 			}
 		};
 	}
 
+	/**
+	 * Shows an error dialog
+	 * @param error the error
+	 */
+	private void showErrorDialog(String error) {
+		AlertDialog.Builder b = new AlertDialog.Builder(this);
+		b.setMessage(getResources().getString(R.string.receiving_subscriptions_exception));
+		b.show();
+	}
+	
+	
 	private void getSubscriptions() {
 		userId = getPreferences(Context.MODE_PRIVATE).getString(SHPREF_KEY_USERID_TOKEN, null);
 		RequestQueue queue = MyVolley.getRequestQueue();
@@ -259,14 +210,15 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 				createSuscriptionsSuccessListener(), createSuscriptionsErrorListener(), accessToken);
 		queue.add(myReq);
 
-		// show in the main fragment the global.all entries
-		showEntriesFragment(USERS_PREFIX_PATH + userId + GLOBAL_ALL_SUFFIX);
 	}
 
 	private Response.Listener<JSONArray> createSuscriptionsSuccessListener() {
 		return new Response.Listener<JSONArray>() {
 			@Override
 			public void onResponse(JSONArray response) {
+				// show in the main fragment the global.all entries
+				showEntriesFragment(USERS_PREFIX_PATH + userId + GLOBAL_ALL_SUFFIX);
+				
 				subscriptions = new ArrayList<Subscription>();
 				for (int i = 0; i < response.length(); i++) {
 					try {
@@ -290,8 +242,8 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 						+ error.getMessage();
 				Log.e(TAG, errorMessage);
 				paintDrawerSubscriptions();
-				// Toast.makeText(MainActivity.this, errorMessage,
-				// Toast.LENGTH_SHORT).show();
+				// usually here we must refresh the access token because it has expired
+				getAccessToken(mSuccessTokenListener(), mErrorTokenListener());
 			}
 		};
 	}
@@ -440,7 +392,8 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 	/** A Subscription is selected */
 	private void selectItem(ExpandableListView parent, int groupPosition, int childPosition) {
 		Subscription chosenSub = subscriptionsMap.get(categories.get(groupPosition).getLabel()).get(childPosition);
-		// if it has to get contents from /v3/mixes/contents endpoint, we set the flag here
+		// if it has to get contents from /v3/mixes/contents endpoint, we set
+		// the flag here
 		if (getResources().getString(R.string.drawer_popular).equals(chosenSub.getTitle())) {
 			isMix = true;
 		} else {
@@ -508,26 +461,26 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 		allSubscription.setId(USERS_PREFIX_PATH + userId + GLOBAL_ALL_SUFFIX);
 		String allLabel = getResources().getString(R.string.drawer_all);
 		allSubscription.setTitle(allLabel);
-		
+
 		// add must read subscription to feedly categories
 		Subscription mustReadSubscription = new Subscription();
 		// here, global.all is used with the /v3/mixes/contents endpoint
 		mustReadSubscription.setId(USERS_PREFIX_PATH + userId + GLOBAL_ALL_SUFFIX);
 		String mustReadTitle = getResources().getString(R.string.drawer_popular);
 		mustReadSubscription.setTitle(mustReadTitle);
-		
+
 		// add saved subscription to feedly categories
 		Subscription savedSubscription = new Subscription();
 		savedSubscription.setId(USERS_PREFIX_PATH + userId + GLOBAL_SAVED_SUFFIX);
 		String savedLabel = getResources().getString(R.string.drawer_saved);
 		savedSubscription.setTitle(savedLabel);
-		
+
 		// add global.uncategorized subscription to feedly categories
 		Subscription uncategorizedSubscription = new Subscription();
 		uncategorizedSubscription.setId(USERS_PREFIX_PATH + userId + GLOBAL_UNCATEGORIZED_SUFFIX);
 		String uncategorizedLabel = getResources().getString(R.string.drawer_uncategorized);
-		uncategorizedSubscription.setTitle(uncategorizedLabel);		
-		
+		uncategorizedSubscription.setTitle(uncategorizedLabel);
+
 		// add them to the feedlyCategory subscriptions list
 		List<Subscription> feedlyCategoriesSubscriptions = new ArrayList<Subscription>();
 		feedlyCategoriesSubscriptions.add(mustReadSubscription);
@@ -587,18 +540,21 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 
 	@Override
 	protected void onPostResume() {
-	    super.onResume();
-	    if(preferencesChanged){
-	        preferencesChanged = false;
-	    	if (PreferencesActivity.LOG_OUT) {
-	    		// log out
-	    		accessToken = null;
+		super.onResume();
+		if (preferencesChanged) {
+			preferencesChanged = false;
+			if (PreferencesActivity.LOG_OUT) {
+				// log out
+				accessToken = null;
 				getPreferences(Context.MODE_PRIVATE).edit().putString(SHPREF_KEY_ACCESS_TOKEN, null).commit();
 				PreferencesActivity.LOG_OUT = false;
-	    	}
-	    	refresh();
-	    }
-	 }
+//				refreshToken = null;
+//				getPreferences(Context.MODE_PRIVATE).edit().putString(SHPREF_KEY_REFRESH_TOKEN, null).commit();				
+			}
+			refresh();
+		}
+	}
+
 	/**
 	 * Tells if there is internet connection
 	 * 
@@ -633,8 +589,9 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 				Fragment developerFragment = new developerFragment_();
 				FragmentManager fragmentManager = getSupportFragmentManager();
 				fragmentManager.beginTransaction().replace(R.id.content_frame, developerFragment).commit();
-//				Toast.makeText(MainActivity.this, "about clicked", 1000).show();
-				//showAboutDeveloperFragment();
+				// Toast.makeText(MainActivity.this, "about clicked",
+				// 1000).show();
+				// showAboutDeveloperFragment();
 				setTitle(getResources().getString(R.string.about_developer));
 				mDrawerLayout.closeDrawer(linearLayout);
 			}
@@ -687,7 +644,54 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 			}
 		});
 
-		// set a custom shadow that overlays the main content when the drawer opens
-		mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,	GravityCompat.START);
+		// set a custom shadow that overlays the main content when the drawer
+		// opens
+		mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 	}
+
+	@Override
+	public void setTitle(CharSequence title) {
+		mTitle = title;
+		getSupportActionBar().setTitle(mTitle);
+	}
+
+	/**
+	 * Configures the action bar
+	 */
+	private void configureActionBar() {
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		getSupportActionBar().setHomeButtonEnabled(true);
+	}
+
+	/**
+	 * Activity data to retain in case of a change of configuration, e.g.
+	 * orientation of the device
+	 */
+	private class ActivityData {
+		List<Category> categories;
+		HashMap<String, List<Subscription>> subscriptionsMap;
+
+		public List<Category> getCategories() {
+			return categories;
+		}
+
+		public void setCategories(List<Category> categories) {
+			this.categories = categories;
+		}
+
+		public HashMap<String, List<Subscription>> getSubscriptionsMap() {
+			return subscriptionsMap;
+		}
+
+		public void setSubscriptionsMap(HashMap<String, List<Subscription>> subscriptionsMap) {
+			this.subscriptionsMap = subscriptionsMap;
+		}
+
+	}
+
+	@Override
+	public Object onRetainCustomNonConfigurationInstance() {
+		return activityData;
+	}
+
 }

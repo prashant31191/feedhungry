@@ -14,18 +14,19 @@
 		    android:id="@+id/scroll_view_entry"
 	        android:layout_width="match_parent"
 	        android:layout_height="match_parent"
+	        android:fillViewport="true"
 	        android:background="@null">
 			
 	        <LinearLayout 
 			    android:orientation="vertical"
 			    android:layout_width="match_parent"
 			    android:layout_height="wrap_content"
-				    android:animateLayoutChanges="true">
+			    android:animateLayoutChanges="true">
 			    
 			    <View				
 				    android:id="@+id/transparent_view"
 				    android:layout_width="match_parent"
-				    android:layout_height="0dp"
+				    android:layout_height="30dp"
 					android:background="@null"
 				    android:animateLayoutChanges="true">			        
 			    </View>
@@ -34,7 +35,7 @@
 				    android:id="@+id/entry_layout"
 				    android:orientation="vertical"
 				    android:layout_width="match_parent"
-				    android:layout_height="wrap_content">
+				    android:layout_height="match_parent">
 				 	    		        
 					    <RelativeLayout
 					        android:id="@+id/feed_entry_title_layout"
@@ -45,7 +46,7 @@
 					        android:paddingRight="3dp" 
 					        android:paddingTop="3dp" 
 					        android:paddingBottom="3dp" 
-			        		android:background="#D000"
+			        		android:background="#A000"
 			        		android:gravity="bottom">
 					    
 							<TextView
@@ -65,7 +66,7 @@
 							    android:text="@string/empty" 
 							    android:layout_below="@id/entry_title" 
 							    android:fontFamily="sans-serif-thin"
-							    android:layout_marginRight="70dp"
+							    android:layout_marginRight="120dp"
 							    android:singleLine="true"
 							    android:ellipsize="end"
 							    android:gravity="left" 
@@ -96,7 +97,8 @@
 						<WebView
 						    android:id="@+id/entry_webview"
 						    android:layout_width="match_parent"
-						    android:layout_height="match_parent">    
+						    android:layout_height="match_parent"
+							android:background="@android:color/black">    
 						</WebView>
 					</FrameLayout>
 				
