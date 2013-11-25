@@ -1,7 +1,6 @@
 package com.yairkukielka.feedhungry;
 
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Field;
 import java.net.URLEncoder;
 
 import org.json.JSONArray;
@@ -9,13 +8,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.R.color;
+import android.R.integer;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.Animation;
@@ -44,6 +46,7 @@ import com.googlecode.androidannotations.annotations.Extra;
 import com.googlecode.androidannotations.annotations.ViewById;
 import com.yairkukielka.feedhungry.app.MyVolley;
 import com.yairkukielka.feedhungry.feedly.Entry;
+import com.yairkukielka.feedhungry.toolbox.DateUtils;
 import com.yairkukielka.feedhungry.toolbox.NetworkUtils;
 
 @EActivity(R.layout.feed_entry_layout)
@@ -55,17 +58,14 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 	private static final String MARK_KEEP_UNREAD = "keepUnread";
 	private static final String ENTRY_ID = "entryId";
 	private static final String ENTRY_TITLE = "entryTitle";
-	private static final String ENTRY_CONTENT = "entryContent";
 	private static final String ENTRY_AUTHOR = "entryAuthor";
 	private static final String ENTRY_DATE = "entryDate";
 	public static final String ACCESS_TOKEN = "accessToken";
 	private static final String STREAM_TITLE = "streamTitle";
 	private static final String BY = " by ";
 	private static final String encoding = "utf-8";
-	private static final int TRANSPARENT_WINDOW = 140;
-	// private static final String HTML_HEAD =
-	// "<head><style>@font-face {font-family: 'myFont';src: url('file:///android_asset/fonts/MyFont.otf');}body {font-family: 'myFont';}</style></head>";
-	private static final String DIV_PREFIX = "<div style='background-color:transparent;padding: 10px;color:#ccc;font-family: myFont'>";
+	private static final int TRANSPARENT_WINDOW = 130;
+	private static final String DIV_PREFIX = "<div style='background-color:transparent;padding: 10px;color:#ccc;font-family: myFont';>";
 	private static final String DIV_SUFIX = "</div>";
 	// the feed entry
 	private Entry entry;
@@ -79,8 +79,6 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 	String accessToken;
 	@Extra(ENTRY_ID)
 	String entryId;
-	@Extra(ENTRY_CONTENT)
-	String entryContent;
 	@Extra(ENTRY_AUTHOR)
 	String entryAuthor;
 	@Extra(ENTRY_DATE)
@@ -111,10 +109,9 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 
 	@SuppressLint("SetJavaScriptEnabled")
 	@AfterViews
-	void afterViews() {
-
+	void afterViews() {		
 		getSupportActionBar().setBackgroundDrawable(null);
-		webView.getSettings().setJavaScriptEnabled(true);
+		webView.setVisibility(View.INVISIBLE);
 		View.OnClickListener onClickListener = getOnClickListener();
 		titleLayout.setOnClickListener(onClickListener);
 		// tvTitle.setOnClickListener(onClickListener);
@@ -125,7 +122,9 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 		titleFadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_in_title);
 		loadingFragment = new LoadingFragment_();
 		FragmentManager fragmentManager = getSupportFragmentManager();
-		fragmentManager.beginTransaction().replace(R.id.frame_webview, loadingFragment).commitAllowingStateLoss();
+		//https://code.google.com/p/android/issues/detail?id=42601
+		//fragmentManager.beginTransaction().replace(R.id.frame_webview, loadingFragment).commit();
+		fragmentManager.beginTransaction().replace(R.id.frame_webview, loadingFragment).attach(loadingFragment).addToBackStack(null).commit();
 
 		if (streamTitle != null) {
 			setTitle(streamTitle);
@@ -140,26 +139,9 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 		}
 		titleLayout.setAnimation(titleFadeInAnimation);
 
-		webView.getSettings().setLayoutAlgorithm(LayoutAlgorithm.SINGLE_COLUMN);
-		webView.setBackgroundColor(color.transparent);
-		webView.getSettings().setDefaultFontSize(18);
-		webView.setWebViewClient(new WebViewClient() {
-			@Override
-			public void onPageFinished(WebView view, String url) {
-				FragmentManager fragmentManager = getSupportFragmentManager();
-				if (null != fragmentManager.findFragmentById(loadingFragment.getId())) {
-					// this is to avoid errors when the user clicks back before
-					// this can commit (the activity would be destroyed already)
-					fragmentManager.beginTransaction().remove(loadingFragment).commitAllowingStateLoss();
-				}
-				webView.setAnimation(webViewAnimation);
-				// mark entry as read
-				markEntry(MARK_READ, getMarkAsReadSuccessListener());
-			}
-		});
+		
 
 		loadPage();
-		loadEntryInInnerBrowser(entryContent);
 	}
 
 	private void loadPage() {
@@ -175,24 +157,74 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 	}
 
 	private String getHtmlData(String data) {
-		String head = "<head><style>@font-face {font-family: 'myFont';src: url('file:///android_asset/fonts/Roboto-Light.ttf');}body {font-family: 'myFont';}a:link {color:#8AC007;}</style></head>";
-		String htmlData = "<html>" + head + "<body>" + DIV_PREFIX + data + DIV_SUFIX + "</body></html>";
-		return htmlData;
+		String head = "<head><style>@font-face {font-family: 'myFont';src: url('file:///android_asset/fonts/Roboto-Light.ttf');}" +
+				"body {font-family: 'myFont';}a:link {color:#8AC007;}img{max-width: 100%; width:auto; height: auto;}</style></head>";
+		return "<html>" + head + "<body>" + DIV_PREFIX + data + DIV_SUFIX + "</body></html>";
 	}
 
 	private Response.Listener<JSONArray> createMyReqSuccessListener() {
 		return new Response.Listener<JSONArray>() {
+			@SuppressLint("NewApi")
 			@Override
 			public void onResponse(JSONArray response) {
 				try {
 					if (response.length() > 0) {
 						JSONObject jentry = (JSONObject) response.get(0);
-						entry = new Entry(jentry);
+						entry = new Entry(jentry, FeedEntryActivity.this);
+						tvTitle.setText(entry.getTitle());
+						if (entry.getAuthor() != null) {
+							tvAuthor.setText(BY + entry.getAuthor());
+						}
+						if (entry.getPublished() != null) {
+							try {
+								tvDate.setText(DateUtils.dateToString(entry.getPublished()));
+							} catch (IllegalArgumentException ie) {
+							}
+						}						
 						if (entry.getVisual() != null) {
 							bgImage.setImageUrl(entry.getVisual(), MyVolley.getImageLoader());
 							bgImage.setAnimation(titleFadeInAnimation);
-							transparentView.getLayoutParams().height = TRANSPARENT_WINDOW;
+							int heightPixels = getResources().getDisplayMetrics().heightPixels;
+							transparentView.getLayoutParams().height = heightPixels/4;
 						}
+						webView.getSettings().setJavaScriptEnabled(true);
+						if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+							webView.getSettings().setLayoutAlgorithm(LayoutAlgorithm.TEXT_AUTOSIZING);
+						} else {
+							webView.getSettings().setLayoutAlgorithm(LayoutAlgorithm.NORMAL);
+						}
+						webView.setBackgroundColor(color.transparent);
+						webView.getSettings().setDefaultFontSize(18);
+						webView.setWebViewClient(new WebViewClient() {
+
+							@Override
+							 public boolean shouldOverrideUrlLoading(WebView view, String url) {
+							        if (url != null && url.startsWith("http://")) {
+							            view.getContext().startActivity(
+							                new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+							            return true;
+							        } else {
+							            return false;
+							        }
+							    }
+							
+							@Override
+							public void onPageFinished(WebView view, String url) {								
+								FragmentManager fragmentManager = getSupportFragmentManager();
+								if (null != fragmentManager.findFragmentById(loadingFragment.getId())) {
+									// this is to avoid errors when the user clicks back before
+									// this can commit (the activity would be destroyed already)
+									//fragmentManager.beginTransaction().remove(loadingFragment).commit();
+									fragmentManager.beginTransaction().detach(loadingFragment).addToBackStack(null).commit();
+								}			
+								webView.setAnimation(webViewAnimation);
+								webView.setVisibility(View.VISIBLE);					
+								webView.setAnimation(webViewAnimation);
+								// mark entry as read
+								markEntry(MARK_READ, getMarkAsReadSuccessListener());
+							}
+						});
+						loadEntryInInnerBrowser(entry.getContent());
 					}
 				} catch (JSONException e) {
 					Log.e(TAG, "Error parsing feed entry");
@@ -209,15 +241,15 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 	 */
 	@Override
 	public void onBackPressed() {
-		if (webView.isFocused() && webView.canGoBack()) {
-			loadEntryInInnerBrowser(entryContent);
-			webView.clearHistory();
-			// webView.goBack();
-		} else {
+//		if (webView.isFocused() && webView.canGoBack()) {
+//			webView.clearHistory();
+//			loadEntryInInnerBrowser(entry.getContent());
+//			// webView.goBack();
+//		} else {
 			super.onBackPressed();
 			finish();
 			overridePendingTransition(R.anim.open_main, R.anim.close_next);
-		}
+//		}
 	}
 
 	/**

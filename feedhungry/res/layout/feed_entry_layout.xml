@@ -26,7 +26,7 @@
 			    <View				
 				    android:id="@+id/transparent_view"
 				    android:layout_width="match_parent"
-				    android:layout_height="30dp"
+				    android:layout_height="0dp"
 					android:background="@null"
 				    android:animateLayoutChanges="true">			        
 			    </View>

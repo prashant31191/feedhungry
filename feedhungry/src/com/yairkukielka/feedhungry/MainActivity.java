@@ -3,6 +3,7 @@ package com.yairkukielka.feedhungry;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -23,6 +24,7 @@ import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.View;
@@ -62,6 +64,7 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 	public static final String ROOT_URL = "http://cloud.feedly.com";
 	public static final String SUBSCRIPTIONS_URI = "/v3/subscriptions";
 	public static final String MARKERS_COUNTS_URI = "/v3/markers/counts";
+	private static final String MARKERS_PATH = "/v3/markers";
 	public static final String SHPREF_KEY_USERID_TOKEN = "User_Id";
 	public static final String SHPREF_KEY_ACCESS_TOKEN = "Access_Token";
 	public static final String SHPREF_KEY_REFRESH_TOKEN = "Refresh_Token";
@@ -78,6 +81,10 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 	private ActivityData activityData;
 	private static final String FEEDLY_CATEGORIES = "Feedly Categories";
 	private boolean isMix;
+	protected String lastReadStreamId;
+	private Menu actionBarmenu;
+	private MenuItem reloadMenuItem;
+	private MenuItem markReadOrUnreadMenuItem;
 
 	// private DisplayMetrics metrics;
 	ExpandableListAdapter listAdapter;
@@ -87,7 +94,6 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 	private CharSequence mDrawerTitle;
 	private CharSequence mTitle;
 	private String accessToken;
-	private String refreshToken;
 	private String userId;
 	private List<Subscription> subscriptions;
 	private Fragment loadingFragment;
@@ -102,7 +108,9 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 
 	@AfterViews
 	void afterViews() {
-		// ensures that your application is properly initialized with default settings
+
+		// ensures that your application is properly initialized with default
+		// settings
 		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 		configureNavigationDrawer();
 		// mDrawerList.setDivider(null);
@@ -120,6 +128,7 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 			// recover subscriptions from activity data
 			subscriptionsMap = activityData.getSubscriptionsMap();
 			categories = activityData.getCategories();
+			lastReadStreamId = activityData.getLastReadStreamId();
 			paintDrawerSubscriptions();
 		}
 	}
@@ -128,21 +137,29 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 	 * Connects to the internet to access the subscriptions and global feeds
 	 */
 	private void startConnection() {
-		mTitle = mDrawerTitle = getTitle();
+		expandRefreshMenuItem();
+		mDrawerTitle = getApplicationName();
+		setTitle(getApplicationName());
 		// mDrawerLayout.openDrawer(linearLayout);
 		FragmentManager fragmentManager = getSupportFragmentManager();
-		fragmentManager.beginTransaction().replace(R.id.content_frame, loadingFragment).commit();
+		// fragmentManager.beginTransaction().replace(R.id.content_frame,
+		// loadingFragment).commit();
+		fragmentManager.beginTransaction().replace(R.id.content_frame, loadingFragment).attach(loadingFragment)
+				.addToBackStack(null).commit();
 		if (isInternetAvailable(this)) {// returns true if internet available
 			if (accessToken != null) {
 				getSubscriptions();
 			} else {
+				collapseRefreshMenuItem();
 				getAccessToken(mSuccessTokenListener(), mErrorTokenListener());
 			}
-			//checkAccessToken(mSuccessTokenListener(), mErrorTokenListener());
+			// checkAccessToken(mSuccessTokenListener(), mErrorTokenListener());
 		} else {
+			collapseRefreshMenuItem();
 			Toast.makeText(this, getResources().getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show();
 		}
 	}
+
 	/**
 	 * Looks if there is an access token. If there is, it will be used to ask
 	 * for the user's subscritpions. If there isn't, WebviewFragment will be
@@ -194,15 +211,16 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 
 	/**
 	 * Shows an error dialog
-	 * @param error the error
+	 * 
+	 * @param error
+	 *            the error
 	 */
 	private void showErrorDialog(String error) {
 		AlertDialog.Builder b = new AlertDialog.Builder(this);
 		b.setMessage(getResources().getString(R.string.receiving_subscriptions_exception));
 		b.show();
 	}
-	
-	
+
 	private void getSubscriptions() {
 		userId = getPreferences(Context.MODE_PRIVATE).getString(SHPREF_KEY_USERID_TOKEN, null);
 		RequestQueue queue = MyVolley.getRequestQueue();
@@ -218,7 +236,7 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 			public void onResponse(JSONArray response) {
 				// show in the main fragment the global.all entries
 				showEntriesFragment(USERS_PREFIX_PATH + userId + GLOBAL_ALL_SUFFIX);
-				
+
 				subscriptions = new ArrayList<Subscription>();
 				for (int i = 0; i < response.length(); i++) {
 					try {
@@ -230,6 +248,7 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 				}
 				prepareSubscriptionsData(subscriptions);
 				getUnreadSubscriptions(subscriptions);
+				collapseRefreshMenuItem();
 			}
 		};
 	}
@@ -238,11 +257,13 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 		return new Response.ErrorListener() {
 			@Override
 			public void onErrorResponse(VolleyError error) {
+				collapseRefreshMenuItem();
 				String errorMessage = getResources().getString(R.string.receiving_subscriptions_exception)
 						+ error.getMessage();
 				Log.e(TAG, errorMessage);
 				paintDrawerSubscriptions();
-				// usually here we must refresh the access token because it has expired
+				// usually here we must refresh the access token because it has
+				// expired
 				getAccessToken(mSuccessTokenListener(), mErrorTokenListener());
 			}
 		};
@@ -286,12 +307,7 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 							}
 						}
 					}
-					// we have all the data to show the activity. It's stored in
-					// this object so it is used
-					// in case there is a chagen of configuration, e.g. screen
-					// orientation
-					activityData.setCategories(categories);
-					activityData.setSubscriptionsMap(subscriptionsMap);
+
 				} catch (JSONException jse) {
 					Log.w(TAG, getResources().getString(R.string.parsing_subscriptions_exception));
 				}
@@ -349,6 +365,8 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 		case R.id.action_refresh:
 			refresh();
 			return true;
+		case R.id.action_mark_read:
+			markAsReadFeedOrCategory();
 		default:
 			return super.onOptionsItemSelected(item);
 		}
@@ -358,9 +376,36 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 	 * Refresh feeds
 	 */
 	private void refresh() {
+		lastReadStreamId = null;
 		subscriptionsMap.clear();
 		categories.clear();
 		startConnection();
+	}
+
+	/**
+	 * Expand and change the refresh icon
+	 */
+	public void expandRefreshMenuItem() {
+		if (actionBarmenu != null) {
+			reloadMenuItem = actionBarmenu.findItem(R.id.action_refresh);
+		}
+		if (reloadMenuItem != null) {
+			reloadMenuItem.setActionView(R.layout.progressbar);
+			reloadMenuItem.expandActionView();
+		}
+	}
+
+	/**
+	 * Collapse and change the refresh icon
+	 */
+	public void collapseRefreshMenuItem() {
+		if (actionBarmenu != null) {
+			reloadMenuItem = actionBarmenu.findItem(R.id.action_refresh);
+		}
+		if (reloadMenuItem != null) {
+			reloadMenuItem.setActionView(null);
+			reloadMenuItem.collapseActionView();
+		}
 	}
 
 	@Override
@@ -437,12 +482,16 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 			args.putString(EntryListFragment.ACCESS_TOKEN, accessToken);
 			args.putBoolean(EntryListFragment.IS_MIX, isMix);
 			entriesFragment.setArguments(args);
+			lastReadStreamId = id;
 
 			// Insert the fragment by replacing any existing fragment
 			FragmentManager fragmentManager = getSupportFragmentManager();
-			fragmentManager.beginTransaction().remove(loadingFragment).commit();
-			fragmentManager.beginTransaction().replace(R.id.content_frame, entriesFragment).commit();
-
+			// fragmentManager.beginTransaction().remove(loadingFragment).commit();
+			// fragmentManager.beginTransaction().replace(R.id.content_frame,
+			// entriesFragment).commit();
+			//https://code.google.com/p/android/issues/detail?id=42601
+			fragmentManager.beginTransaction().detach(loadingFragment).replace(R.id.content_frame, entriesFragment)
+					.attach(entriesFragment).addToBackStack(null).commit();
 		} catch (UnsupportedEncodingException uex) {
 			Log.e(TAG, "Error encoding stream or category id");
 
@@ -517,6 +566,7 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getSupportMenuInflater();
 		inflater.inflate(R.menu.main, menu);
+		actionBarmenu = menu;
 		return super.onCreateOptionsMenu(menu);
 	}
 
@@ -548,8 +598,6 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 				accessToken = null;
 				getPreferences(Context.MODE_PRIVATE).edit().putString(SHPREF_KEY_ACCESS_TOKEN, null).commit();
 				PreferencesActivity.LOG_OUT = false;
-//				refreshToken = null;
-//				getPreferences(Context.MODE_PRIVATE).edit().putString(SHPREF_KEY_REFRESH_TOKEN, null).commit();				
 			}
 			refresh();
 		}
@@ -589,9 +637,6 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 				Fragment developerFragment = new developerFragment_();
 				FragmentManager fragmentManager = getSupportFragmentManager();
 				fragmentManager.beginTransaction().replace(R.id.content_frame, developerFragment).commit();
-				// Toast.makeText(MainActivity.this, "about clicked",
-				// 1000).show();
-				// showAboutDeveloperFragment();
 				setTitle(getResources().getString(R.string.about_developer));
 				mDrawerLayout.closeDrawer(linearLayout);
 			}
@@ -645,7 +690,6 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 		});
 
 		// set a custom shadow that overlays the main content when the drawer
-		// opens
 		mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 	}
 
@@ -664,12 +708,84 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 	}
 
 	/**
+	 * Action bar mark as read button for a feed, category or mix
+	 * 
+	 * @param successListener
+	 *            successListener
+	 */
+	private void markAsReadFeedOrCategory() {
+		RequestQueue queue = MyVolley.getRequestQueue();
+		try {
+			JSONObject jsonRequest = new JSONObject();
+			jsonRequest.put("action", "markAsRead");
+			String type = "feeds";
+			boolean isCategory = isCategory(lastReadStreamId);
+			if (isCategory) {
+				type = "categories";
+			}
+			String typeName = "feedIds";
+			if (isCategory) {
+				typeName = "categoryIds";
+			}
+			jsonRequest.put("type", type);
+			JSONArray entries = new JSONArray();
+			entries.put(lastReadStreamId);
+			jsonRequest.put(typeName, entries);
+			// set the time
+			jsonRequest.put("asOf", String.valueOf(new Date().getTime()));
+			JsonObjectRequest myReq = NetworkUtils.getJsonPostRequest(ROOT_URL + MARKERS_PATH, jsonRequest,
+					getMarkEntrySuccessListener(), createMyReqErrorListener(), accessToken);
+			queue.add(myReq);
+		} catch (JSONException uex) {
+			Log.e(TAG, "Error marking read or unread");
+		}
+	}
+
+	private boolean isCategory(String id) {
+		if (id != null && id.contains("category")) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Returns a mark as read successListener
+	 * 
+	 * @return listener
+	 */
+	private Response.Listener<JSONObject> getMarkEntrySuccessListener() {
+		return new Response.Listener<JSONObject>() {
+			@Override
+			public void onResponse(JSONObject response) {
+				Toast.makeText(MainActivity.this,
+						getResources().getString(R.string.marked_all_as_read_success_message), Toast.LENGTH_SHORT)
+						.show();
+			}
+		};
+	}
+
+	/**
+	 * Returns a mark as read errorListener
+	 * 
+	 * @return error listener
+	 */
+	private Response.ErrorListener createMyReqErrorListener() {
+		return new Response.ErrorListener() {
+			@Override
+			public void onErrorResponse(VolleyError error) {
+				showErrorDialog(error.getMessage());
+			}
+		};
+	}
+
+	/**
 	 * Activity data to retain in case of a change of configuration, e.g.
 	 * orientation of the device
 	 */
 	private class ActivityData {
-		List<Category> categories;
-		HashMap<String, List<Subscription>> subscriptionsMap;
+		private List<Category> categories;
+		private HashMap<String, List<Subscription>> subscriptionsMap;
+		private String lastReadStreamId;
 
 		public List<Category> getCategories() {
 			return categories;
@@ -687,10 +803,35 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 			this.subscriptionsMap = subscriptionsMap;
 		}
 
+		public String getLastReadStreamId() {
+			return lastReadStreamId;
+		}
+
+		public void setLastReadStreamId(String lastReadStreamId) {
+			this.lastReadStreamId = lastReadStreamId;
+		}
+
 	}
 
+	/**
+	 * Get the application name
+	 * 
+	 * @return the app name
+	 */
+	private String getApplicationName() {
+		int stringId = getApplicationInfo().labelRes;
+		return getString(stringId);
+	}
+
+	/**
+	 * To retain activity information. It's stored in this object so it is used
+	 * in case there is a chagen of configuration, e.g. screen orientation
+	 */
 	@Override
 	public Object onRetainCustomNonConfigurationInstance() {
+		activityData.setCategories(categories);
+		activityData.setSubscriptionsMap(subscriptionsMap);
+		activityData.setLastReadStreamId(lastReadStreamId);
 		return activityData;
 	}
 

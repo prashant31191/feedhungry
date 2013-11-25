@@ -8,6 +8,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Context;
+
+import com.yairkukielka.feedhungry.R;
 import com.yairkukielka.feedhungry.toolbox.DateUtils;
 
 public class Entry {
@@ -27,7 +30,7 @@ public class Entry {
 	
 	public Entry() {
 	}
-	public Entry(JSONObject jobject) throws JSONException {
+	public Entry(JSONObject jobject, Context context) throws JSONException {
 		id = jobject.getString("id");
 		if (jobject.has("origin")) {
 			JSONObject originObject = jobject.getJSONObject("origin");
@@ -74,8 +77,12 @@ public class Entry {
 		}
 		// if no content, summary is used
 		if (content == null) {
-			JSONObject summObject = jobject.getJSONObject("summary");
-			content = summObject.getString("content");				
+			if (jobject.has("summary")) {
+				JSONObject summObject = jobject.getJSONObject("summary");
+				content = summObject.getString("content");				
+			} else {
+				content = context.getResources().getString(R.string.entry_without_content);
+			}
 		}
 	}
 	

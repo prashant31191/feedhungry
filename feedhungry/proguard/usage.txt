@@ -60,7 +60,6 @@ android.support.v4.app.FragmentActivity$FragmentTag:
 android.support.v4.app.FragmentManager:
     public static final int POP_BACK_STACK_INCLUSIVE
     142:142:public android.support.v4.app.FragmentTransaction openTransaction()
-    public abstract android.support.v4.app.Fragment findFragmentById(int)
     public abstract void popBackStack()
     public abstract boolean popBackStackImmediate()
     public abstract void popBackStack(java.lang.String,int)
@@ -1206,6 +1205,8 @@ com.android.volley.toolbox.ImageRequest:
     private static final int IMAGE_TIMEOUT_MS
     private static final int IMAGE_MAX_RETRIES
     private static final float IMAGE_BACKOFF_MULT
+com.android.volley.toolbox.JsonObjectRequest:
+    private static final java.lang.String EMPTY_STRING
 com.android.volley.toolbox.JsonRequest:
     private static final java.lang.String PROTOCOL_CHARSET
     53:54:public JsonRequest(java.lang.String,java.lang.String,com.android.volley.Response$Listener,com.android.volley.Response$ErrorListener)
@@ -1326,35 +1327,52 @@ com.googlecode.androidannotations.api.sharedpreferences.StringPrefField
 com.yairkukielka.feedhungry.BuildConfig
 com.yairkukielka.feedhungry.EntryListFragment:
     private static final java.lang.String STREAM_PATH
+    private static final java.lang.String MIXES_PATH
     public static final java.lang.String STREAM_ID
     public static final java.lang.String ACCESS_TOKEN
+    public static final java.lang.String IS_MIX
     private static final java.lang.String ENTRY_ID
+    private static final java.lang.String ENTRY_TITLE
+    private static final java.lang.String ENTRY_CONTENT
+    private static final java.lang.String ENTRY_AUTHOR
+    private static final java.lang.String STREAM_TITLE
+    private static final java.lang.String ENTRY_DATE
+    public static final int POPULAR_ITEMS_PAGE_SIZE
     public static final java.lang.String RESULTS_PAGE_SIZE
-    public static final java.lang.String COUNT
+    private static final java.lang.String COUNT_PARAM
+    private static final java.lang.String CONTINUATION_PARAM
+    private static final java.lang.String ONLY_UNREAD_PARAM
 com.yairkukielka.feedhungry.EntryListFragment$EndlessScrollListener:
-    209:211:public EntryListFragment$EndlessScrollListener(com.yairkukielka.feedhungry.EntryListFragment,int)
-    243:243:public int getCurrentPage()
+    301:303:public EntryListFragment$EndlessScrollListener(com.yairkukielka.feedhungry.EntryListFragment,int)
+    337:337:public int getCurrentPage()
 com.yairkukielka.feedhungry.EntryListFragment_:
     60:60:public static com.yairkukielka.feedhungry.EntryListFragment_$FragmentBuilder_ builder()
 com.yairkukielka.feedhungry.EntryListFragment_$FragmentBuilder_
 com.yairkukielka.feedhungry.FeedEntryActivity:
     private static final java.lang.String ENTRY_PATH
-    private static final java.lang.String TITLE
-    private static final java.lang.String CONTENT
+    private static final java.lang.String MARKERS_PATH
+    private static final java.lang.String MARK_READ
+    private static final java.lang.String MARK_KEEP_UNREAD
     private static final java.lang.String ENTRY_ID
+    private static final java.lang.String ENTRY_TITLE
+    private static final java.lang.String ENTRY_CONTENT
+    private static final java.lang.String ENTRY_AUTHOR
+    private static final java.lang.String ENTRY_DATE
     public static final java.lang.String ACCESS_TOKEN
-    private static final java.lang.String mimeType
+    private static final java.lang.String STREAM_TITLE
+    private static final java.lang.String BY
     private static final java.lang.String encoding
-    private static final java.lang.String HTML_PREFIX
-    private static final java.lang.String HTML_SUFIX
+    private static final int TRANSPARENT_WINDOW
+    private static final java.lang.String DIV_PREFIX
+    private static final java.lang.String DIV_SUFIX
 com.yairkukielka.feedhungry.FeedEntryActivity_:
-    73:73:public static com.yairkukielka.feedhungry.FeedEntryActivity_$IntentBuilder_ intent(android.content.Context)
+    78:78:public static com.yairkukielka.feedhungry.FeedEntryActivity_$IntentBuilder_ intent(android.content.Context)
 com.yairkukielka.feedhungry.FeedEntryActivity_$IntentBuilder_
-com.yairkukielka.feedhungry.LoadingFragment:
-    private android.content.Context mContext
+com.yairkukielka.feedhungry.ListViewEntryArrayAdapter:
+    private static final java.lang.String HTML_OPEN_MARK
 com.yairkukielka.feedhungry.LoadingFragment_:
-    49:52:public android.view.View findViewById(int)
-    56:56:public static com.yairkukielka.feedhungry.LoadingFragment_$FragmentBuilder_ builder()
+    48:51:public android.view.View findViewById(int)
+    55:55:public static com.yairkukielka.feedhungry.LoadingFragment_$FragmentBuilder_ builder()
 com.yairkukielka.feedhungry.LoadingFragment_$FragmentBuilder_
 com.yairkukielka.feedhungry.MainActivity:
     public static final java.lang.String ROOT_URL
@@ -1365,9 +1383,17 @@ com.yairkukielka.feedhungry.MainActivity:
     public static final java.lang.String SHPREF_KEY_REFRESH_TOKEN
     public static final java.lang.String AUTORIZATION_HEADER
     public static final java.lang.String OAUTH_HEADER_PART
-    98:98:private void restoreProgress(android.os.Bundle)
+    private static final int PREF_CODE_ACTIVITY
+    public static final java.lang.String USERS_PREFIX_PATH
+    public static final java.lang.String GLOBAL_ALL_SUFFIX
+    public static final java.lang.String GLOBAL_UNCATEGORIZED_SUFFIX
+    public static final java.lang.String GLOBAL_MUST_SUFFIX
+    public static final java.lang.String GLOBAL_SAVED_SUFFIX
+    private static final java.lang.String UTF_8
+    private static final java.lang.String FEEDLY_CATEGORIES
+    private java.lang.String refreshToken
 com.yairkukielka.feedhungry.MainActivity_:
-    69:69:public static com.yairkukielka.feedhungry.MainActivity_$IntentBuilder_ intent(android.content.Context)
+    73:73:public static com.yairkukielka.feedhungry.MainActivity_$IntentBuilder_ intent(android.content.Context)
 com.yairkukielka.feedhungry.MainActivity_$IntentBuilder_
 com.yairkukielka.feedhungry.R
 com.yairkukielka.feedhungry.R$anim
@@ -1384,9 +1410,7 @@ com.yairkukielka.feedhungry.R$menu
 com.yairkukielka.feedhungry.R$string
 com.yairkukielka.feedhungry.R$style
 com.yairkukielka.feedhungry.R$styleable
-com.yairkukielka.feedhungry.SettingsActivity_:
-    51:51:public static com.yairkukielka.feedhungry.SettingsActivity_$IntentBuilder_ intent(android.content.Context)
-com.yairkukielka.feedhungry.SettingsActivity_$IntentBuilder_
+com.yairkukielka.feedhungry.R$xml
 com.yairkukielka.feedhungry.WebviewFragment:
     private static final java.lang.String AUTHORIZE_PATH
     private static final java.lang.String AUTH_TOKEN_PATH
@@ -1403,53 +1427,49 @@ com.yairkukielka.feedhungry.WebviewFragment_:
 com.yairkukielka.feedhungry.WebviewFragment_$FragmentBuilder_
 com.yairkukielka.feedhungry.app.MyVolley:
     38:40:private MyVolley()
-com.yairkukielka.feedhungry.feedly.Category:
-    17:17:public java.lang.String getId()
-    20:21:public void setId(java.lang.String)
-    26:27:public void setLabel(java.lang.String)
+com.yairkukielka.feedhungry.developerFragment_:
+    58:58:public static com.yairkukielka.feedhungry.developerFragment_$FragmentBuilder_ builder()
+com.yairkukielka.feedhungry.developerFragment_$FragmentBuilder_
 com.yairkukielka.feedhungry.feedly.Entry:
-    74:74:public java.lang.String getId()
-    77:78:public void setId(java.lang.String)
-    83:84:public void setTitle(java.lang.String)
-    86:86:public boolean isUnread()
-    89:90:public void setUnread(boolean)
-    92:92:public java.util.List getCategories()
-    95:96:public void setCategories(java.util.List)
-    101:102:public void setPublished(java.util.Date)
-    107:108:public void setAuthor(java.lang.String)
-    113:114:public void setContent(java.lang.String)
-    116:116:public java.lang.String getVisual()
-    119:120:public void setVisual(java.lang.String)
-    125:126:public void setOriginTitle(java.lang.String)
-    128:128:public java.lang.String getOriginId()
-    131:132:public void setOriginId(java.lang.String)
-    134:134:public java.util.Date getCrawled()
-    137:138:public void setCrawled(java.util.Date)
+    83:83:public java.lang.String getId()
+    86:87:public void setId(java.lang.String)
+    92:93:public void setTitle(java.lang.String)
+    95:95:public boolean isUnread()
+    98:99:public void setUnread(boolean)
+    101:101:public java.util.List getCategories()
+    104:105:public void setCategories(java.util.List)
+    107:107:public java.util.Date getPublished()
+    110:111:public void setPublished(java.util.Date)
+    113:113:public java.lang.String getAuthor()
+    116:117:public void setAuthor(java.lang.String)
+    119:119:public java.lang.String getContent()
+    122:123:public void setContent(java.lang.String)
+    128:129:public void setVisual(java.lang.String)
+    131:131:public java.lang.String getOriginTitle()
+    134:135:public void setOriginTitle(java.lang.String)
+    137:137:public java.lang.String getOriginId()
+    140:141:public void setOriginId(java.lang.String)
+    143:143:public java.util.Date getCrawled()
+    146:147:public void setCrawled(java.util.Date)
+    152:153:public void setUrl(java.lang.String)
 com.yairkukielka.feedhungry.feedly.ListEntry:
-    64:65:public void setId(java.lang.String)
-    70:71:public void setTitle(java.lang.String)
-    73:73:public boolean isUnread()
-    76:77:public void setUnread(boolean)
-    79:79:public java.util.List getCategories()
-    82:83:public void setCategories(java.util.List)
-    85:85:public java.util.Date getPublished()
-    88:89:public void setPublished(java.util.Date)
-    91:91:public java.util.Date getUpdated()
-    94:95:public void setUpdated(java.util.Date)
-    97:97:public java.lang.String getAuthor()
-    100:101:public void setAuthor(java.lang.String)
-    103:103:public java.lang.String getContent()
-    106:107:public void setContent(java.lang.String)
-    112:113:public void setVisual(java.lang.String)
-com.yairkukielka.feedhungry.feedly.Stream:
-    18:27:public Stream(org.json.JSONObject)
-    29:29:public java.lang.String getId()
-    35:35:public java.lang.String getTitle()
-    41:41:public java.util.List getEntries()
-    44:45:public void setEntries(java.util.List)
-    48:48:public java.lang.String getSummary()
+    75:76:public void setId(java.lang.String)
+    81:82:public void setTitle(java.lang.String)
+    84:84:public boolean isUnread()
+    87:88:public void setUnread(boolean)
+    90:90:public java.util.List getCategories()
+    93:94:public void setCategories(java.util.List)
+    99:100:public void setPublished(java.util.Date)
+    102:102:public java.util.Date getUpdated()
+    105:106:public void setUpdated(java.util.Date)
+    111:112:public void setAuthor(java.lang.String)
+    117:118:public void setContent(java.lang.String)
+    123:124:public void setVisual(java.lang.String)
+    126:126:public java.lang.String getEngagement()
+    129:130:public void setEngagement(java.lang.String)
+    135:136:public void setPopular(boolean)
+com.yairkukielka.feedhungry.feedly.Stream
 com.yairkukielka.feedhungry.feedly.Subscription:
-    48:49:public void setTitle(java.lang.String)
     54:55:public void setCategories(java.util.ArrayList)
     57:57:public java.lang.String getSortid()
     60:61:public void setSortid(java.lang.String)
@@ -1457,9 +1477,13 @@ com.yairkukielka.feedhungry.feedly.Subscription:
     66:67:public void setUpdated(java.lang.String)
     69:69:public java.lang.String getWebsite()
     72:73:public void setWebsite(java.lang.String)
+com.yairkukielka.feedhungry.settings.PreferencesActivity:
+    public static final java.lang.String KEY_ONLY_UNREAD
+    public static final java.lang.String KEY_PAGE_SIZE
+    public static final java.lang.String KEY_LOGOUT
 com.yairkukielka.feedhungry.toolbox.DateUtils:
-    5:5:public DateUtils()
-    8:9:public static java.util.Date getDateFromJson(java.lang.String)
+    7:7:public DateUtils()
+    13:14:public static java.util.Date getDateFromJson(java.lang.String)
 com.yairkukielka.feedhungry.toolbox.MyListener:
     3:3:public MyListener()
 com.yairkukielka.feedhungry.toolbox.NetworkUtils:
@@ -1467,5 +1491,5 @@ com.yairkukielka.feedhungry.toolbox.NetworkUtils:
     public static final java.lang.String OAUTH_HEADER_PART
     public static final java.lang.String CONTENT_TYPE_HEADER
     public static final java.lang.String CONTENT_TYPE_PART
-    14:14:public NetworkUtils()
+    17:17:public NetworkUtils()
 com.yairkukielka.feedhungry.toolbox.UserProfile

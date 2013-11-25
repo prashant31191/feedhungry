@@ -7,6 +7,9 @@
 	<string name="drawer_close">drawer closed</string>
 	<string name="empty"></string>
 	
+	<!-- Feed Entry -->	
+	<string name="entry_without_content">This item has no content</string>
+	
 	<!-- drawer list -->
 	<string name="zero">0</string>
 	<string name="drawer_popular">Popular items</string>
@@ -29,16 +32,30 @@
 	<string name="pref_page_size_summary">How many articles are read every connection</string>
 	<string name="logout">Log out</string>
 	
-	<!-- main action bar -->	
-	<string name="menu_refresh">refresh</string>
+	<!-- MAIN ACTION BAR -->	
+	<!--  menu refresh -->	
+	<string name="menu_refresh">Refresh</string>
+	<!--  menu mark as read -->	
+	<string name="menu_mark_all_read">Mark all as read</string>
+	<!-- marked as read success message -->
+	<string name="marked_all_as_read_success_message">Marked all as read</string>
 	
-	<!-- entry action bar -->	
+	
+	<!-- ENTRY ACTION BAR -->
+	<!-- share -->	
 	<string name="entry_menu_share">Share</string>
-	<string name="entry_menu_mark_unread">Mark unread</string>	
+	<!-- share dialog text after share clicked  -->		
 	<string name="share_text">Share via</string>
+	<!-- mark unread  -->	
+	<string name="entry_menu_mark_unread">Mark unread</string>
+	<!-- open in browser  -->	
+	<string name="open_in_browser">Open in browser</string>
+	
 	
 	<!-- Message to show when cliked on keep as unread -->
 	<string name="kept_as_unread">Kept as unread</string>
+	<string name="marked_as_read">Marked as read</string>
+	<string name="marked_as_unread">Marked as unread</string>
 		
 	<!-- ERRORS -->
 	<string name="parsing_subscriptions_exception">Error parsing suscription</string>
@@ -46,7 +63,8 @@
 	<string name="receiving_unread_subscriptions_exception">Error reading unread suscriptions</string>
 	<string name="error_login">Failed to log in</string>
 	<string name="error_loading_entry">Error loading entry</string>
-	
+	<string name="error_marking_entry">Error marking entry</string>
+	<string name="generic_exception">Error</string>
 	
 	
 </resources>

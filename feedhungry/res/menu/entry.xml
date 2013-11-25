@@ -6,7 +6,7 @@
         android:showAsAction="ifRoom" />
     <item android:id="@+id/action_mark_unread"
         android:title="@string/entry_menu_mark_unread"
-        android:icon="@drawable/ic_menu_view"
+        android:icon="@drawable/ic_menu_mark_unread"
         android:orderInCategory="200"
         android:showAsAction="ifRoom" />
 </menu>

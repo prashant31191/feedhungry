@@ -18,17 +18,17 @@
 		android:layout_marginLeft="5dp"
 		android:weightSum="4">
     
-        <LinearLayout
+        <RelativeLayout
 		    android:layout_width="match_parent"
-		    android:layout_height="wrap_content"
-		    android:orientation="horizontal"
+			android:layout_height="0dp"
 			android:layout_weight="1">
 	        <TextView
 			    android:id="@+id/tv_list_popular"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
 			    android:textColor="#8AC007"
-			    android:gravity="left"
+			    android:layout_alignParentLeft="true"
+			    android:gravity="center_vertical"
 			    android:textSize="12sp"
 			    android:text="@string/popular"
 				android:ellipsize="end"
@@ -36,13 +36,32 @@
 	        
 	        <TextView
 			    android:id="@+id/tv_list_date"
-			    android:layout_width="match_parent"
+			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
-			    android:gravity="right"
+			    android:layout_centerInParent="true"
+			    android:gravity="center_vertical"
 			    android:textSize="12sp"
 				android:ellipsize="end"
 				android:fontFamily="sans-serif-light"/>
-        </LinearLayout>
+	        
+			<LinearLayout
+			    android:layout_height="wrap_content"
+			    android:layout_width="wrap_content"
+			    android:layout_alignParentRight="true"
+			    android:gravity="center">
+			
+			    <CheckBox
+		            android:id="@+id/check_list_read"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:focusable="false"
+					android:focusableInTouchMode="false"
+				    android:gravity="center_vertical"/>
+			
+			</LinearLayout>
+	        
+
+        </RelativeLayout>
         
 	    <RelativeLayout
 		    android:layout_width="match_parent"
