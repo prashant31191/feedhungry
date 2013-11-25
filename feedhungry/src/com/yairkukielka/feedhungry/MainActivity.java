@@ -24,7 +24,6 @@ import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.View;
@@ -108,7 +107,6 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 
 	@AfterViews
 	void afterViews() {
-
 		// ensures that your application is properly initialized with default
 		// settings
 		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
@@ -137,16 +135,15 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 	 * Connects to the internet to access the subscriptions and global feeds
 	 */
 	private void startConnection() {
+
 		expandRefreshMenuItem();
 		mDrawerTitle = getApplicationName();
 		setTitle(getApplicationName());
-		// mDrawerLayout.openDrawer(linearLayout);
 		FragmentManager fragmentManager = getSupportFragmentManager();
-		// fragmentManager.beginTransaction().replace(R.id.content_frame,
-		// loadingFragment).commit();
 		fragmentManager.beginTransaction().replace(R.id.content_frame, loadingFragment).attach(loadingFragment)
 				.addToBackStack(null).commit();
 		if (isInternetAvailable(this)) {// returns true if internet available
+			accessToken = getPreferences(Context.MODE_PRIVATE).getString(MainActivity.SHPREF_KEY_ACCESS_TOKEN, null);
 			if (accessToken != null) {
 				getSubscriptions();
 			} else {
@@ -248,7 +245,6 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 				}
 				prepareSubscriptionsData(subscriptions);
 				getUnreadSubscriptions(subscriptions);
-				collapseRefreshMenuItem();
 			}
 		};
 	}
@@ -312,6 +308,7 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 					Log.w(TAG, getResources().getString(R.string.parsing_subscriptions_exception));
 				}
 				paintDrawerSubscriptions();
+				collapseRefreshMenuItem();
 			}
 
 		};
@@ -489,7 +486,7 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 			// fragmentManager.beginTransaction().remove(loadingFragment).commit();
 			// fragmentManager.beginTransaction().replace(R.id.content_frame,
 			// entriesFragment).commit();
-			//https://code.google.com/p/android/issues/detail?id=42601
+			// https://code.google.com/p/android/issues/detail?id=42601
 			fragmentManager.beginTransaction().detach(loadingFragment).replace(R.id.content_frame, entriesFragment)
 					.attach(entriesFragment).addToBackStack(null).commit();
 		} catch (UnsupportedEncodingException uex) {
