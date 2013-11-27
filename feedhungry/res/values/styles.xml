@@ -1,5 +1,8 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
+     <style name="MyTheme" parent="Theme.Sherlock">
+    </style>
+    
     <style name="backgroundActivated" />
 
     <style name="backgroundActivated.minHeight">
@@ -18,5 +21,6 @@
         <item name="android:indeterminate">true</item>
     </style>
         
+<!--         <item name="android:indeterminateDrawable">@drawable/spinner2</item> -->
     
 </resources>

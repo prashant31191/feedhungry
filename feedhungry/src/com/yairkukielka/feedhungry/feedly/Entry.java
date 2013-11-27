@@ -16,70 +16,101 @@ import com.yairkukielka.feedhungry.toolbox.DateUtils;
 public class Entry {
 	private String id;
 	private String originId;
-	private String originTitle;
+	private String originTitle = "";
 	private String title;
 	private boolean unread;
 	private List<Category> categories = new ArrayList<Category>();
-	// TODO private List<Category> tags;
+	private List<Tag> tags = new ArrayList<Tag>();
 	private Date published;
 	private Date crawled;
 	private String author;
 	private String content;
 	private String visual;
+	private String streamTitle;
 	private String url;
+	private boolean saved;
+
+	private static final String SAVED_SUFFIX = "global.saved";
+	private static final String TAGS = "tags";
+	private static final String CATEGORIES = "categories";
+	private static final String AUTHOR = "author";
+	private static final String ID = "id";
+	private static final String TITLE = "title";
+	private static final String SUMMARY = "summary";
+	private static final String UNREAD = "unread";
+	private static final String PUBLISHED = "published";
+	private static final String UPDATED = "updated";
+	private static final String VISUAL = "visual";
+	private static final String CONTENT = "content";
+	private static final String URL = "url";
+	private static final String ORIGIN = "origin";
+	private static final String ORIGIN_ID = "originId";
+	private static final String CRAWLED = "crawled";
+	private static final String ALTERNATE = "alternate";
+	private static final String HREF = "href";
 	
 	public Entry() {
 	}
 	public Entry(JSONObject jobject, Context context) throws JSONException {
-		id = jobject.getString("id");
-		if (jobject.has("origin")) {
-			JSONObject originObject = jobject.getJSONObject("origin");
-			originTitle = originObject.getString("title");	
+		id = jobject.getString(ID);
+		if (jobject.has(ORIGIN)) {
+			JSONObject originObject = jobject.getJSONObject(ORIGIN);
+			originTitle = originObject.getString(TITLE);	
 		}
-		if (jobject.has("originId")) {
-			originId = jobject.getString("originId");	
+		if (jobject.has(ORIGIN_ID)) {
+			originId = jobject.getString(ORIGIN_ID);	
 		}
-		title = jobject.getString("title");	
-		unread = jobject.getBoolean("unread");
-		if (jobject.has("categories")) {
-			JSONArray jsonCategories = jobject.getJSONArray("categories");
+		title = jobject.getString(TITLE);	
+		unread = jobject.getBoolean(UNREAD);
+		if (jobject.has(CATEGORIES)) {
+			JSONArray jsonCategories = jobject.getJSONArray(CATEGORIES);
 			for (int i = 0; i < jsonCategories.length(); i++) {
 				Category c = new Category((JSONObject) jsonCategories.get(i));	
 				categories.add(c);
 			}
 		}
-		if (jobject.has("published")) {
-			published = DateUtils.getDateFromJson(jobject.getLong("published"));	
+		if (jobject.has(TAGS)) {
+			JSONArray jsonTags = jobject.getJSONArray(TAGS);
+			for (int i = 0; i < jsonTags.length(); i++) {
+				Tag t = new Tag((JSONObject) jsonTags.get(i));	
+				tags.add(t);
+				if (t.getId().endsWith(SAVED_SUFFIX)) {
+					saved = true;
+				}
+			}
 		}
-		if (jobject.has("crawled")) {
-			crawled = DateUtils.getDateFromJson(jobject.getLong("crawled"));	
+		if (jobject.has(PUBLISHED)) {
+			published = DateUtils.getDateFromJson(jobject.getLong(PUBLISHED));	
 		}
-		if (jobject.has("author")) {
-			author = jobject.getString("author");
+		if (jobject.has(CRAWLED)) {
+			crawled = DateUtils.getDateFromJson(jobject.getLong(CRAWLED));	
+		}
+		if (jobject.has(AUTHOR)) {
+			author = jobject.getString(AUTHOR);
 		}	
-		if (jobject.has("visual")) {
-			JSONObject visualObject = jobject.getJSONObject("visual");
+		if (jobject.has(VISUAL)) {
+			JSONObject visualObject = jobject.getJSONObject(VISUAL);
 			// if no image, visual = "none"
-			if (!"none".equals(visualObject.getString("url"))) {
-				visual = visualObject.getString("url");
+			if (!"none".equals(visualObject.getString(URL))) {
+				visual = visualObject.getString(URL);
 			}
 		} 
-		if (jobject.has("alternate")) {
-			JSONArray canonicalArray = jobject.getJSONArray("alternate");
+		if (jobject.has(ALTERNATE)) {
+			JSONArray canonicalArray = jobject.getJSONArray(ALTERNATE);
 			if (canonicalArray.length() > 0) {
 				JSONObject canObject = (JSONObject) canonicalArray.get(0);
-				url = canObject.getString("href");	
+				url = canObject.getString(HREF);	
 			}
 		}
-		if (jobject.has("content")) {
-			JSONObject contObject = jobject.getJSONObject("content");
-			content = contObject.getString("content");			
+		if (jobject.has(CONTENT)) {
+			JSONObject contObject = jobject.getJSONObject(CONTENT);
+			content = contObject.getString(CONTENT);			
 		}
 		// if no content, summary is used
 		if (content == null) {
-			if (jobject.has("summary")) {
-				JSONObject summObject = jobject.getJSONObject("summary");
-				content = summObject.getString("content");				
+			if (jobject.has(SUMMARY)) {
+				JSONObject summObject = jobject.getJSONObject(SUMMARY);
+				content = summObject.getString(CONTENT);				
 			} else {
 				content = context.getResources().getString(R.string.entry_without_content);
 			}
@@ -158,5 +189,24 @@ public class Entry {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	
+
+	public List<Tag> getTags() {
+		return tags;
+	}
+	public void setTags(List<Tag> tags) {
+		this.tags = tags;
+	}
+
+	public boolean isSaved() {
+		return saved;
+	}
+	public void setSaved(boolean saved) {
+		this.saved = saved;
+	}
+	public String getStreamTitle() {
+		return streamTitle;
+	}
+	public void setStreamTitle(String streamTitle) {
+		this.streamTitle = streamTitle;
+	}
 }

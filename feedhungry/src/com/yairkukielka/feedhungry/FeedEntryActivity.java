@@ -8,7 +8,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.R.color;
-import android.R.integer;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -17,12 +16,13 @@ import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
-import android.view.Display;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings.LayoutAlgorithm;
+import android.webkit.WebSettings.PluginState;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.RelativeLayout;
@@ -64,7 +64,7 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 	private static final String STREAM_TITLE = "streamTitle";
 	private static final String BY = " by ";
 	private static final String encoding = "utf-8";
-	private static final int TRANSPARENT_WINDOW = 130;
+	private static final String TEXT_HTML = "text/html";
 	private static final String DIV_PREFIX = "<div style='background-color:transparent;padding: 10px;color:#ccc;font-family: myFont';>";
 	private static final String DIV_SUFIX = "</div>";
 	// the feed entry
@@ -123,7 +123,6 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 		loadingFragment = new LoadingFragment_();
 		FragmentManager fragmentManager = getSupportFragmentManager();
 		//https://code.google.com/p/android/issues/detail?id=42601
-		//fragmentManager.beginTransaction().replace(R.id.frame_webview, loadingFragment).commit();
 		fragmentManager.beginTransaction().replace(R.id.frame_webview, loadingFragment).attach(loadingFragment).addToBackStack(null).commit();
 
 		if (streamTitle != null) {
@@ -158,10 +157,12 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 
 	private String getHtmlData(String data) {
 		String head = "<head><style>@font-face {font-family: 'myFont';src: url('file:///android_asset/fonts/Roboto-Light.ttf');}" +
-				"body {font-family: 'myFont';}a:link {color:#8AC007;}img{max-width: 100%; width:auto; height: auto;}</style></head>";
+				"body {font-family: 'myFont';line-height:150%;}a:link {color:#8AC007;}img{max-width: 100%; width:auto; height: auto;}" +
+				"iframe{max-width: 100%; width:auto; height: auto;}</style></head>";
 		return "<html>" + head + "<body>" + DIV_PREFIX + data + DIV_SUFIX + "</body></html>";
 	}
 
+	
 	private Response.Listener<JSONArray> createMyReqSuccessListener() {
 		return new Response.Listener<JSONArray>() {
 			@SuppressLint("NewApi")
@@ -184,17 +185,28 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 						if (entry.getVisual() != null) {
 							bgImage.setImageUrl(entry.getVisual(), MyVolley.getImageLoader());
 							bgImage.setAnimation(titleFadeInAnimation);
-							int heightPixels = getResources().getDisplayMetrics().heightPixels;
-							transparentView.getLayoutParams().height = heightPixels/4;
-						}
-						webView.getSettings().setJavaScriptEnabled(true);
-						if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-							webView.getSettings().setLayoutAlgorithm(LayoutAlgorithm.TEXT_AUTOSIZING);
-						} else {
-							webView.getSettings().setLayoutAlgorithm(LayoutAlgorithm.NORMAL);
+							int heightPixels = getResources().getDisplayMetrics().heightPixels;								
+							transparentView.getLayoutParams().height = heightPixels/10;
 						}
 						webView.setBackgroundColor(color.transparent);
-						webView.getSettings().setDefaultFontSize(18);
+						webView.getSettings().setJavaScriptEnabled(true);
+						webView.getSettings().setBuiltInZoomControls(true);
+//						if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+//							webView.getSettings().setLayoutAlgorithm(LayoutAlgorithm.TEXT_AUTOSIZING);
+//						} else {
+							webView.getSettings().setLayoutAlgorithm(LayoutAlgorithm.NORMAL);
+//						}
+						webView.getSettings().setDefaultFontSize(16);
+						if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+							// for HTML5 videos
+				        	webView.getSettings().setPluginState(PluginState.ON);
+				        	webView.getSettings().setDomStorageEnabled(true); // I think you will need this one
+				        	webView.getSettings().setLoadWithOverviewMode(true);
+				        	//webView.getSettings().setUseWideViewPort(true);
+				        	webView.getSettings().setBuiltInZoomControls(true);
+				               
+				        }
+						webView.setWebChromeClient(new WebChromeClient());
 						webView.setWebViewClient(new WebViewClient() {
 
 							@Override
@@ -216,8 +228,7 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 									// this can commit (the activity would be destroyed already)
 									//fragmentManager.beginTransaction().remove(loadingFragment).commit();
 									fragmentManager.beginTransaction().detach(loadingFragment).addToBackStack(null).commit();
-								}			
-								webView.setAnimation(webViewAnimation);
+								}	
 								webView.setVisibility(View.VISIBLE);					
 								webView.setAnimation(webViewAnimation);
 								// mark entry as read
@@ -241,22 +252,16 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 	 */
 	@Override
 	public void onBackPressed() {
-//		if (webView.isFocused() && webView.canGoBack()) {
-//			webView.clearHistory();
-//			loadEntryInInnerBrowser(entry.getContent());
-//			// webView.goBack();
-//		} else {
-			super.onBackPressed();
-			finish();
-			overridePendingTransition(R.anim.open_main, R.anim.close_next);
-//		}
+		super.onBackPressed();
+		finish();
+		overridePendingTransition(R.anim.open_main, R.anim.close_next);
 	}
 
 	/**
 	 * Loads the entry in the internal browser
 	 */
 	private void loadEntryInInnerBrowser(String content) {
-		webView.loadDataWithBaseURL("file:///android_asset/", getHtmlData(content), "text/html", "utf-8", null);
+		webView.loadDataWithBaseURL("file:///android_asset/", getHtmlData(content), TEXT_HTML, encoding, null);
 	}
 
 	private Response.ErrorListener createMyReqErrorListener() {
@@ -372,12 +377,13 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 		};
 	}
 
+	private static final String TEXT_PLAIN = "text/plain";
 	/**
 	 * Share entry
 	 */
 	private void shareEntry() {
 		Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-		sharingIntent.setType("text/plain");
+		sharingIntent.setType(TEXT_PLAIN);
 		String shareBody = entry.getUrl();
 		sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, entry.getTitle());
 		sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);

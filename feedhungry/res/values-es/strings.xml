@@ -1,0 +1,75 @@
+<resources>
+
+	<string name="app_name">feedhungry</string>
+	<string name="menu_settings">Opciones</string>
+	<string name="prueba">test</string>
+	<string name="drawer_open">abrir cajón</string>
+	<string name="drawer_close">cerrar cajón</string>
+	<string name="empty"></string>
+	
+	<!-- Feed Entry -->	
+	<string name="entry_without_content">Sin contenido</string>
+	
+	<!-- drawer list -->
+	<string name="zero">0</string>
+	<string name="drawer_popular">Artículos populares</string>
+	<string name="drawer_saved">Artículos guardados</string>
+	<string name="drawer_all">Todos</string>
+	<string name="drawer_uncategorized">Sin categoría</string>
+	<string name="about_developer">Sobre el desarrollador</string>
+	
+	<!-- items list -->
+	<string name="popular">Popular</string>
+	<string name="saved_article">Artículo guardado</string>
+	<string name="unsaved_article">Artículo no guardado</string>
+
+	<!-- no internet connection message -->
+	<string name="no_internet_connection">Sin conexión a internet</string>
+	
+	<!-- preferences -->	
+	<string name="only_unread">Sólo no leídos</string>
+	<string name="only_unread_summary">No mostrar los artículos leídos</string>
+	<string name="pref_page_size">Paginación</string>
+	<string name="pref_page_size_summary">Cuántos artículos se leen en cada conexión</string>
+	<string name="list_with_cards">Artículos en estilo \'cards\'</string>
+	<string name="list_with_cards_summary">Las imágenes serán más grandes</string>
+	<string name="logout">Cerrar sesión</string>
+	
+	<!-- MAIN ACTION BAR -->	
+	<!--  menu refresh -->	
+	<string name="menu_refresh">Refrescar</string>
+	<!--  menu mark as read -->	
+	<string name="menu_mark_all_read">Marcar todos como leídos</string>
+	<!-- marked as read success message -->
+	<string name="marked_all_as_read_success_message">Marcados todos como leídos</string>
+	
+	
+	<!-- ENTRY ACTION BAR -->
+	<!-- share -->	
+	<string name="entry_menu_share">Compartir</string>
+	<!-- share dialog text after share clicked  -->		
+	<string name="share_text">Compartir vía</string>
+	<!-- mark unread  -->	
+	<string name="entry_menu_mark_unread">Marcar como no leído</string>
+	<!-- open in browser  -->	
+	<string name="open_in_browser">Abrir en navegador</string>
+	<!-- mark saved/unsaved  -->	
+	<string name="mark_saved">Guardar/No guardar</string>
+	
+	
+	<!-- Message to show when cliked on keep as unread -->
+	<string name="kept_as_unread">Dejar como no leído</string>
+	<string name="marked_as_read">Marcado como leído</string>
+	<string name="marked_as_unread">Marcado como no leído</string>
+		
+	<!-- ERRORS -->
+	<string name="parsing_subscriptions_exception">Error parseando las suscripciones</string>
+	<string name="receiving_subscriptions_exception">Error rececibiendo suscripciones</string>
+	<string name="receiving_unread_subscriptions_exception">Error recibiendo las suscripciones no leídas</string>
+	<string name="error_login">Fallo al iniciar sesión</string>
+	<string name="error_loading_entry">Error al cargar el artículo</string>
+	<string name="error_marking_entry">Error marcando el artículo</string>
+	<string name="generic_exception">Error</string>
+	
+	
+</resources>

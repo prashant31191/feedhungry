@@ -8,6 +8,12 @@
             android:summary="@string/only_unread_summary"
 			android:defaultValue="false"/>
         
+        <CheckBoxPreference
+            android:key="pref_key_list_with_cards"
+            android:title="@string/list_with_cards"
+            android:summary="@string/list_with_cards_summary"
+			android:defaultValue="false"/>
+        
         <ListPreference
             android:key="pref_key_page_size"
             android:title="@string/pref_page_size"

@@ -4,9 +4,19 @@
         android:icon="@drawable/abs__ic_menu_share_holo_dark"
         android:orderInCategory="100"
         android:showAsAction="ifRoom" />
+    <item android:id="@+id/action_mark_saved"
+        android:title="@string/mark_saved"
+        android:icon="@drawable/star_big_off"
+        android:orderInCategory="200"
+        android:showAsAction="ifRoom" />
+    <item android:id="@+id/action_open_in_browser"
+        android:title="@string/open_in_browser"
+        android:icon="@drawable/ic_open_in_browser"
+        android:orderInCategory="300"
+        android:showAsAction="ifRoom" />
     <item android:id="@+id/action_mark_unread"
         android:title="@string/entry_menu_mark_unread"
         android:icon="@drawable/ic_menu_mark_unread"
-        android:orderInCategory="200"
-        android:showAsAction="ifRoom" />
+        android:orderInCategory="400"
+        android:showAsAction="ifRoom"/>
 </menu>

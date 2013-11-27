@@ -13,6 +13,7 @@ public class PreferencesActivity extends PreferenceActivity implements OnSharedP
 	public static final String KEY_ONLY_UNREAD = "pref_key_only_unread";
 	public static final String KEY_PAGE_SIZE = "pref_key_page_size";
 	public static final String KEY_LOGOUT = "pref_key_logout";
+	public static final String KEY_LIST_WITH_CARDS = "pref_key_list_with_cards";
 	public static int PREFERENCES_CODE = 1;
 	public static boolean LOG_OUT = false;
 

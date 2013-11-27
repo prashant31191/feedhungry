@@ -63,7 +63,8 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 	public static final String ROOT_URL = "http://cloud.feedly.com";
 	public static final String SUBSCRIPTIONS_URI = "/v3/subscriptions";
 	public static final String MARKERS_COUNTS_URI = "/v3/markers/counts";
-	private static final String MARKERS_PATH = "/v3/markers";
+	public static final String MARKERS_PATH = "/v3/markers";
+	public static final String TAGS_PATH = "/v3/tags";
 	public static final String SHPREF_KEY_USERID_TOKEN = "User_Id";
 	public static final String SHPREF_KEY_ACCESS_TOKEN = "Access_Token";
 	public static final String SHPREF_KEY_REFRESH_TOKEN = "Refresh_Token";
@@ -76,7 +77,7 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 	public static final String GLOBAL_MUST_SUFFIX = "/category/global.must";
 	public static final String GLOBAL_SAVED_SUFFIX = "/tag/global.saved";
 	private boolean preferencesChanged = false;
-	private static final String UTF_8 = "utf-8";
+	public static final String UTF_8 = "utf-8";
 	private ActivityData activityData;
 	private static final String FEEDLY_CATEGORIES = "Feedly Categories";
 	private boolean isMix;

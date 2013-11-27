@@ -69,7 +69,7 @@ public class EntryListFragment extends SherlockFragment {
 	private static final String ENTRY_AUTHOR = "entryAuthor";
 	private static final String STREAM_TITLE = "streamTitle";
 	private static final String ENTRY_DATE = "entryDate";
-	public static final int POPULAR_ITEMS_PAGE_SIZE = 20;
+	public static final int POPULAR_ITEMS_PAGE_SIZE = 5;
 	public static final String RESULTS_PAGE_SIZE = "RESULTS_PAGE_SIZE";
 	private static final String COUNT_PARAM = "&count=";
 	private static final String CONTINUATION_PARAM = "&continuation=";

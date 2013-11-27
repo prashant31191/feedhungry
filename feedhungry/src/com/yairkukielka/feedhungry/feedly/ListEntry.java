@@ -14,31 +14,64 @@ public class ListEntry {
 	private String id;
 	private String title;
 	private boolean unread;
+	private String originTitle = "";
 	private List<Category> categories = new ArrayList<Category>();
-	// TODO private List<Category> tags;
+	private List<Tag> tags = new ArrayList<Tag>();
 	private Date published;
 	private Date updated;
 	private String author;
 	private String content;
 	private String visual;
+	private String streamTitle;
 	private String engagement;
 	private boolean popular;
+	private boolean saved;
+
+	private static final String SAVED_SUFFIX = "global.saved";
+	private static final String TAGS = "tags";
+	private static final String CATEGORIES = "categories";
+	private static final String ENGAGEMENT = "engagement";
+	private static final String AUTHOR = "author";
+	private static final String ID = "id";
+	private static final String TITLE = "title";
+	private static final String SUMMARY = "summary";
+	private static final String UNREAD = "unread";
+	private static final String PUBLISHED = "published";
+	private static final String UPDATED = "updated";
+	private static final String VISUAL = "visual";
+	private static final String CONTENT = "content";
+	private static final String URL = "url";
+	private static final String ORIGIN = "origin";
 	
 	public ListEntry() {
 	}
 	public ListEntry(JSONObject jobject) throws JSONException {
-		id = jobject.getString("id");
-		title = jobject.getString("title");	
-		unread = jobject.getBoolean("unread");
-		if (jobject.has("categories")) {
-			JSONArray jsonCategories = jobject.getJSONArray("categories");
+		id = jobject.getString(ID);
+		title = jobject.getString(TITLE);	
+		unread = jobject.getBoolean(UNREAD);
+		if (jobject.has(ORIGIN)) {
+			JSONObject originObject = jobject.getJSONObject(ORIGIN);
+			originTitle = originObject.getString(TITLE);	
+		}
+		if (jobject.has(CATEGORIES)) {
+			JSONArray jsonCategories = jobject.getJSONArray(CATEGORIES);
 			for (int i = 0; i < jsonCategories.length(); i++) {
 				Category c = new Category((JSONObject) jsonCategories.get(i));	
 				categories.add(c);
 			}
 		}
-		if (jobject.has("engagement")) {
-			engagement = jobject.getString("engagement");
+		if (jobject.has(TAGS)) {
+			JSONArray jsonTags = jobject.getJSONArray(TAGS);
+			for (int i = 0; i < jsonTags.length(); i++) {
+				Tag t = new Tag((JSONObject) jsonTags.get(i));	
+				tags.add(t);
+				if (t.getId().endsWith(SAVED_SUFFIX)) {
+					saved = true;
+				}
+			}
+		}
+		if (jobject.has(ENGAGEMENT)) {
+			engagement = jobject.getString(ENGAGEMENT);
 			try {				
 				Integer engInteger = Integer.valueOf(engagement);
 				if (engInteger > 18) {
@@ -46,25 +79,25 @@ public class ListEntry {
 				}
 			} catch (NumberFormatException e) {	}
 		}
-		if (jobject.has("author")) {
-			author = jobject.getString("author");
+		if (jobject.has(AUTHOR)) {
+			author = jobject.getString(AUTHOR);
 		}	
-		if (jobject.has("published")) {
-			published = DateUtils.getDateFromJson(jobject.getLong("published"));	
+		if (jobject.has(PUBLISHED)) {
+			published = DateUtils.getDateFromJson(jobject.getLong(PUBLISHED));	
 		}
-		if (jobject.has("updated")) {
-			updated = DateUtils.getDateFromJson(jobject.getLong("updated"));	
+		if (jobject.has(UPDATED)) {
+			updated = DateUtils.getDateFromJson(jobject.getLong(UPDATED));	
 		}
-		if (jobject.has("visual")) {
-			JSONObject visualObject = jobject.getJSONObject("visual");
+		if (jobject.has(VISUAL)) {
+			JSONObject visualObject = jobject.getJSONObject(VISUAL);
 			// if no image, visual = "none"
-			if (!"none".equals(visualObject.getString("url"))) {
-				visual = visualObject.getString("url");
+			if (!"none".equals(visualObject.getString(URL))) {
+				visual = visualObject.getString(URL);
 			}
 		} 
-		if (jobject.has("summary")) {
-			JSONObject sumObject = jobject.getJSONObject("summary");
-			content = sumObject.getString("content");
+		if (jobject.has(SUMMARY)) {
+			JSONObject sumObject = jobject.getJSONObject(SUMMARY);
+			content = sumObject.getString(CONTENT);
 		}
 	}
 	
@@ -133,6 +166,30 @@ public class ListEntry {
 	}
 	public void setPopular(boolean popular) {
 		this.popular = popular;
+	}
+	public List<Tag> getTags() {
+		return tags;
+	}
+	public void setTags(List<Tag> tags) {
+		this.tags = tags;
+	}
+	public boolean isSaved() {
+		return saved;
+	}
+	public void setSaved(boolean saved) {
+		this.saved = saved;
+	}
+	public String getStreamTitle() {
+		return streamTitle;
+	}
+	public void setStreamTitle(String streamTitle) {
+		this.streamTitle = streamTitle;
+	}
+	public String getOriginTitle() {
+		return originTitle;
+	}
+	public void setOriginTitle(String originTitle) {
+		this.originTitle = originTitle;
 	}
 	
 }

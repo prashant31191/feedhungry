@@ -1,5 +1,8 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
+     <style name="MyTheme" parent="Theme.Sherlock">
+    </style>
+    
     <style name="backgroundActivated">
         <item name="android:background">?android:attr/activatedBackgroundIndicator</item>
     </style>

@@ -3,15 +3,15 @@ package com.yairkukielka.feedhungry.feedly;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Category {
+public class Tag {
 	private static final String ID = "id";
 	private static final String LABEL = "label";
 	private String id;
 	private String label;
 	
-	public Category() {
+	public Tag() {
 	}
-	public Category(JSONObject jobject) throws JSONException {
+	public Tag(JSONObject jobject) throws JSONException {
 		id = jobject.getString(ID);
 		label = jobject.getString(LABEL);		
 	}

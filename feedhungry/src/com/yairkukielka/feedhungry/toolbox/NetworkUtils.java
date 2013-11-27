@@ -37,7 +37,7 @@ public class NetworkUtils {
 			public Map<String, String> getHeaders() throws AuthFailureError {
 				Map<String, String> params = new HashMap<String, String>();
 				params.put(AUTORIZATION_HEADER, OAUTH_HEADER_PART + accessToken);
-				//params.put(CONTENT_TYPE_HEADER, CONTENT_TYPE_PART);
+				// params.put(CONTENT_TYPE_HEADER, CONTENT_TYPE_PART);
 				return params;
 			}
 		};
@@ -65,16 +65,20 @@ public class NetworkUtils {
 	}
 
 	/**
-	 * Craetes a JsonObject POST Request
+	 * Craetes a JsonObject Request with the method passed in the method
+	 * parameter
+	 * 
 	 * @param url
 	 * @param jsonRequest
 	 * @param successListener
 	 * @param errorListener
 	 * @param accessToken
+	 * @param method
+	 * @return
 	 */
-	public static JsonObjectRequest getJsonPostRequest(String url, JSONObject jsonRequest, Listener<JSONObject> successListener,
-			ErrorListener errorListener, final String accessToken) {
-		return new JsonObjectRequest(Method.POST, url, jsonRequest, successListener, errorListener) {
+	public static JsonObjectRequest getJsonRequestWithMethod(int method, String url, JSONObject jsonRequest,
+			Listener<JSONObject> successListener, ErrorListener errorListener, final String accessToken) {
+		return new JsonObjectRequest(method, url, jsonRequest, successListener, errorListener) {
 			@Override
 			public Map<String, String> getHeaders() throws AuthFailureError {
 				Map<String, String> params = new HashMap<String, String>();
@@ -82,5 +86,20 @@ public class NetworkUtils {
 				return params;
 			}
 		};
+	}
+
+	/**
+	 * Craetes a JsonObject POST Request
+	 * 
+	 * @param url
+	 * @param jsonRequest
+	 * @param successListener
+	 * @param errorListener
+	 * @param accessToken
+	 */
+	public static JsonObjectRequest getJsonPostRequest(String url, JSONObject jsonRequest,
+			Listener<JSONObject> successListener, ErrorListener errorListener, final String accessToken) {
+		int method = Method.POST;
+		return getJsonRequestWithMethod(method, url, jsonRequest, successListener, errorListener, accessToken);
 	}
 }

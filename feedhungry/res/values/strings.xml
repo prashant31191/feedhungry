@@ -20,6 +20,8 @@
 	
 	<!-- items list -->
 	<string name="popular">Popular</string>
+	<string name="saved_article">Saved article</string>
+	<string name="unsaved_article">Unsaved article</string>
 
 	<!-- no internet connection message -->
 	<string name="no_internet_connection">No Internet Connection</string>
@@ -30,6 +32,8 @@
 	<string name="only_unread_summary">Don\'t show read articles</string>
 	<string name="pref_page_size">Page Size</string>
 	<string name="pref_page_size_summary">How many articles are read every connection</string>
+	<string name="list_with_cards">Article list in \'card\' style</string>
+	<string name="list_with_cards_summary">Images will be bigger</string>
 	<string name="logout">Log out</string>
 	
 	<!-- MAIN ACTION BAR -->	
@@ -50,6 +54,9 @@
 	<string name="entry_menu_mark_unread">Mark unread</string>
 	<!-- open in browser  -->	
 	<string name="open_in_browser">Open in browser</string>
+	<!-- mark saved/unsaved  -->	
+	<string name="mark_saved">Mark saved/unsaved</string>
+	
 	
 	
 	<!-- Message to show when cliked on keep as unread -->
