@@ -931,15 +931,11 @@ containing a value of this type.
         public static final int ic_menu_mark_unread=0x7f02007b;
         public static final int ic_menu_refresh=0x7f02007c;
         public static final int ic_open_in_browser=0x7f02007d;
-        public static final int menu_submenu_background=0x7f02007e;
-        public static final int notify_panel_notification_icon_bg=0x7f02007f;
-        public static final int picture_frame=0x7f020080;
-        public static final int popup_bottom_dark=0x7f020081;
-        public static final int spinner2=0x7f020082;
-        public static final int star_big_off=0x7f020083;
-        public static final int star_big_on=0x7f020084;
-        public static final int star_off=0x7f020085;
-        public static final int star_on=0x7f020086;
+        public static final int spinner2=0x7f02007e;
+        public static final int star_big_off=0x7f02007f;
+        public static final int star_big_on=0x7f020080;
+        public static final int star_off=0x7f020081;
+        public static final int star_on=0x7f020082;
     }
     public static final class id {
         public static final int abs__action_bar=0x7f060021;
@@ -988,7 +984,7 @@ containing a value of this type.
         public static final int action_refresh=0x7f06005a;
         public static final int action_settings=0x7f06005b;
         public static final int action_share=0x7f060056;
-        public static final int check_list_read=0x7f06004f;
+        public static final int check_list_read=0x7f06004e;
         public static final int content_frame=0x7f060038;
         public static final int developer_frame_webview=0x7f060034;
         public static final int developer_webview=0x7f060035;
@@ -1010,10 +1006,10 @@ containing a value of this type.
         public static final int group_item=0x7f060036;
         public static final int homeAsUp=0x7f060006;
         public static final int id_holder=0x7f060010;
-        public static final int image_list_saved=0x7f06004d;
-        public static final int image_list_thumb=0x7f060049;
+        public static final int image_list_saved=0x7f06004c;
+        public static final int image_list_thumb=0x7f06004f;
         public static final int item_webview=0x7f060033;
-        public static final int layout_check=0x7f06004a;
+        public static final int layout_check=0x7f060049;
         public static final int linear_layout=0x7f060039;
         public static final int listMode=0x7f060002;
         public static final int loadingPanel=0x7f060053;
@@ -1028,9 +1024,9 @@ containing a value of this type.
         public static final int tabMode=0x7f060003;
         public static final int transparent_view=0x7f060041;
         public static final int tv_about_developer=0x7f06003a;
-        public static final int tv_list_date=0x7f06004e;
-        public static final int tv_list_popular=0x7f06004b;
-        public static final int tv_list_stream_name=0x7f06004c;
+        public static final int tv_list_date=0x7f06004d;
+        public static final int tv_list_popular=0x7f06004a;
+        public static final int tv_list_stream_name=0x7f06004b;
         public static final int tv_list_summary=0x7f060051;
         public static final int tv_list_title=0x7f060050;
         public static final int useLogo=0x7f060004;
@@ -1144,27 +1140,31 @@ containing a value of this type.
  Feed Entry 
          */
         public static final int entry_without_content=0x7f0b0013;
-        public static final int error_loading_entry=0x7f0b0035;
-        public static final int error_login=0x7f0b0034;
-        public static final int error_marking_entry=0x7f0b0036;
-        public static final int generic_exception=0x7f0b0037;
+        public static final int error_loading_entry=0x7f0b0036;
+        public static final int error_login=0x7f0b0035;
+        public static final int error_marking_entry=0x7f0b0037;
+        public static final int generic_exception=0x7f0b0038;
         /**  Message to show when cliked on keep as unread 
  Message to show when cliked on keep as unread 
          */
-        public static final int kept_as_unread=0x7f0b002e;
+        public static final int kept_as_unread=0x7f0b002f;
         public static final int list_with_cards=0x7f0b0023;
         public static final int list_with_cards_summary=0x7f0b0024;
         public static final int logout=0x7f0b0025;
-        /**  mark saved/unsaved  
- mark saved/unsaved  
+        /**  mark saved 
+ mark saved  
          */
         public static final int mark_saved=0x7f0b002d;
+        /**  mark unsaved 
+ mark unsaved  
+         */
+        public static final int mark_unsaved=0x7f0b002e;
         /**  marked as read success message 
  marked as read success message 
          */
         public static final int marked_all_as_read_success_message=0x7f0b0028;
-        public static final int marked_as_read=0x7f0b002f;
-        public static final int marked_as_unread=0x7f0b0030;
+        public static final int marked_as_read=0x7f0b0030;
+        public static final int marked_as_unread=0x7f0b0031;
         /**   menu mark as read 
   menu mark as read 
          */
@@ -1191,7 +1191,7 @@ containing a value of this type.
         /**  ERRORS 
  ERRORS 
          */
-        public static final int parsing_subscriptions_exception=0x7f0b0031;
+        public static final int parsing_subscriptions_exception=0x7f0b0032;
         /**  items list 
  items list 
          */
@@ -1202,8 +1202,8 @@ containing a value of this type.
          */
         public static final int preferences_category_summary=0x7f0b001e;
         public static final int prueba=0x7f0b000f;
-        public static final int receiving_subscriptions_exception=0x7f0b0032;
-        public static final int receiving_unread_subscriptions_exception=0x7f0b0033;
+        public static final int receiving_subscriptions_exception=0x7f0b0033;
+        public static final int receiving_unread_subscriptions_exception=0x7f0b0034;
         public static final int saved_article=0x7f0b001b;
         /**  share dialog text after share clicked  
  share dialog text after share clicked  

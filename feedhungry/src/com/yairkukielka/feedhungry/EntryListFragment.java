@@ -31,6 +31,7 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
@@ -58,6 +59,7 @@ import com.yairkukielka.feedhungry.toolbox.NetworkUtils;
  */
 @EFragment(R.layout.feed_list_view)
 public class EntryListFragment extends SherlockFragment {
+	private static final String TAG = EntryListFragment.class.getSimpleName();
 	private static final String STREAM_PATH = "/v3/streams/contents?streamId=";
 	private static final String MIXES_PATH = "/v3/mixes/contents?streamId=";
 	public static final String STREAM_ID = "stream_id";
@@ -188,7 +190,10 @@ public class EntryListFragment extends SherlockFragment {
 		return new Response.ErrorListener() {
 			@Override
 			public void onErrorResponse(VolleyError error) {
-				showErrorDialog(error.getMessage());
+				if (error != null) {
+					Log.e(TAG, error.getMessage());
+					//showErrorDialog(error.getMessage());
+				}
 			}
 		};
 	}

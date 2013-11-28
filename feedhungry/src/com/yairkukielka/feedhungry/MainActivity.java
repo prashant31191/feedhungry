@@ -59,6 +59,7 @@ import com.yairkukielka.feedhungry.toolbox.NetworkUtils;
 public class MainActivity extends SherlockFragmentActivity implements OnNavigationListener {
 
 	private static final String TAG = MainActivity.class.getSimpleName();
+	public static final String APP_PREFERENCES = "APP_PREFERENCS";
 	// http://cloud.feedly.com in production
 	public static final String ROOT_URL = "http://cloud.feedly.com";
 	public static final String SUBSCRIPTIONS_URI = "/v3/subscriptions";
@@ -84,7 +85,6 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 	protected String lastReadStreamId;
 	private Menu actionBarmenu;
 	private MenuItem reloadMenuItem;
-	private MenuItem markReadOrUnreadMenuItem;
 
 	// private DisplayMetrics metrics;
 	ExpandableListAdapter listAdapter;
@@ -136,22 +136,19 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 	 * Connects to the internet to access the subscriptions and global feeds
 	 */
 	private void startConnection() {
-
 		expandRefreshMenuItem();
 		mDrawerTitle = getApplicationName();
 		setTitle(getApplicationName());
 		FragmentManager fragmentManager = getSupportFragmentManager();
-		fragmentManager.beginTransaction().replace(R.id.content_frame, loadingFragment).attach(loadingFragment)
-				.addToBackStack(null).commit();
+		fragmentManager.beginTransaction().replace(R.id.content_frame, loadingFragment).attach(loadingFragment).commit();
 		if (isInternetAvailable(this)) {// returns true if internet available
-			accessToken = getPreferences(Context.MODE_PRIVATE).getString(MainActivity.SHPREF_KEY_ACCESS_TOKEN, null);
+			accessToken = getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE).getString(MainActivity.SHPREF_KEY_ACCESS_TOKEN, null);
 			if (accessToken != null) {
 				getSubscriptions();
 			} else {
 				collapseRefreshMenuItem();
 				getAccessToken(mSuccessTokenListener(), mErrorTokenListener());
 			}
-			// checkAccessToken(mSuccessTokenListener(), mErrorTokenListener());
 		} else {
 			collapseRefreshMenuItem();
 			Toast.makeText(this, getResources().getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show();
@@ -220,7 +217,7 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 	}
 
 	private void getSubscriptions() {
-		userId = getPreferences(Context.MODE_PRIVATE).getString(SHPREF_KEY_USERID_TOKEN, null);
+		userId = getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE).getString(SHPREF_KEY_USERID_TOKEN, null);
 		RequestQueue queue = MyVolley.getRequestQueue();
 		JsonArrayRequest myReq = NetworkUtils.getJsonArrayRequest(ROOT_URL + SUBSCRIPTIONS_URI,
 				createSuscriptionsSuccessListener(), createSuscriptionsErrorListener(), accessToken);
@@ -489,7 +486,7 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 			// entriesFragment).commit();
 			// https://code.google.com/p/android/issues/detail?id=42601
 			fragmentManager.beginTransaction().detach(loadingFragment).replace(R.id.content_frame, entriesFragment)
-					.attach(entriesFragment).addToBackStack(null).commit();
+					.attach(entriesFragment).commit();
 		} catch (UnsupportedEncodingException uex) {
 			Log.e(TAG, "Error encoding stream or category id");
 
@@ -594,7 +591,7 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 			if (PreferencesActivity.LOG_OUT) {
 				// log out
 				accessToken = null;
-				getPreferences(Context.MODE_PRIVATE).edit().putString(SHPREF_KEY_ACCESS_TOKEN, null).commit();
+				getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE).edit().putString(SHPREF_KEY_ACCESS_TOKEN, null).commit();
 				PreferencesActivity.LOG_OUT = false;
 			}
 			refresh();

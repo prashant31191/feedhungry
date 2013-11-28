@@ -54,8 +54,10 @@
 	<string name="entry_menu_mark_unread">Mark unread</string>
 	<!-- open in browser  -->	
 	<string name="open_in_browser">Open in browser</string>
-	<!-- mark saved/unsaved  -->	
-	<string name="mark_saved">Mark saved/unsaved</string>
+	<!-- mark saved -->	
+	<string name="mark_saved">Mark saved</string>
+	<!-- mark unsaved -->	
+	<string name="mark_unsaved">Mark unsaved</string>
 	
 	
 	

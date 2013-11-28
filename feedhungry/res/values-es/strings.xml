@@ -53,8 +53,10 @@
 	<string name="entry_menu_mark_unread">Marcar como no leído</string>
 	<!-- open in browser  -->	
 	<string name="open_in_browser">Abrir en navegador</string>
-	<!-- mark saved/unsaved  -->	
-	<string name="mark_saved">Guardar/No guardar</string>
+	<!-- mark saved  -->	
+	<string name="mark_saved">Guardar</string>
+	<!-- mark unsaved  -->	
+	<string name="mark_unsaved">No guardar</string>
 	
 	
 	<!-- Message to show when cliked on keep as unread -->

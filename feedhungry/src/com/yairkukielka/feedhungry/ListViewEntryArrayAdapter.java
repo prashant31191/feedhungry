@@ -26,6 +26,7 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -48,7 +49,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NetworkImageView;
 import com.yairkukielka.feedhungry.app.MyVolley;
@@ -222,8 +222,8 @@ public class ListViewEntryArrayAdapter extends ArrayAdapter<ListEntry> {
 			JSONArray entries = new JSONArray();
 			entries.put(entry.getId());
 			jsonRequest.put(ENTRIES_IDS, entries);
-			String accessToken = context.getPreferences(Context.MODE_PRIVATE).getString(
-					MainActivity.SHPREF_KEY_ACCESS_TOKEN, null);
+			String accessToken = context.getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE)
+					.getString(MainActivity.SHPREF_KEY_ACCESS_TOKEN, null);
 			JsonObjectRequest myReq = NetworkUtils.getJsonPostRequest(
 					MainActivity.ROOT_URL + MainActivity.MARKERS_PATH, jsonRequest,
 					getActionListenerEntrySuccessListener(successMessage), createMyReqErrorListener(), accessToken);
@@ -289,12 +289,12 @@ public class ListViewEntryArrayAdapter extends ArrayAdapter<ListEntry> {
 			JSONArray entries = new JSONArray();
 			entries.put(entry.getId());
 			jsonRequest.put(ENTRIES_IDS, entries);
-			String accessToken = context.getPreferences(Context.MODE_PRIVATE).getString(
-					MainActivity.SHPREF_KEY_ACCESS_TOKEN, null);
-			String userId = context.getPreferences(Context.MODE_PRIVATE).getString(
-					MainActivity.SHPREF_KEY_USERID_TOKEN, null);
+			SharedPreferences sprPreferences = context.getSharedPreferences(MainActivity.APP_PREFERENCES,
+					Context.MODE_PRIVATE);
+			String accessToken = sprPreferences.getString(MainActivity.SHPREF_KEY_ACCESS_TOKEN, null);
+			String userId = sprPreferences.getString(MainActivity.SHPREF_KEY_USERID_TOKEN, null);
 			if (accessToken != null && userId != null) {
-				String userIdEncoded = URLEncoder.encode("/" + userId.toString()+ "/tag/", MainActivity.UTF_8);	
+				String userIdEncoded = URLEncoder.encode("/" + userId.toString() + "/tag/", MainActivity.UTF_8);
 				StringBuilder url = new StringBuilder();
 				url.append(MainActivity.ROOT_URL).append(MainActivity.TAGS_PATH).append("/user").append(userIdEncoded)
 						.append("global.saved");

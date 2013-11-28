@@ -65,14 +65,8 @@ public class WebviewFragment extends SherlockFragment {
 	@SuppressLint("SetJavaScriptEnabled")
 	@AfterViews
 	void afterViews() {
-		thisActivity = this.getActivity();
-		// check whether access token already saved
-//		Editor e = getPreferences(Context.MODE_PRIVATE)
-//				.edit();
-//		e.putString(SHPREF_KEY_ACCESS_TOKEN, null);
-//		e.commit();
-		
-		accessToken = thisActivity.getPreferences(Context.MODE_PRIVATE)
+		thisActivity = this.getActivity();		
+		accessToken = thisActivity.getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE)
 				.getString(MainActivity.SHPREF_KEY_ACCESS_TOKEN, null);
 		if (accessToken == null) {
 			WebSettings webSettings = webview.getSettings();
@@ -107,7 +101,7 @@ public class WebviewFragment extends SherlockFragment {
 			webview.loadUrl(authorizationUri);
 
 		} else {
-			refreshToken = thisActivity.getPreferences(Context.MODE_PRIVATE)
+			refreshToken = thisActivity.getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE)
 					.getString(MainActivity.SHPREF_KEY_REFRESH_TOKEN, null);
 			// refresh the authentication token
 			getTokens(true, refreshToken);
@@ -165,8 +159,7 @@ public class WebviewFragment extends SherlockFragment {
 		return new Response.Listener<JSONObject>() {
 			@Override
 			public void onResponse(JSONObject response) {
-				Editor e = thisActivity.getPreferences(Context.MODE_PRIVATE)
-						.edit();				
+				Editor e = thisActivity.getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE).edit();				
 				try {
 					userId = response.getString("id");
 					accessToken = response.getString("access_token");

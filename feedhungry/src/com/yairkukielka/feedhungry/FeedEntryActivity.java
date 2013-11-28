@@ -10,7 +10,9 @@ import org.json.JSONObject;
 import android.R.color;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.support.v4.app.Fragment;
@@ -33,6 +35,7 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import com.android.volley.Request.Method;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.Response.Listener;
@@ -56,6 +59,7 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 	private static final String MARKERS_PATH = "/v3/markers";
 	private static final String MARK_READ = "markAsRead";
 	private static final String MARK_KEEP_UNREAD = "keepUnread";
+	private static final String ENTRIES_IDS = "entryIds";
 	private static final String ENTRY_ID = "entryId";
 	private static final String ENTRY_TITLE = "entryTitle";
 	private static final String ENTRY_AUTHOR = "entryAuthor";
@@ -67,6 +71,8 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 	private static final String TEXT_HTML = "text/html";
 	private static final String DIV_PREFIX = "<div style='background-color:transparent;padding: 10px;color:#ccc;font-family: myFont';>";
 	private static final String DIV_SUFIX = "</div>";
+	// the action bar menu
+	private Menu actionBarmenu;
 	// the feed entry
 	private Entry entry;
 	// animation to show the feed content after the loading fragment shows
@@ -172,6 +178,7 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 					if (response.length() > 0) {
 						JSONObject jentry = (JSONObject) response.get(0);
 						entry = new Entry(jentry, FeedEntryActivity.this);
+
 						tvTitle.setText(entry.getTitle());
 						if (entry.getAuthor() != null) {
 							tvAuthor.setText(BY + entry.getAuthor());
@@ -181,7 +188,11 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 								tvDate.setText(DateUtils.dateToString(entry.getPublished()));
 							} catch (IllegalArgumentException ie) {
 							}
-						}						
+						}	
+						if (entry.isSaved()) {
+							// paint the star
+							supportInvalidateOptionsMenu();
+						}
 						if (entry.getVisual() != null) {
 							bgImage.setImageUrl(entry.getVisual(), MyVolley.getImageLoader());
 							bgImage.setAnimation(titleFadeInAnimation);
@@ -232,7 +243,7 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 								webView.setVisibility(View.VISIBLE);					
 								webView.setAnimation(webViewAnimation);
 								// mark entry as read
-								markEntry(MARK_READ, getMarkAsReadSuccessListener());
+								markEntry(MARK_READ, getSuccessListener(null));
 							}
 						});
 						loadEntryInInnerBrowser(entry.getContent());
@@ -256,7 +267,7 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 		finish();
 		overridePendingTransition(R.anim.open_main, R.anim.close_next);
 	}
-
+	
 	/**
 	 * Loads the entry in the internal browser
 	 */
@@ -270,7 +281,7 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 			public void onErrorResponse(VolleyError error) {
 				Log.e(TAG, "Error loading entry");
 				Log.e(TAG, error.getMessage());
-				showErrorDialog(getResources().getString(R.string.error_loading_entry));
+				//showErrorDialog(getResources().getString(R.string.error_loading_entry));
 			}
 		};
 	}
@@ -321,6 +332,7 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getSupportMenuInflater();
 		inflater.inflate(R.menu.entry, menu);
+		actionBarmenu = menu;
 		return super.onCreateOptionsMenu(menu);
 	}
 
@@ -334,14 +346,81 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 		case R.id.action_share:
 			shareEntry();
 			return true;
+		case R.id.action_mark_saved:
+			saveOrUnsaveEntry();
+			return true;
 		case R.id.action_mark_unread:
-			markEntry(MARK_KEEP_UNREAD, getKeptAsUnreadSuccessListener());
+			markEntry(MARK_KEEP_UNREAD, getSuccessListener(getResources().getString(R.string.kept_as_unread)));
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
 	}
 
+	/* Called whenever we call invalidateOptionsMenu() */
+	@Override
+	public boolean onPrepareOptionsMenu(Menu menu) {
+		if (entry != null && entry.isSaved()) {
+			// paint the star
+			MenuItem mItem = actionBarmenu.findItem(R.id.action_mark_saved);
+			mItem.setIcon(getResources().getDrawable(R.drawable.star_big_on));
+			mItem.setTitle(getResources().getString(R.string.mark_unsaved));
+		}
+		return super.onPrepareOptionsMenu(menu);
+	}
+
+	/**
+	 * Save or unsave an entry
+	 */
+	private void saveOrUnsaveEntry() {
+		int method = Method.PUT;
+		String successMessage;
+		if (entry.isSaved()) {
+			method = Method.DELETE;
+			successMessage = getResources().getString(R.string.unsaved_article);
+			entry.setSaved(false);
+		} else {
+			successMessage = getResources().getString(R.string.saved_article);
+			entry.setSaved(true);
+		}
+		supportInvalidateOptionsMenu();
+
+		SharedPreferences sprPreferences = getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE);
+		String accessToken = sprPreferences.getString(MainActivity.SHPREF_KEY_ACCESS_TOKEN, null);
+		String userId = sprPreferences.getString(MainActivity.SHPREF_KEY_USERID_TOKEN, null);
+		
+		// send request
+		RequestQueue queue = MyVolley.getRequestQueue();
+		try {
+			JSONObject jsonRequest = new JSONObject();
+			JSONArray entries = new JSONArray();
+			entries.put(entry.getId());
+			jsonRequest.put(ENTRIES_IDS, entries);
+			if (accessToken != null && userId != null) {
+				String userIdEncoded = URLEncoder.encode("/" + userId.toString()+ "/tag/", MainActivity.UTF_8);	
+				StringBuilder url = new StringBuilder();
+				url.append(MainActivity.ROOT_URL).append(MainActivity.TAGS_PATH).append("/user").append(userIdEncoded)
+						.append("global.saved");
+				JsonObjectRequest myReq = NetworkUtils.getJsonRequestWithMethod(method, url.toString(), jsonRequest,
+						getSuccessListener(successMessage), createMyReqErrorListener(), accessToken);
+				queue.add(myReq);
+			}
+		} catch (JSONException uex) {
+			Log.e(TAG, "JSONException marking as read/unread entry");
+		} catch (UnsupportedEncodingException uex) {
+			Log.e(TAG, "Error encoding URL when saving/unsaving entry");
+		}
+		
+		
+	}
+	
+	
+	
+	/**
+	 * Mark entry as read or unread
+	 * @param markOrUnmark read or unread
+	 * @param successListener successListener
+	 */
 	private void markEntry(String markOrUnmark, Listener<JSONObject> successListener) {
 		RequestQueue queue = MyVolley.getRequestQueue();
 		try {
@@ -359,23 +438,17 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 		}
 	}
 
-	private Response.Listener<JSONObject> getKeptAsUnreadSuccessListener() {
+	private Response.Listener<JSONObject> getSuccessListener(final String message) {
 		return new Response.Listener<JSONObject>() {
 			@Override
 			public void onResponse(JSONObject response) {
-				Toast.makeText(FeedEntryActivity.this, getResources().getString(R.string.kept_as_unread),
-						Toast.LENGTH_SHORT).show();
+				if (message != null) {
+					Toast.makeText(FeedEntryActivity.this, message, Toast.LENGTH_SHORT).show();
+				}
 			}
 		};
 	}
 
-	private Response.Listener<JSONObject> getMarkAsReadSuccessListener() {
-		return new Response.Listener<JSONObject>() {
-			@Override
-			public void onResponse(JSONObject response) {
-			}
-		};
-	}
 
 	private static final String TEXT_PLAIN = "text/plain";
 	/**
@@ -389,4 +462,6 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 		sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
 		startActivity(Intent.createChooser(sharingIntent, getResources().getString(R.string.share_text)));
 	}
+	
+	
 }

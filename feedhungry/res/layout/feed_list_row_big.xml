@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
    	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-    android:padding="3dp">
+    android:padding="3dp"
+	android:minHeight="70dp">
 <!--         <LinearLayout  -->
 <!-- 			android:id="@+id/list_image_layout" -->
 <!-- 		    android:layout_width="match_parent" -->
@@ -12,7 +13,7 @@
 			    android:id="@+id/image_list_thumb"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:maxHeight="230dp"
+				android:maxHeight="220dp"
 				android:scaleType="centerCrop"
 				android:adjustViewBounds="true"/>
 <!--     	</LinearLayout> -->
@@ -51,7 +52,8 @@
 				    android:layout_width="wrap_content"
 				    android:layout_height="wrap_content"
 				    android:textSize="12sp"
-				    android:maxEms="10"
+				    android:maxEms="7"
+				    android:maxLines="1"
 					android:ellipsize="end"
 					android:fontFamily="sans-serif-light"/>
 		        
@@ -60,7 +62,12 @@
 				    android:layout_width="wrap_content"
 				    android:layout_height="wrap_content"				
 					android:contentDescription="@null"
-					android:src="@drawable/star_off"/>
+					android:src="@drawable/star_off"		
+				    android:layout_marginTop="-7dp"
+				    android:layout_marginBottom="-7dp"
+				    android:paddingRight="-5dp"
+				    android:paddingTop="-5dp"
+				    android:paddingBottom="-5dp"/>
 		        
 		        <TextView
 				    android:id="@+id/tv_list_date"
