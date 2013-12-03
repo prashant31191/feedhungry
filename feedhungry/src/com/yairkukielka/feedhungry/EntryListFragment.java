@@ -71,11 +71,12 @@ public class EntryListFragment extends SherlockFragment {
 	private static final String ENTRY_AUTHOR = "entryAuthor";
 	private static final String STREAM_TITLE = "streamTitle";
 	private static final String ENTRY_DATE = "entryDate";
-	public static final int POPULAR_ITEMS_PAGE_SIZE = 5;
+	public static final int POPULAR_ITEMS_PAGE_SIZE = 20;
 	public static final String RESULTS_PAGE_SIZE = "RESULTS_PAGE_SIZE";
 	private static final String COUNT_PARAM = "&count=";
 	private static final String CONTINUATION_PARAM = "&continuation=";
 	private static final String ONLY_UNREAD_PARAM = "&unreadOnly=";
+	private Fragment loadingFragment = new LoadingFragment_();
 	public String continuation = null;
 	private DisplayMetrics metrics;
 	private String streamTitle;
@@ -96,6 +97,8 @@ public class EntryListFragment extends SherlockFragment {
 
 	@AfterViews
 	void afterViews() {
+		loadingFragment = new LoadingFragment_();
+		addLoadingFragment();
 		mEntries.clear();
 		metrics = new DisplayMetrics();
 		getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
@@ -182,6 +185,7 @@ public class EntryListFragment extends SherlockFragment {
 				} catch (JSONException e) {
 					showErrorDialog(e.getMessage());
 				}
+				removeLoadingFragment();
 			}
 		};
 	}
@@ -191,6 +195,7 @@ public class EntryListFragment extends SherlockFragment {
 			@Override
 			public void onErrorResponse(VolleyError error) {
 				if (error != null) {
+					removeLoadingFragment();
 					Log.e(TAG, error.getMessage());
 					//showErrorDialog(error.getMessage());
 				}
@@ -282,6 +287,20 @@ public class EntryListFragment extends SherlockFragment {
 		return null;
 	}
 
+	private void addLoadingFragment() {
+		FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+		if (fragmentManager.findFragmentById(loadingFragment.getId()) == null) {
+			fragmentManager.beginTransaction().add(R.id.content_frame, loadingFragment).commit();
+		}
+	}
+	private void removeLoadingFragment() {
+		if (getActivity() != null) {
+			FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+			if (fragmentManager.findFragmentById(loadingFragment.getId()) != null) {
+				fragmentManager.beginTransaction().remove(loadingFragment).commit();
+			}
+		}
+	}
 
 	/**
 	 * Detects when user is close to the end of the current page and starts
@@ -296,7 +315,7 @@ public class EntryListFragment extends SherlockFragment {
 		private int currentPage = 0;
 		private int previousTotal = 0;
 		private boolean loading = true;
-		Fragment loadingFragment = new LoadingFragment_();
+		Fragment srcollerLoadingFragment = new LoadingFragment_();
 
 		public EndlessScrollListener() {
 		}
@@ -312,7 +331,7 @@ public class EntryListFragment extends SherlockFragment {
 					loading = false;
 
 					FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-					fragmentManager.beginTransaction().remove(loadingFragment).commit();
+					fragmentManager.beginTransaction().remove(srcollerLoadingFragment).commit();
 
 					previousTotal = totalItemCount;
 					currentPage++;
@@ -327,7 +346,7 @@ public class EntryListFragment extends SherlockFragment {
 				loadPage();
 				loading = true;
 				FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-				fragmentManager.beginTransaction().add(R.id.content_frame, loadingFragment).commit();
+				fragmentManager.beginTransaction().add(R.id.content_frame, srcollerLoadingFragment).commit();
 			}
 		}
 

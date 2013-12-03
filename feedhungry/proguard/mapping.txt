@@ -6588,9 +6588,10 @@ com.android.volley.toolbox.Volley -> com.android.volley.toolbox.aa:
 com.googlecode.androidannotations.api.SdkVersionHelper -> com.a.a.a.a:
     24:27:int getSdkInt() -> a
 com.yairkukielka.feedhungry.EntryListFragment -> com.yairkukielka.feedhungry.a:
+    java.lang.String TAG -> j
     java.lang.String continuation -> a
-    android.util.DisplayMetrics metrics -> j
-    java.lang.String streamTitle -> k
+    android.util.DisplayMetrics metrics -> k
+    java.lang.String streamTitle -> l
     android.widget.ListView mLvPicasa -> b
     boolean mHasData -> c
     boolean mInError -> d
@@ -6599,23 +6600,24 @@ com.yairkukielka.feedhungry.EntryListFragment -> com.yairkukielka.feedhungry.a:
     java.lang.String streamId -> g
     java.lang.String accessToken -> h
     java.lang.Boolean isMix -> i
-    97:131:void afterViews() -> a
-    134:138:void loadPage() -> b
-    209:212:java.lang.String getContinuationParameter() -> c
-    222:225:java.lang.String getOnlyUnreadParameter() -> d
-    133:133:void access$0(com.yairkukielka.feedhungry.EntryListFragment) -> a
-    79:79:java.lang.String access$1(com.yairkukielka.feedhungry.EntryListFragment) -> b
-    79:79:void access$2(com.yairkukielka.feedhungry.EntryListFragment,java.lang.String) -> a
-    196:196:void access$3$3f9ade71(com.yairkukielka.feedhungry.EntryListFragment) -> c
+    99:133:void afterViews() -> a
+    136:140:void loadPage() -> c
+    214:217:java.lang.String getContinuationParameter() -> d
+    227:230:java.lang.String getOnlyUnreadParameter() -> e
+    135:135:void access$0(com.yairkukielka.feedhungry.EntryListFragment) -> a
+    81:81:java.lang.String access$1(com.yairkukielka.feedhungry.EntryListFragment) -> b
+    81:81:void access$2(com.yairkukielka.feedhungry.EntryListFragment,java.lang.String) -> a
+    201:201:void access$3$3f9ade71(com.yairkukielka.feedhungry.EntryListFragment) -> c
+    62:62:java.lang.String access$4() -> b
 com.yairkukielka.feedhungry.EntryListFragment$1 -> com.yairkukielka.feedhungry.b:
     com.yairkukielka.feedhungry.EntryListFragment this$0 -> a
-    108:125:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+    110:127:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
 com.yairkukielka.feedhungry.EntryListFragment$2 -> com.yairkukielka.feedhungry.c:
     com.yairkukielka.feedhungry.EntryListFragment this$0 -> a
     1:1:void onResponse(java.lang.Object) -> a
 com.yairkukielka.feedhungry.EntryListFragment$3 -> com.yairkukielka.feedhungry.d:
     com.yairkukielka.feedhungry.EntryListFragment this$0 -> a
-    191:192:void onErrorResponse(com.android.volley.VolleyError) -> a
+    193:197:void onErrorResponse(com.android.volley.VolleyError) -> a
 com.yairkukielka.feedhungry.EntryListFragment$EndlessScrollListener -> com.yairkukielka.feedhungry.e:
     int visibleThreshold -> c
     int currentPage -> d
@@ -6623,8 +6625,8 @@ com.yairkukielka.feedhungry.EntryListFragment$EndlessScrollListener -> com.yairk
     boolean loading -> f
     android.support.v4.app.Fragment loadingFragment -> a
     com.yairkukielka.feedhungry.EntryListFragment this$0 -> b
-    305:327:void onScroll(android.widget.AbsListView,int,int,int) -> onScroll
-    332:332:void onScrollStateChanged(android.widget.AbsListView,int) -> onScrollStateChanged
+    310:332:void onScroll(android.widget.AbsListView,int,int,int) -> onScroll
+    337:337:void onScrollStateChanged(android.widget.AbsListView,int) -> onScrollStateChanged
 com.yairkukielka.feedhungry.EntryListFragment_ -> com.yairkukielka.feedhungry.f:
     android.view.View contentView_ -> j
     28:30:void onCreate(android.os.Bundle) -> onCreate
@@ -6646,10 +6648,11 @@ com.yairkukielka.feedhungry.ExpandableListAdapter -> com.yairkukielka.feedhungry
     137:137:boolean isChildSelectable(int,int) -> isChildSelectable
 com.yairkukielka.feedhungry.FeedEntryActivity -> com.yairkukielka.feedhungry.FeedEntryActivity:
     java.lang.String TAG -> n
-    com.yairkukielka.feedhungry.feedly.Entry entry -> o
-    android.view.animation.Animation webViewAnimation -> p
-    android.view.animation.Animation titleFadeInAnimation -> q
-    android.support.v4.app.Fragment loadingFragment -> r
+    com.actionbarsherlock.view.Menu actionBarmenu -> o
+    com.yairkukielka.feedhungry.feedly.Entry entry -> p
+    android.view.animation.Animation webViewAnimation -> q
+    android.view.animation.Animation titleFadeInAnimation -> r
+    android.support.v4.app.Fragment loadingFragment -> s
     java.lang.String accessToken -> a
     java.lang.String entryId -> b
     java.lang.String entryAuthor -> c
@@ -6663,42 +6666,42 @@ com.yairkukielka.feedhungry.FeedEntryActivity -> com.yairkukielka.feedhungry.Fee
     android.view.View transparentView -> k
     android.widget.RelativeLayout titleLayout -> l
     com.android.volley.toolbox.NetworkImageView bgImage -> m
-    113:145:void afterViews() -> a
-    249:253:void onBackPressed() -> onBackPressed
-    263:263:com.android.volley.Response$ErrorListener createMyReqErrorListener() -> c
-    312:313:void setTitle(java.lang.CharSequence) -> setTitle
-    317:319:boolean onCreateOptionsMenu(com.actionbarsherlock.view.Menu) -> onCreateOptionsMenu
-    324:336:boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem) -> onOptionsItemSelected
-    341:355:void markEntry(java.lang.String,com.android.volley.Response$Listener) -> a
-    71:71:void access$0(com.yairkukielka.feedhungry.FeedEntryActivity,com.yairkukielka.feedhungry.feedly.Entry) -> a
-    71:71:com.yairkukielka.feedhungry.feedly.Entry access$1(com.yairkukielka.feedhungry.FeedEntryActivity) -> a
-    75:75:android.view.animation.Animation access$2(com.yairkukielka.feedhungry.FeedEntryActivity) -> b
-    77:77:android.support.v4.app.Fragment access$3(com.yairkukielka.feedhungry.FeedEntryActivity) -> c
-    73:73:android.view.animation.Animation access$4(com.yairkukielka.feedhungry.FeedEntryActivity) -> d
-    367:367:com.android.volley.Response$Listener access$5(com.yairkukielka.feedhungry.FeedEntryActivity) -> e
-    340:340:void access$6(com.yairkukielka.feedhungry.FeedEntryActivity,java.lang.String,com.android.volley.Response$Listener) -> a
-    258:258:void access$7(com.yairkukielka.feedhungry.FeedEntryActivity,java.lang.String) -> a
-    54:54:java.lang.String access$8() -> b
-    273:273:void access$9(com.yairkukielka.feedhungry.FeedEntryActivity,java.lang.String) -> b
-    303:303:void access$10(com.yairkukielka.feedhungry.FeedEntryActivity,java.lang.String) -> c
+    120:151:void afterViews() -> a
+    274:277:void onBackPressed() -> onBackPressed
+    287:287:com.android.volley.Response$ErrorListener createMyReqErrorListener() -> c
+    328:332:void openEntryInBrowser(java.lang.String) -> a
+    336:337:void setTitle(java.lang.CharSequence) -> setTitle
+    341:344:boolean onCreateOptionsMenu(com.actionbarsherlock.view.Menu) -> onCreateOptionsMenu
+    349:366:boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem) -> onOptionsItemSelected
+    373:379:boolean onPrepareOptionsMenu(com.actionbarsherlock.view.Menu) -> onPrepareOptionsMenu
+    435:449:void markEntry(java.lang.String,com.android.volley.Response$Listener) -> a
+    452:452:com.android.volley.Response$Listener getSuccessListener(java.lang.String) -> b
+    78:78:void access$0(com.yairkukielka.feedhungry.FeedEntryActivity,com.yairkukielka.feedhungry.feedly.Entry) -> a
+    78:78:com.yairkukielka.feedhungry.feedly.Entry access$1(com.yairkukielka.feedhungry.FeedEntryActivity) -> a
+    82:82:android.view.animation.Animation access$2(com.yairkukielka.feedhungry.FeedEntryActivity) -> b
+    84:84:android.support.v4.app.Fragment access$3(com.yairkukielka.feedhungry.FeedEntryActivity) -> c
+    80:80:android.view.animation.Animation access$4(com.yairkukielka.feedhungry.FeedEntryActivity) -> d
+    451:451:com.android.volley.Response$Listener access$5$68a42c8a(com.yairkukielka.feedhungry.FeedEntryActivity) -> e
+    434:434:void access$6(com.yairkukielka.feedhungry.FeedEntryActivity,java.lang.String,com.android.volley.Response$Listener) -> a
+    282:282:void access$7(com.yairkukielka.feedhungry.FeedEntryActivity,java.lang.String) -> a
+    57:57:java.lang.String access$8() -> b
+    327:327:void access$9(com.yairkukielka.feedhungry.FeedEntryActivity,java.lang.String) -> b
 com.yairkukielka.feedhungry.FeedEntryActivity$1 -> com.yairkukielka.feedhungry.h:
     com.yairkukielka.feedhungry.FeedEntryActivity this$0 -> a
     1:1:void onResponse(java.lang.Object) -> a
 com.yairkukielka.feedhungry.FeedEntryActivity$1$1 -> com.yairkukielka.feedhungry.i:
     com.yairkukielka.feedhungry.FeedEntryActivity$1 this$1 -> a
-    202:207:boolean shouldOverrideUrlLoading(android.webkit.WebView,java.lang.String) -> shouldOverrideUrlLoading
-    213:225:void onPageFinished(android.webkit.WebView,java.lang.String) -> onPageFinished
+    230:232:boolean shouldOverrideUrlLoading(android.webkit.WebView,java.lang.String) -> shouldOverrideUrlLoading
+    245:256:void onPageFinished(android.webkit.WebView,java.lang.String) -> onPageFinished
 com.yairkukielka.feedhungry.FeedEntryActivity$2 -> com.yairkukielka.feedhungry.j:
     com.yairkukielka.feedhungry.FeedEntryActivity this$0 -> a
-    266:269:void onErrorResponse(com.android.volley.VolleyError) -> a
+    290:293:void onErrorResponse(com.android.volley.VolleyError) -> a
 com.yairkukielka.feedhungry.FeedEntryActivity$3 -> com.yairkukielka.feedhungry.k:
     com.yairkukielka.feedhungry.FeedEntryActivity this$0 -> a
-    288:292:void onClick(android.view.View) -> onClick
+    312:316:void onClick(android.view.View) -> onClick
 com.yairkukielka.feedhungry.FeedEntryActivity$4 -> com.yairkukielka.feedhungry.l:
     com.yairkukielka.feedhungry.FeedEntryActivity this$0 -> a
-    1:1:void onResponse(java.lang.Object) -> a
-com.yairkukielka.feedhungry.FeedEntryActivity$5 -> com.yairkukielka.feedhungry.m:
-    com.yairkukielka.feedhungry.FeedEntryActivity this$0 -> a
+    java.lang.String val$message -> b
     1:1:void onResponse(java.lang.Object) -> a
 com.yairkukielka.feedhungry.FeedEntryActivity_ -> com.yairkukielka.feedhungry.FeedEntryActivity_:
     31:34:void onCreate(android.os.Bundle) -> onCreate
@@ -6709,34 +6712,44 @@ com.yairkukielka.feedhungry.FeedEntryActivity_ -> com.yairkukielka.feedhungry.Fe
     71:74:boolean onKeyDown(int,android.view.KeyEvent) -> onKeyDown
     87:133:void injectExtras_() -> d
     137:139:void setIntent(android.content.Intent) -> setIntent
-com.yairkukielka.feedhungry.ListViewEntryArrayAdapter -> com.yairkukielka.feedhungry.n:
+com.yairkukielka.feedhungry.ListViewEntryArrayAdapter -> com.yairkukielka.feedhungry.m:
     java.lang.String TAG -> b
     com.android.volley.toolbox.ImageLoader mImageLoader -> c
-    android.app.Activity context -> d
+    boolean cards -> d
+    android.app.Activity context -> e
     android.view.animation.Animation animation -> a
-    73:124:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-    60:60:android.app.Activity access$0(com.yairkukielka.feedhungry.ListViewEntryArrayAdapter) -> a
-    178:178:void access$1(com.yairkukielka.feedhungry.ListViewEntryArrayAdapter,java.lang.String,com.yairkukielka.feedhungry.feedly.ListEntry,java.lang.String) -> a
-    214:214:void access$2$1b2f8e2a(com.yairkukielka.feedhungry.ListViewEntryArrayAdapter) -> b
-com.yairkukielka.feedhungry.ListViewEntryArrayAdapter$1 -> com.yairkukielka.feedhungry.o:
+    86:159:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+    239:239:com.android.volley.Response$Listener getActionListenerEntrySuccessListener(java.lang.String) -> a
+    248:248:com.android.volley.Response$ErrorListener createMyReqErrorListener() -> b
+    71:71:android.app.Activity access$0(com.yairkukielka.feedhungry.ListViewEntryArrayAdapter) -> a
+    217:217:void access$1(com.yairkukielka.feedhungry.ListViewEntryArrayAdapter,java.lang.String,com.yairkukielka.feedhungry.feedly.ListEntry,java.lang.String) -> a
+    286:286:void access$2(com.yairkukielka.feedhungry.ListViewEntryArrayAdapter,int,com.yairkukielka.feedhungry.feedly.ListEntry,java.lang.String) -> a
+    60:60:java.lang.String access$3() -> a
+com.yairkukielka.feedhungry.ListViewEntryArrayAdapter$1 -> com.yairkukielka.feedhungry.n:
     com.yairkukielka.feedhungry.ListViewEntryArrayAdapter this$0 -> a
     java.lang.String val$successMessage -> b
     1:1:void onResponse(java.lang.Object) -> a
-com.yairkukielka.feedhungry.ListViewEntryArrayAdapter$2 -> com.yairkukielka.feedhungry.p:
+com.yairkukielka.feedhungry.ListViewEntryArrayAdapter$2 -> com.yairkukielka.feedhungry.o:
     com.yairkukielka.feedhungry.ListViewEntryArrayAdapter this$0 -> a
-    209:210:void onErrorResponse(com.android.volley.VolleyError) -> a
-com.yairkukielka.feedhungry.ListViewEntryArrayAdapter$MyCheckReadListener -> com.yairkukielka.feedhungry.q:
+    251:253:void onErrorResponse(com.android.volley.VolleyError) -> a
+com.yairkukielka.feedhungry.ListViewEntryArrayAdapter$MyCheckReadListener -> com.yairkukielka.feedhungry.p:
     com.yairkukielka.feedhungry.feedly.ListEntry entry -> a
     com.yairkukielka.feedhungry.ListViewEntryArrayAdapter this$0 -> b
-    170:175:void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
+    209:214:void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
+com.yairkukielka.feedhungry.ListViewEntryArrayAdapter$MySaveListener -> com.yairkukielka.feedhungry.q:
+    com.yairkukielka.feedhungry.feedly.ListEntry entry -> a
+    com.yairkukielka.feedhungry.ListViewEntryArrayAdapter this$0 -> b
+    271:282:void onClick(android.view.View) -> onClick
 com.yairkukielka.feedhungry.ListViewEntryArrayAdapter$ViewHolder -> com.yairkukielka.feedhungry.r:
     com.android.volley.toolbox.NetworkImageView image -> a
     android.widget.TextView title -> b
     android.widget.TextView summary -> c
     android.widget.TextView date -> d
     android.widget.TextView popular -> e
-    android.widget.CheckBox checkRead -> f
-    com.yairkukielka.feedhungry.ListViewEntryArrayAdapter this$0 -> g
+    android.widget.TextView streamName -> f
+    android.widget.CheckBox checkRead -> g
+    android.widget.ImageView saved -> h
+    com.yairkukielka.feedhungry.ListViewEntryArrayAdapter this$0 -> i
 com.yairkukielka.feedhungry.LoadingFragment -> com.yairkukielka.feedhungry.s:
 com.yairkukielka.feedhungry.LoadingFragment_ -> com.yairkukielka.feedhungry.t:
     android.view.View contentView_ -> a
@@ -6766,94 +6779,94 @@ com.yairkukielka.feedhungry.MainActivity -> com.yairkukielka.feedhungry.MainActi
     android.widget.ExpandableListView mDrawerList -> g
     android.support.v4.widget.DrawerLayout mDrawerLayout -> h
     android.view.View$OnClickListener mAboutDeveloperOnClickListener -> v
-    112:132:void afterViews() -> a
-    139:158:void startConnection() -> d
-    172:176:void getAccessToken(com.yairkukielka.feedhungry.toolbox.MyListener$TokenListener,com.yairkukielka.feedhungry.toolbox.MyListener$ErrorTokenListener) -> a
-    185:185:com.yairkukielka.feedhungry.toolbox.MyListener$TokenListener mSuccessTokenListener() -> e
-    201:201:com.yairkukielka.feedhungry.toolbox.MyListener$ErrorTokenListener mErrorTokenListener() -> f
-    222:228:void getSubscriptions() -> g
-    321:323:void paintDrawerSubscriptions() -> h
-    338:341:void onPostCreate(android.os.Bundle) -> onPostCreate
-    345:347:void onConfigurationChanged(android.content.res.Configuration) -> onConfigurationChanged
-    351:368:boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem) -> onOptionsItemSelected
-    376:380:void refresh() -> i
-    399:406:void collapseRefreshMenuItem() -> b
-    410:415:void onBackPressed() -> onBackPressed
-    422:425:boolean onPrepareOptionsMenu(com.actionbarsherlock.view.Menu) -> onPrepareOptionsMenu
-    476:496:void showEntriesFragment(java.lang.String) -> a
-    559:559:boolean onNavigationItemSelected(int,long) -> onNavigationItemSelected
-    564:567:boolean onCreateOptionsMenu(com.actionbarsherlock.view.Menu) -> onCreateOptionsMenu
-    581:586:void onActivityResult(int,int,android.content.Intent) -> onActivityResult
-    590:601:void onPostResume() -> onPostResume
-    695:697:void setTitle(java.lang.CharSequence) -> setTitle
-    819:820:java.lang.String getApplicationName() -> j
-    829:832:java.lang.Object onRetainCustomNonConfigurationInstance() -> onRetainCustomNonConfigurationInstance
-    95:95:void access$0(com.yairkukielka.feedhungry.MainActivity,java.lang.String) -> a
-    221:221:void access$1(com.yairkukielka.feedhungry.MainActivity) -> a
-    215:215:void access$2$2c797bed(com.yairkukielka.feedhungry.MainActivity) -> b
-    96:96:java.lang.String access$3(com.yairkukielka.feedhungry.MainActivity) -> c
-    474:474:void access$4(com.yairkukielka.feedhungry.MainActivity,java.lang.String) -> b
-    97:97:void access$5(com.yairkukielka.feedhungry.MainActivity,java.util.List) -> a
-    97:97:java.util.List access$6(com.yairkukielka.feedhungry.MainActivity) -> d
-    61:61:java.lang.String access$7() -> c
-    501:501:void access$8(com.yairkukielka.feedhungry.MainActivity,java.util.List) -> b
-    274:274:void access$9$68c70bd4(com.yairkukielka.feedhungry.MainActivity) -> e
-    320:320:void access$10(com.yairkukielka.feedhungry.MainActivity) -> f
-    184:184:com.yairkukielka.feedhungry.toolbox.MyListener$TokenListener access$11(com.yairkukielka.feedhungry.MainActivity) -> g
-    200:200:com.yairkukielka.feedhungry.toolbox.MyListener$ErrorTokenListener access$12(com.yairkukielka.feedhungry.MainActivity) -> h
-    170:170:void access$13(com.yairkukielka.feedhungry.MainActivity,com.yairkukielka.feedhungry.toolbox.MyListener$TokenListener,com.yairkukielka.feedhungry.toolbox.MyListener$ErrorTokenListener) -> a
-    94:94:java.lang.CharSequence access$14(com.yairkukielka.feedhungry.MainActivity) -> i
-    93:93:java.lang.CharSequence access$15(com.yairkukielka.feedhungry.MainActivity) -> j
-    435:435:void access$16(com.yairkukielka.feedhungry.MainActivity,android.widget.ExpandableListView,int,int) -> a
-    455:455:void access$17(com.yairkukielka.feedhungry.MainActivity,android.widget.ExpandableListView,int) -> a
+    115:135:void afterViews() -> a
+    141:160:void startConnection() -> d
+    174:178:void getAccessToken(com.yairkukielka.feedhungry.toolbox.MyListener$TokenListener,com.yairkukielka.feedhungry.toolbox.MyListener$ErrorTokenListener) -> a
+    187:187:com.yairkukielka.feedhungry.toolbox.MyListener$TokenListener mSuccessTokenListener() -> e
+    203:203:com.yairkukielka.feedhungry.toolbox.MyListener$ErrorTokenListener mErrorTokenListener() -> f
+    224:231:void getSubscriptions() -> g
+    324:326:void paintDrawerSubscriptions() -> h
+    341:344:void onPostCreate(android.os.Bundle) -> onPostCreate
+    348:350:void onConfigurationChanged(android.content.res.Configuration) -> onConfigurationChanged
+    354:371:boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem) -> onOptionsItemSelected
+    379:383:void refresh() -> i
+    402:409:void collapseRefreshMenuItem() -> b
+    413:418:void onBackPressed() -> onBackPressed
+    425:428:boolean onPrepareOptionsMenu(com.actionbarsherlock.view.Menu) -> onPrepareOptionsMenu
+    479:499:void showEntriesFragment(java.lang.String) -> a
+    562:562:boolean onNavigationItemSelected(int,long) -> onNavigationItemSelected
+    567:570:boolean onCreateOptionsMenu(com.actionbarsherlock.view.Menu) -> onCreateOptionsMenu
+    584:589:void onActivityResult(int,int,android.content.Intent) -> onActivityResult
+    593:609:void onPostResume() -> onPostResume
+    703:705:void setTitle(java.lang.CharSequence) -> setTitle
+    827:828:java.lang.String getApplicationName() -> j
+    837:840:java.lang.Object onRetainCustomNonConfigurationInstance() -> onRetainCustomNonConfigurationInstance
+    98:98:void access$0(com.yairkukielka.feedhungry.MainActivity,java.lang.String) -> a
+    223:223:void access$1(com.yairkukielka.feedhungry.MainActivity) -> a
+    217:217:void access$2$2c797bed(com.yairkukielka.feedhungry.MainActivity) -> b
+    99:99:java.lang.String access$3(com.yairkukielka.feedhungry.MainActivity) -> c
+    477:477:void access$4(com.yairkukielka.feedhungry.MainActivity,java.lang.String) -> b
+    100:100:void access$5(com.yairkukielka.feedhungry.MainActivity,java.util.List) -> a
+    100:100:java.util.List access$6(com.yairkukielka.feedhungry.MainActivity) -> d
+    63:63:java.lang.String access$7() -> c
+    504:504:void access$8(com.yairkukielka.feedhungry.MainActivity,java.util.List) -> b
+    277:277:void access$9$68c70bd4(com.yairkukielka.feedhungry.MainActivity) -> e
+    323:323:void access$10(com.yairkukielka.feedhungry.MainActivity) -> f
+    186:186:com.yairkukielka.feedhungry.toolbox.MyListener$TokenListener access$11(com.yairkukielka.feedhungry.MainActivity) -> g
+    202:202:com.yairkukielka.feedhungry.toolbox.MyListener$ErrorTokenListener access$12(com.yairkukielka.feedhungry.MainActivity) -> h
+    172:172:void access$13(com.yairkukielka.feedhungry.MainActivity,com.yairkukielka.feedhungry.toolbox.MyListener$TokenListener,com.yairkukielka.feedhungry.toolbox.MyListener$ErrorTokenListener) -> a
+    97:97:java.lang.CharSequence access$14(com.yairkukielka.feedhungry.MainActivity) -> i
+    96:96:java.lang.CharSequence access$15(com.yairkukielka.feedhungry.MainActivity) -> j
+    438:438:void access$16(com.yairkukielka.feedhungry.MainActivity,android.widget.ExpandableListView,int,int) -> a
+    458:458:void access$17(com.yairkukielka.feedhungry.MainActivity,android.widget.ExpandableListView,int) -> a
 com.yairkukielka.feedhungry.MainActivity$1 -> com.yairkukielka.feedhungry.u:
     com.yairkukielka.feedhungry.MainActivity this$0 -> a
-    633:640:void onClick(android.view.View) -> onClick
+    641:648:void onClick(android.view.View) -> onClick
 com.yairkukielka.feedhungry.MainActivity$10 -> com.yairkukielka.feedhungry.v:
     com.yairkukielka.feedhungry.MainActivity this$0 -> a
-    684:685:boolean onGroupClick(android.widget.ExpandableListView,android.view.View,int,long) -> onGroupClick
+    692:693:boolean onGroupClick(android.widget.ExpandableListView,android.view.View,int,long) -> onGroupClick
 com.yairkukielka.feedhungry.MainActivity$11 -> com.yairkukielka.feedhungry.w:
     com.yairkukielka.feedhungry.MainActivity this$0 -> a
     1:1:void onResponse(java.lang.Object) -> a
 com.yairkukielka.feedhungry.MainActivity$12 -> com.yairkukielka.feedhungry.x:
     com.yairkukielka.feedhungry.MainActivity this$0 -> a
-    773:774:void onErrorResponse(com.android.volley.VolleyError) -> a
+    781:782:void onErrorResponse(com.android.volley.VolleyError) -> a
 com.yairkukielka.feedhungry.MainActivity$2 -> com.yairkukielka.feedhungry.y:
     com.yairkukielka.feedhungry.MainActivity this$0 -> a
-    188:190:void onResponse(java.lang.String) -> a
+    190:192:void onResponse(java.lang.String) -> a
 com.yairkukielka.feedhungry.MainActivity$3 -> com.yairkukielka.feedhungry.z:
     com.yairkukielka.feedhungry.MainActivity this$0 -> a
-    204:205:void onErrorResponse$552c4e01() -> a
+    206:207:void onErrorResponse$552c4e01() -> a
 com.yairkukielka.feedhungry.MainActivity$4 -> com.yairkukielka.feedhungry.aa:
     com.yairkukielka.feedhungry.MainActivity this$0 -> a
     1:1:void onResponse(java.lang.Object) -> a
 com.yairkukielka.feedhungry.MainActivity$5 -> com.yairkukielka.feedhungry.ab:
     com.yairkukielka.feedhungry.MainActivity this$0 -> a
-    256:264:void onErrorResponse(com.android.volley.VolleyError) -> a
+    259:267:void onErrorResponse(com.android.volley.VolleyError) -> a
 com.yairkukielka.feedhungry.MainActivity$6 -> com.yairkukielka.feedhungry.ac:
     com.yairkukielka.feedhungry.MainActivity this$0 -> a
     1:1:void onResponse(java.lang.Object) -> a
 com.yairkukielka.feedhungry.MainActivity$7 -> com.yairkukielka.feedhungry.ad:
     com.yairkukielka.feedhungry.MainActivity this$0 -> a
-    329:332:void onErrorResponse(com.android.volley.VolleyError) -> a
+    332:335:void onErrorResponse(com.android.volley.VolleyError) -> a
 com.yairkukielka.feedhungry.MainActivity$8 -> com.yairkukielka.feedhungry.ae:
     com.yairkukielka.feedhungry.MainActivity this$0 -> a
-    656:659:void onDrawerClosed$3c7ec8c3() -> d
-    663:666:void onDrawerOpened$3c7ec8c3() -> c
+    664:667:void onDrawerClosed$3c7ec8c3() -> d
+    671:674:void onDrawerOpened$3c7ec8c3() -> c
 com.yairkukielka.feedhungry.MainActivity$9 -> com.yairkukielka.feedhungry.af:
     com.yairkukielka.feedhungry.MainActivity this$0 -> a
-    676:677:boolean onChildClick(android.widget.ExpandableListView,android.view.View,int,int,long) -> onChildClick
+    684:685:boolean onChildClick(android.widget.ExpandableListView,android.view.View,int,int,long) -> onChildClick
 com.yairkukielka.feedhungry.MainActivity$ActivityData -> com.yairkukielka.feedhungry.ag:
     java.util.List categories -> b
     java.util.HashMap subscriptionsMap -> c
     java.lang.String lastReadStreamId -> d
     com.yairkukielka.feedhungry.MainActivity this$0 -> a
-    788:788:java.util.List getCategories() -> a
-    792:793:void setCategories(java.util.List) -> a
-    796:796:java.util.HashMap getSubscriptionsMap() -> b
-    800:801:void setSubscriptionsMap(java.util.HashMap) -> a
-    804:804:java.lang.String getLastReadStreamId() -> c
-    808:809:void setLastReadStreamId(java.lang.String) -> a
+    796:796:java.util.List getCategories() -> a
+    800:801:void setCategories(java.util.List) -> a
+    804:804:java.util.HashMap getSubscriptionsMap() -> b
+    808:809:void setSubscriptionsMap(java.util.HashMap) -> a
+    812:812:java.lang.String getLastReadStreamId() -> c
+    816:817:void setLastReadStreamId(java.lang.String) -> a
 com.yairkukielka.feedhungry.MainActivity_ -> com.yairkukielka.feedhungry.MainActivity_:
     30:33:void onCreate(android.os.Bundle) -> onCreate
     39:44:void afterSetContentView_() -> d
@@ -6870,32 +6883,32 @@ com.yairkukielka.feedhungry.WebviewFragment -> com.yairkukielka.feedhungry.ah:
     android.app.Activity thisActivity -> h
     com.yairkukielka.feedhungry.toolbox.MyListener$ErrorTokenListener mErrorTokenListener -> b
     com.yairkukielka.feedhungry.toolbox.MyListener$TokenListener mTokenListener -> c
-    59:62:com.yairkukielka.feedhungry.WebviewFragment getInstance(com.yairkukielka.feedhungry.toolbox.MyListener$TokenListener,com.yairkukielka.feedhungry.toolbox.MyListener$ErrorTokenListener) -> a
-    68:115:void afterViews() -> a
-    126:154:void getTokens(java.lang.Boolean,java.lang.String) -> a
-    217:217:java.lang.String access$0$6b583846(java.lang.String) -> a
-    210:210:java.lang.String access$1$6b583846(java.lang.String) -> b
-    125:125:void access$2(com.yairkukielka.feedhungry.WebviewFragment,java.lang.Boolean,java.lang.String) -> a
-    52:52:android.app.Activity access$3(com.yairkukielka.feedhungry.WebviewFragment) -> a
-    51:51:void access$4(com.yairkukielka.feedhungry.WebviewFragment,java.lang.String) -> a
-    49:49:void access$5(com.yairkukielka.feedhungry.WebviewFragment,java.lang.String) -> b
-    50:50:void access$6(com.yairkukielka.feedhungry.WebviewFragment,java.lang.String) -> c
-    37:37:java.lang.String access$7() -> b
-    51:51:java.lang.String access$8(com.yairkukielka.feedhungry.WebviewFragment) -> b
-    49:49:java.lang.String access$9(com.yairkukielka.feedhungry.WebviewFragment) -> c
-    50:50:java.lang.String access$10(com.yairkukielka.feedhungry.WebviewFragment) -> d
+    61:64:com.yairkukielka.feedhungry.WebviewFragment getInstance(com.yairkukielka.feedhungry.toolbox.MyListener$TokenListener,com.yairkukielka.feedhungry.toolbox.MyListener$ErrorTokenListener) -> a
+    70:118:void afterViews() -> a
+    129:157:void getTokens(java.lang.Boolean,java.lang.String) -> a
+    219:219:java.lang.String access$0$6b583846(java.lang.String) -> a
+    212:212:java.lang.String access$1$6b583846(java.lang.String) -> b
+    128:128:void access$2(com.yairkukielka.feedhungry.WebviewFragment,java.lang.Boolean,java.lang.String) -> a
+    54:54:android.app.Activity access$3(com.yairkukielka.feedhungry.WebviewFragment) -> a
+    53:53:void access$4(com.yairkukielka.feedhungry.WebviewFragment,java.lang.String) -> a
+    51:51:void access$5(com.yairkukielka.feedhungry.WebviewFragment,java.lang.String) -> b
+    52:52:void access$6(com.yairkukielka.feedhungry.WebviewFragment,java.lang.String) -> c
+    39:39:java.lang.String access$7() -> b
+    53:53:java.lang.String access$8(com.yairkukielka.feedhungry.WebviewFragment) -> b
+    51:51:java.lang.String access$9(com.yairkukielka.feedhungry.WebviewFragment) -> c
+    52:52:java.lang.String access$10(com.yairkukielka.feedhungry.WebviewFragment) -> d
 com.yairkukielka.feedhungry.WebviewFragment$1 -> com.yairkukielka.feedhungry.ai:
     com.yairkukielka.feedhungry.WebviewFragment this$0 -> a
-    87:100:boolean shouldOverrideUrlLoading(android.webkit.WebView,java.lang.String) -> shouldOverrideUrlLoading
+    92:105:boolean shouldOverrideUrlLoading(android.webkit.WebView,java.lang.String) -> shouldOverrideUrlLoading
 com.yairkukielka.feedhungry.WebviewFragment$2 -> com.yairkukielka.feedhungry.aj:
     com.yairkukielka.feedhungry.WebviewFragment this$0 -> a
-    148:150:java.util.Map getHeaders() -> h
+    151:153:java.util.Map getHeaders() -> h
 com.yairkukielka.feedhungry.WebviewFragment$3 -> com.yairkukielka.feedhungry.ak:
     com.yairkukielka.feedhungry.WebviewFragment this$0 -> a
     1:1:void onResponse(java.lang.Object) -> a
 com.yairkukielka.feedhungry.WebviewFragment$4 -> com.yairkukielka.feedhungry.al:
     com.yairkukielka.feedhungry.WebviewFragment this$0 -> a
-    198:200:void onErrorResponse(com.android.volley.VolleyError) -> a
+    200:202:void onErrorResponse(com.android.volley.VolleyError) -> a
 com.yairkukielka.feedhungry.WebviewFragment_ -> com.yairkukielka.feedhungry.am:
     android.view.View contentView_ -> d
     26:28:void onCreate(android.os.Bundle) -> onCreate
@@ -6927,11 +6940,11 @@ com.yairkukielka.feedhungry.developerFragment_ -> com.yairkukielka.feedhungry.ap
 com.yairkukielka.feedhungry.feedly.Category -> com.yairkukielka.feedhungry.a.a:
     java.lang.String id -> a
     java.lang.String label -> b
-    17:17:java.lang.String getId() -> a
-    20:21:void setId(java.lang.String) -> a
-    23:23:java.lang.String getLabel() -> b
-    26:27:void setLabel(java.lang.String) -> b
-    30:30:java.lang.String toString() -> toString
+    19:19:java.lang.String getId() -> a
+    22:23:void setId(java.lang.String) -> a
+    25:25:java.lang.String getLabel() -> b
+    28:29:void setLabel(java.lang.String) -> b
+    32:32:java.lang.String toString() -> toString
 com.yairkukielka.feedhungry.feedly.Entry -> com.yairkukielka.feedhungry.a.b:
     java.lang.String id -> a
     java.lang.String originId -> b
@@ -6939,38 +6952,48 @@ com.yairkukielka.feedhungry.feedly.Entry -> com.yairkukielka.feedhungry.a.b:
     java.lang.String title -> d
     boolean unread -> e
     java.util.List categories -> f
-    java.util.Date published -> g
-    java.util.Date crawled -> h
-    java.lang.String author -> i
-    java.lang.String content -> j
-    java.lang.String visual -> k
-    java.lang.String url -> l
-    96:96:java.lang.String getTitle() -> a
-    114:114:java.util.Date getPublished() -> b
-    120:120:java.lang.String getAuthor() -> c
-    126:126:java.lang.String getContent() -> d
-    132:132:java.lang.String getVisual() -> e
-    156:156:java.lang.String getUrl() -> f
+    java.util.List tags -> g
+    java.util.Date published -> h
+    java.util.Date crawled -> i
+    java.lang.String author -> j
+    java.lang.String content -> k
+    java.lang.String visual -> l
+    java.lang.String url -> m
+    boolean saved -> n
+    121:121:java.lang.String getId() -> a
+    127:127:java.lang.String getTitle() -> b
+    145:145:java.util.Date getPublished() -> c
+    151:151:java.lang.String getAuthor() -> d
+    157:157:java.lang.String getContent() -> e
+    163:163:java.lang.String getVisual() -> f
+    187:187:java.lang.String getUrl() -> g
+    201:201:boolean isSaved() -> h
+    204:205:void setSaved(boolean) -> a
 com.yairkukielka.feedhungry.feedly.ListEntry -> com.yairkukielka.feedhungry.a.c:
     java.lang.String id -> a
     java.lang.String title -> b
     boolean unread -> c
-    java.util.List categories -> d
-    java.util.Date published -> e
-    java.util.Date updated -> f
-    java.lang.String author -> g
-    java.lang.String content -> h
-    java.lang.String visual -> i
-    java.lang.String engagement -> j
-    boolean popular -> k
-    72:72:java.lang.String getId() -> a
-    78:78:java.lang.String getTitle() -> b
-    84:84:boolean isUnread() -> c
-    96:96:java.util.Date getPublished() -> d
-    108:108:java.lang.String getAuthor() -> e
-    114:114:java.lang.String getContent() -> f
-    120:120:java.lang.String getVisual() -> g
-    132:132:boolean isPopular() -> h
+    java.lang.String originTitle -> d
+    java.util.List categories -> e
+    java.util.List tags -> f
+    java.util.Date published -> g
+    java.util.Date updated -> h
+    java.lang.String author -> i
+    java.lang.String content -> j
+    java.lang.String visual -> k
+    java.lang.String engagement -> l
+    boolean popular -> m
+    boolean saved -> n
+    105:105:java.lang.String getId() -> a
+    111:111:java.lang.String getTitle() -> b
+    117:117:boolean isUnread() -> c
+    129:129:java.util.Date getPublished() -> d
+    141:141:java.lang.String getAuthor() -> e
+    147:147:java.lang.String getContent() -> f
+    153:153:java.lang.String getVisual() -> g
+    165:165:boolean isPopular() -> h
+    177:177:boolean isSaved() -> i
+    189:189:java.lang.String getOriginTitle() -> j
 com.yairkukielka.feedhungry.feedly.Subscription -> com.yairkukielka.feedhungry.a.d:
     java.lang.String id -> a
     java.lang.String title -> b
@@ -6987,16 +7010,21 @@ com.yairkukielka.feedhungry.feedly.Subscription -> com.yairkukielka.feedhungry.a
     75:75:int getUnread() -> d
     78:79:void setUnread(int) -> a
     82:82:java.lang.String toString() -> toString
+com.yairkukielka.feedhungry.feedly.Tag -> com.yairkukielka.feedhungry.a.e:
+    java.lang.String id -> a
+    java.lang.String label -> b
+    19:19:java.lang.String getId() -> a
+    32:32:java.lang.String toString() -> toString
 com.yairkukielka.feedhungry.settings.PreferencesActivity -> com.yairkukielka.feedhungry.settings.PreferencesActivity:
     int PREFERENCES_CODE -> a
     boolean LOG_OUT -> b
-    22:24:void onResume() -> onResume
-    29:31:void onPause() -> onPause
-    35:36:void onSharedPreferenceChanged(android.content.SharedPreferences,java.lang.String) -> onSharedPreferenceChanged
-    40:55:void onCreate(android.os.Bundle) -> onCreate
+    23:25:void onResume() -> onResume
+    30:32:void onPause() -> onPause
+    36:37:void onSharedPreferenceChanged(android.content.SharedPreferences,java.lang.String) -> onSharedPreferenceChanged
+    41:56:void onCreate(android.os.Bundle) -> onCreate
 com.yairkukielka.feedhungry.settings.PreferencesActivity$1 -> com.yairkukielka.feedhungry.settings.a:
     com.yairkukielka.feedhungry.settings.PreferencesActivity this$0 -> a
-    47:52:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
+    48:53:boolean onPreferenceClick(android.preference.Preference) -> onPreferenceClick
 com.yairkukielka.feedhungry.toolbox.BitmapLruCache -> com.yairkukielka.feedhungry.b.a:
     39:39:android.graphics.Bitmap getBitmap(java.lang.String) -> a
     45:46:void putBitmap(java.lang.String,android.graphics.Bitmap) -> a
@@ -7013,7 +7041,8 @@ com.yairkukielka.feedhungry.toolbox.MyListener$TokenListener -> com.yairkukielka
 com.yairkukielka.feedhungry.toolbox.NetworkUtils -> com.yairkukielka.feedhungry.b.f:
     35:35:com.android.volley.toolbox.JsonArrayRequest getJsonArrayRequest(java.lang.String,com.android.volley.Response$Listener,com.android.volley.Response$ErrorListener,java.lang.String) -> a
     57:57:com.android.volley.toolbox.JsonObjectRequest getJsonObjectRequest(java.lang.String,com.android.volley.Response$Listener,com.android.volley.Response$ErrorListener,java.lang.String) -> b
-    77:77:com.android.volley.toolbox.JsonObjectRequest getJsonPostRequest(java.lang.String,org.json.JSONObject,com.android.volley.Response$Listener,com.android.volley.Response$ErrorListener,java.lang.String) -> a
+    81:81:com.android.volley.toolbox.JsonObjectRequest getJsonRequestWithMethod(int,java.lang.String,org.json.JSONObject,com.android.volley.Response$Listener,com.android.volley.Response$ErrorListener,java.lang.String) -> a
+    102:102:com.android.volley.toolbox.JsonObjectRequest getJsonPostRequest(java.lang.String,org.json.JSONObject,com.android.volley.Response$Listener,com.android.volley.Response$ErrorListener,java.lang.String) -> a
 com.yairkukielka.feedhungry.toolbox.NetworkUtils$1 -> com.yairkukielka.feedhungry.b.g:
     java.lang.String val$accessToken -> a
     38:41:java.util.Map getHeaders() -> h
@@ -7022,4 +7051,4 @@ com.yairkukielka.feedhungry.toolbox.NetworkUtils$2 -> com.yairkukielka.feedhungr
     60:62:java.util.Map getHeaders() -> h
 com.yairkukielka.feedhungry.toolbox.NetworkUtils$3 -> com.yairkukielka.feedhungry.b.i:
     java.lang.String val$accessToken -> a
-    80:82:java.util.Map getHeaders() -> h
+    84:86:java.util.Map getHeaders() -> h

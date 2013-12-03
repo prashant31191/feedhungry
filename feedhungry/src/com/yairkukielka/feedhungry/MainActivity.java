@@ -28,6 +28,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
@@ -140,9 +142,11 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 		mDrawerTitle = getApplicationName();
 		setTitle(getApplicationName());
 		FragmentManager fragmentManager = getSupportFragmentManager();
-		fragmentManager.beginTransaction().replace(R.id.content_frame, loadingFragment).attach(loadingFragment).commit();
+		fragmentManager.beginTransaction().replace(R.id.content_frame, loadingFragment).attach(loadingFragment)
+				.commit();
 		if (isInternetAvailable(this)) {// returns true if internet available
-			accessToken = getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE).getString(MainActivity.SHPREF_KEY_ACCESS_TOKEN, null);
+			accessToken = getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE).getString(
+					MainActivity.SHPREF_KEY_ACCESS_TOKEN, null);
 			if (accessToken != null) {
 				getSubscriptions();
 			} else {
@@ -217,7 +221,8 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 	}
 
 	private void getSubscriptions() {
-		userId = getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE).getString(SHPREF_KEY_USERID_TOKEN, null);
+		userId = getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE).getString(
+				SHPREF_KEY_USERID_TOKEN, null);
 		RequestQueue queue = MyVolley.getRequestQueue();
 		JsonArrayRequest myReq = NetworkUtils.getJsonArrayRequest(ROOT_URL + SUBSCRIPTIONS_URI,
 				createSuscriptionsSuccessListener(), createSuscriptionsErrorListener(), accessToken);
@@ -589,9 +594,14 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 		if (preferencesChanged) {
 			preferencesChanged = false;
 			if (PreferencesActivity.LOG_OUT) {
-				// log out
+				// log out. Clean accessToken, refreshToken and userId Token
 				accessToken = null;
-				getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE).edit().putString(SHPREF_KEY_ACCESS_TOKEN, null).commit();
+				getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE).edit()
+						.putString(SHPREF_KEY_ACCESS_TOKEN, null).commit();
+				getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE).edit()
+						.putString(SHPREF_KEY_REFRESH_TOKEN, null).commit();
+				getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE).edit()
+						.putString(SHPREF_KEY_USERID_TOKEN, null).commit();
 				PreferencesActivity.LOG_OUT = false;
 			}
 			refresh();

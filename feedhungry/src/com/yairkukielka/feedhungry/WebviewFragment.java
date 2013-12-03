@@ -11,14 +11,16 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences.Editor;
 import android.util.Log;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
-import com.android.volley.Request.Method;
 import com.android.volley.AuthFailureError;
+import com.android.volley.Request.Method;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -68,7 +70,16 @@ public class WebviewFragment extends SherlockFragment {
 		thisActivity = this.getActivity();		
 		accessToken = thisActivity.getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE)
 				.getString(MainActivity.SHPREF_KEY_ACCESS_TOKEN, null);
-		if (accessToken == null) {
+		refreshToken = thisActivity.getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE)
+				.getString(MainActivity.SHPREF_KEY_REFRESH_TOKEN, null);
+		if (refreshToken == null) {
+			// delete cookies with the sessions
+			CookieSyncManager.createInstance(getActivity());
+			CookieManager cookieManager = CookieManager.getInstance();
+			cookieManager.removeAllCookie();
+			cookieManager.setAcceptCookie(false);
+			
+			// do all the login process
 			WebSettings webSettings = webview.getSettings();
 			webSettings.setJavaScriptEnabled(true);
 			// need to get access token with OAuth2.0
@@ -101,9 +112,7 @@ public class WebviewFragment extends SherlockFragment {
 			webview.loadUrl(authorizationUri);
 
 		} else {
-			refreshToken = thisActivity.getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE)
-					.getString(MainActivity.SHPREF_KEY_REFRESH_TOKEN, null);
-			// refresh the authentication token
+			// only do the refresh authentication token process
 			getTokens(true, refreshToken);
 		}
 	}

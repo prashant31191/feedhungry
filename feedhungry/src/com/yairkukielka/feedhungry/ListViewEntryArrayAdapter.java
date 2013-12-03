@@ -33,6 +33,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
@@ -40,7 +41,6 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -85,8 +85,10 @@ public class ListViewEntryArrayAdapter extends ArrayAdapter<ListEntry> {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View v = convertView;
+		boolean makeAnimation = false;
 		if (v == null) {
 			LayoutInflater vi = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			makeAnimation = true;
 			if (cards) {
 				// cards style
 				v = vi.inflate(R.layout.feed_list_row_big, null);
@@ -103,10 +105,16 @@ public class ListViewEntryArrayAdapter extends ArrayAdapter<ListEntry> {
 		}
 
 		ListEntry entry = getItem(position);
+		
+		holder.image.getLayoutParams().height = LayoutParams.WRAP_CONTENT;
 		if (entry.getVisual() != null) {
 			holder.image.setImageUrl(entry.getVisual(), mImageLoader);
 		} else {
-			holder.image.setLayoutParams(new RelativeLayout.LayoutParams(0, 0));
+			if (cards) {
+				// if cardUI setting is chosen and there is no image
+				holder.image.getLayoutParams().height = 60;
+			}
+			holder.image.setImageResource(R.drawable.black_pixel);
 		}
 
 		String summary = getSummaryWithoutHTML(entry.getContent());
@@ -151,7 +159,7 @@ public class ListViewEntryArrayAdapter extends ArrayAdapter<ListEntry> {
 			holder.saved.setTag(R.drawable.star_off);
 		}
 		holder.saved.setOnClickListener(new MySaveListener(entry));
-		if (v != null) {
+		if (v != null && makeAnimation) {
 			animation.setDuration(400);
 			v.startAnimation(animation);
 		}

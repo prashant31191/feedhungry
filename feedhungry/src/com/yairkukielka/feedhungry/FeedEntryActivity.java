@@ -68,6 +68,7 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 	private static final String STREAM_TITLE = "streamTitle";
 	private static final String BY = " by ";
 	private static final String encoding = "utf-8";
+	private static final int WEBVIEW_TEXT_SIZE = 16;
 	private static final String TEXT_HTML = "text/html";
 	private static final String DIV_PREFIX = "<div style='background-color:transparent;padding: 10px;color:#ccc;font-family: myFont';>";
 	private static final String DIV_SUFIX = "</div>";
@@ -162,7 +163,9 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 	}
 
 	private String getHtmlData(String data) {
-		String head = "<head><style>@font-face {font-family: 'myFont';src: url('file:///android_asset/fonts/Roboto-Light.ttf');}" +
+		String head = "<head>" +
+				"<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">" +
+				"<style>@font-face {font-family: 'myFont';src: url('file:///android_asset/fonts/Roboto-Light.ttf');}" +
 				"body {font-family: 'myFont';line-height:150%;}a:link {color:#8AC007;}img{max-width: 100%; width:auto; height: auto;}" +
 				"iframe{max-width: 100%; width:auto; height: auto;}</style></head>";
 		return "<html>" + head + "<body>" + DIV_PREFIX + data + DIV_SUFIX + "</body></html>";
@@ -197,38 +200,44 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 							bgImage.setImageUrl(entry.getVisual(), MyVolley.getImageLoader());
 							bgImage.setAnimation(titleFadeInAnimation);
 							int heightPixels = getResources().getDisplayMetrics().heightPixels;								
-							transparentView.getLayoutParams().height = heightPixels/10;
+							transparentView.getLayoutParams().height = heightPixels/7;
 						}
+						webView.getSettings().setUseWideViewPort(true);	
+			        	webView.getSettings().setLoadWithOverviewMode(true);
 						webView.setBackgroundColor(color.transparent);
 						webView.getSettings().setJavaScriptEnabled(true);
 						webView.getSettings().setBuiltInZoomControls(true);
-//						if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-//							webView.getSettings().setLayoutAlgorithm(LayoutAlgorithm.TEXT_AUTOSIZING);
-//						} else {
+						webView.getSettings().setDisplayZoomControls(false);
+						if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+							webView.getSettings().setLayoutAlgorithm(LayoutAlgorithm.TEXT_AUTOSIZING);
+						} else {
 							webView.getSettings().setLayoutAlgorithm(LayoutAlgorithm.NORMAL);
-//						}
-						webView.getSettings().setDefaultFontSize(16);
-						if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
 							// for HTML5 videos
 				        	webView.getSettings().setPluginState(PluginState.ON);
 				        	webView.getSettings().setDomStorageEnabled(true); // I think you will need this one
-				        	webView.getSettings().setLoadWithOverviewMode(true);
-				        	//webView.getSettings().setUseWideViewPort(true);
-				        	webView.getSettings().setBuiltInZoomControls(true);
-				               
-				        }
+						}
+						webView.getSettings().setDefaultFontSize(WEBVIEW_TEXT_SIZE);						
 						webView.setWebChromeClient(new WebChromeClient());
 						webView.setWebViewClient(new WebViewClient() {
 
 							@Override
 							 public boolean shouldOverrideUrlLoading(WebView view, String url) {
-							        if (url != null && url.startsWith("http://")) {
-							            view.getContext().startActivity(
-							                new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
-							            return true;
-							        } else {
-							            return false;
-							        }
+								
+//								if (url != null && (url.startsWith("market://") || url.contains("play.google.com"))) {
+//							        view.getContext().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+//							        return true;
+//								} else {
+									Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+								    startActivity( intent ); 
+								    return true;
+//								}
+//							        if (url != null && url.startsWith("http://")) {
+//							            view.getContext().startActivity(
+//							                new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+//							            return true;
+//							        } else {
+//							            return false;
+//							        }
 							    }
 							
 							@Override
@@ -237,8 +246,8 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 								if (null != fragmentManager.findFragmentById(loadingFragment.getId())) {
 									// this is to avoid errors when the user clicks back before
 									// this can commit (the activity would be destroyed already)
-									//fragmentManager.beginTransaction().remove(loadingFragment).commit();
-									fragmentManager.beginTransaction().detach(loadingFragment).addToBackStack(null).commit();
+									//									fragmentManager.beginTransaction().remove(loadingFragment).commit();
+									fragmentManager.beginTransaction().detach(loadingFragment).commit();
 								}	
 								webView.setVisibility(View.VISIBLE);					
 								webView.setAnimation(webViewAnimation);
@@ -251,21 +260,20 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 				} catch (JSONException e) {
 					Log.e(TAG, "Error parsing feed entry");
 					Log.e(TAG, e.getMessage());
-					showErrorDialog(getResources().getString(R.string.error_loading_entry));
+					//showErrorDialog(getResources().getString(R.string.error_loading_entry));
 				}
 			}
 		};
 	}
 
 	/**
-	 * When back is pressed in the inner browser, it goes all the way to the
-	 * article. If there is no back history, it finishes the activity
+	 * Back button pressed. Go back to the article list.
 	 */
 	@Override
 	public void onBackPressed() {
-		super.onBackPressed();
 		finish();
 		overridePendingTransition(R.anim.open_main, R.anim.close_next);
+		super.onBackPressed();
 	}
 	
 	/**
@@ -352,6 +360,8 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 		case R.id.action_mark_unread:
 			markEntry(MARK_KEEP_UNREAD, getSuccessListener(getResources().getString(R.string.kept_as_unread)));
 			return true;
+		case R.id.action_open_in_browser:
+			openEntryInBrowser(entry.getUrl());
 		default:
 			return super.onOptionsItemSelected(item);
 		}

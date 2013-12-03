@@ -917,25 +917,26 @@ containing a value of this type.
         public static final int abs__textfield_searchview_right_holo_dark=0x7f02006d;
         public static final int abs__textfield_searchview_right_holo_light=0x7f02006e;
         public static final int abs__toast_frame=0x7f02006f;
-        public static final int bstar_off=0x7f020070;
-        public static final int bstar_on=0x7f020071;
-        public static final int drawer_count_background=0x7f020072;
-        public static final int drawer_shadow=0x7f020073;
-        public static final int feed_entry_title_bg=0x7f020074;
-        public static final int ic_action_refresh=0x7f020075;
-        public static final int ic_action_search=0x7f020076;
-        public static final int ic_action_settings=0x7f020077;
-        public static final int ic_drawer=0x7f020078;
-        public static final int ic_launcher=0x7f020079;
-        public static final int ic_menu_mark_read=0x7f02007a;
-        public static final int ic_menu_mark_unread=0x7f02007b;
-        public static final int ic_menu_refresh=0x7f02007c;
-        public static final int ic_open_in_browser=0x7f02007d;
-        public static final int spinner2=0x7f02007e;
-        public static final int star_big_off=0x7f02007f;
-        public static final int star_big_on=0x7f020080;
-        public static final int star_off=0x7f020081;
-        public static final int star_on=0x7f020082;
+        public static final int black_pixel=0x7f020070;
+        public static final int bstar_off=0x7f020071;
+        public static final int bstar_on=0x7f020072;
+        public static final int drawer_count_background=0x7f020073;
+        public static final int drawer_shadow=0x7f020074;
+        public static final int feed_entry_title_bg=0x7f020075;
+        public static final int ic_action_refresh=0x7f020076;
+        public static final int ic_action_search=0x7f020077;
+        public static final int ic_action_settings=0x7f020078;
+        public static final int ic_drawer=0x7f020079;
+        public static final int ic_launcher=0x7f02007a;
+        public static final int ic_menu_mark_read=0x7f02007b;
+        public static final int ic_menu_mark_unread=0x7f02007c;
+        public static final int ic_menu_refresh=0x7f02007d;
+        public static final int ic_open_in_browser=0x7f02007e;
+        public static final int spinner2=0x7f02007f;
+        public static final int star_big_off=0x7f020080;
+        public static final int star_big_on=0x7f020081;
+        public static final int star_off=0x7f020082;
+        public static final int star_on=0x7f020083;
     }
     public static final class id {
         public static final int abs__action_bar=0x7f060021;
@@ -1007,7 +1008,7 @@ containing a value of this type.
         public static final int homeAsUp=0x7f060006;
         public static final int id_holder=0x7f060010;
         public static final int image_list_saved=0x7f06004c;
-        public static final int image_list_thumb=0x7f06004f;
+        public static final int image_list_thumb=0x7f060051;
         public static final int item_webview=0x7f060033;
         public static final int layout_check=0x7f060049;
         public static final int linear_layout=0x7f060039;
@@ -1027,8 +1028,8 @@ containing a value of this type.
         public static final int tv_list_date=0x7f06004d;
         public static final int tv_list_popular=0x7f06004a;
         public static final int tv_list_stream_name=0x7f06004b;
-        public static final int tv_list_summary=0x7f060051;
-        public static final int tv_list_title=0x7f060050;
+        public static final int tv_list_summary=0x7f060050;
+        public static final int tv_list_title=0x7f06004f;
         public static final int useLogo=0x7f060004;
         public static final int wrap_content=0x7f060000;
     }

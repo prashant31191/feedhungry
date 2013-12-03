@@ -1,30 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>		
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-   	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-    android:padding="3dp"
+   	android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
 	android:minHeight="70dp">
-<!--         <LinearLayout  -->
-<!-- 			android:id="@+id/list_image_layout" -->
-<!-- 		    android:layout_width="match_parent" -->
-<!-- 		    android:layout_height="200dp" -->
-<!-- 		    android:orientation="vertical"> -->
-		    <com.android.volley.toolbox.NetworkImageView 
-			    android:id="@+id/image_list_thumb"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:maxHeight="220dp"
-				android:scaleType="centerCrop"
-				android:adjustViewBounds="true"/>
-<!--     	</LinearLayout> -->
+	
+
+	    <com.android.volley.toolbox.NetworkImageView 
+		    android:id="@+id/image_list_thumb"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:scaleType="centerCrop" 
+			android:adjustViewBounds="true"
+			android:maxHeight="200dp" />
+
 	    <LinearLayout
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
 		    android:orientation="vertical"
        		android:background="#C000"
        		android:layout_alignParentBottom="true"
-       		android:paddingRight="8dp"
-       		android:paddingLeft="8dp">
+       		android:paddingBottom="8dp">
 	    	
 	        <LinearLayout
 			    android:id="@+id/layout_check"
@@ -62,12 +61,7 @@
 				    android:layout_width="wrap_content"
 				    android:layout_height="wrap_content"				
 					android:contentDescription="@null"
-					android:src="@drawable/star_off"		
-				    android:layout_marginTop="-7dp"
-				    android:layout_marginBottom="-7dp"
-				    android:paddingRight="-5dp"
-				    android:paddingTop="-5dp"
-				    android:paddingBottom="-5dp"/>
+					android:src="@drawable/star_off"/>
 		        
 		        <TextView
 				    android:id="@+id/tv_list_date"
@@ -91,12 +85,7 @@
 			            android:focusable="false"
 			            android:checked="true"
 						android:focusableInTouchMode="false"
-					    android:gravity="center_vertical"
-					    android:layout_marginTop="-7dp"
-					    android:layout_marginBottom="-7dp"
-					    android:paddingRight="-5dp"
-					    android:paddingTop="-5dp"
-					    android:paddingBottom="-5dp"/>	
+					    android:gravity="center_vertical"/>	
 				</LinearLayout>				
 			</LinearLayout>
 			
