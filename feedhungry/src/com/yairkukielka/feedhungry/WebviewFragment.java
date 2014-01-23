@@ -77,7 +77,6 @@ public class WebviewFragment extends SherlockFragment {
 			CookieSyncManager.createInstance(getActivity());
 			CookieManager cookieManager = CookieManager.getInstance();
 			cookieManager.removeAllCookie();
-			cookieManager.setAcceptCookie(false);
 			
 			// do all the login process
 			WebSettings webSettings = webview.getSettings();
