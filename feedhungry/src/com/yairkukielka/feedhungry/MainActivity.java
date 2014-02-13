@@ -28,8 +28,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.webkit.CookieManager;
-import android.webkit.CookieSyncManager;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
@@ -143,7 +141,7 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 		setTitle(getApplicationName());
 		FragmentManager fragmentManager = getSupportFragmentManager();
 		fragmentManager.beginTransaction().replace(R.id.content_frame, loadingFragment).attach(loadingFragment)
-				.commit();
+				.addToBackStack(null).commit();
 		if (isInternetAvailable(this)) {// returns true if internet available
 			accessToken = getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE).getString(
 					MainActivity.SHPREF_KEY_ACCESS_TOKEN, null);
@@ -491,7 +489,7 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 			// entriesFragment).commit();
 			// https://code.google.com/p/android/issues/detail?id=42601
 			fragmentManager.beginTransaction().detach(loadingFragment).replace(R.id.content_frame, entriesFragment)
-					.attach(entriesFragment).commit();
+					.attach(entriesFragment).addToBackStack(null).commit();
 		} catch (UnsupportedEncodingException uex) {
 			Log.e(TAG, "Error encoding stream or category id");
 
