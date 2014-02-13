@@ -68,9 +68,9 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 	private static final String STREAM_TITLE = "streamTitle";
 	private static final String BY = " by ";
 	private static final String encoding = "utf-8";
-	private static final int WEBVIEW_TEXT_SIZE = 16;
+	private static final int WEBVIEW_TEXT_SIZE = 18;
 	private static final String TEXT_HTML = "text/html";
-	private static final String DIV_PREFIX = "<div style='background-color:transparent;padding: 10px;color:#ccc;font-family: myFont';>";
+	private static final String DIV_PREFIX = "<div style='background-color:transparent;padding: 10px;color:#888;font-family: myFont';>";
 	private static final String DIV_SUFIX = "</div>";
 	// the action bar menu
 	private Menu actionBarmenu;
@@ -174,7 +174,7 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 	
 	private Response.Listener<JSONArray> createMyReqSuccessListener() {
 		return new Response.Listener<JSONArray>() {
-			@SuppressLint("NewApi")
+			@SuppressLint({ "NewApi", "SetJavaScriptEnabled" })
 			@Override
 			public void onResponse(JSONArray response) {
 				try {
@@ -207,7 +207,9 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 						webView.setBackgroundColor(color.transparent);
 						webView.getSettings().setJavaScriptEnabled(true);
 						webView.getSettings().setBuiltInZoomControls(true);
-						webView.getSettings().setDisplayZoomControls(false);
+						if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+							webView.getSettings().setDisplayZoomControls(false);
+						}
 						if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
 							webView.getSettings().setLayoutAlgorithm(LayoutAlgorithm.TEXT_AUTOSIZING);
 						} else {
@@ -222,22 +224,9 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 
 							@Override
 							 public boolean shouldOverrideUrlLoading(WebView view, String url) {
-								
-//								if (url != null && (url.startsWith("market://") || url.contains("play.google.com"))) {
-//							        view.getContext().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
-//							        return true;
-//								} else {
 									Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
 								    startActivity( intent ); 
 								    return true;
-//								}
-//							        if (url != null && url.startsWith("http://")) {
-//							            view.getContext().startActivity(
-//							                new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
-//							            return true;
-//							        } else {
-//							            return false;
-//							        }
 							    }
 							
 							@Override
