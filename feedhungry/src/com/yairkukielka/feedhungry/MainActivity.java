@@ -34,7 +34,7 @@ import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import com.crashlytics.android.Crashlytics;
 import com.actionbarsherlock.app.ActionBar.OnNavigationListener;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
@@ -110,6 +110,7 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 	void afterViews() {
 		// ensures that your application is properly initialized with default
 		// settings
+		Crashlytics.start(this);
 		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 		configureNavigationDrawer();
 		// mDrawerList.setDivider(null);
