@@ -79,7 +79,6 @@ public class EntryListFragment extends SherlockFragment {
 	private Fragment loadingFragment = new LoadingFragment_();
 	public String continuation = null;
 	private DisplayMetrics metrics;
-	private String streamTitle;
 
 	@ViewById(R.id.lv_picasa)
 	ListView mLvPicasa;
@@ -118,7 +117,7 @@ public class EntryListFragment extends SherlockFragment {
 				b.putString(ENTRY_TITLE, listEntry.getTitle());
 				b.putString(ENTRY_CONTENT, listEntry.getContent());
 				b.putString(ENTRY_AUTHOR, listEntry.getAuthor());
-				b.putString(STREAM_TITLE, streamTitle);
+				b.putString(STREAM_TITLE, listEntry.getOriginTitle());
 				try {
 					b.putString(ENTRY_DATE, DateUtils.dateToString(listEntry.getPublished()));
 				} catch (IllegalArgumentException ie) {
@@ -165,10 +164,6 @@ public class EntryListFragment extends SherlockFragment {
 			@Override
 			public void onResponse(JSONObject response) {
 				try {
-					if (response.has("title")) {
-						// global.all has no title
-						streamTitle = response.getString("title");
-					}
 					if (response.has("continuation")) {
 						continuation = response.getString("continuation");
 					} else {
@@ -197,7 +192,7 @@ public class EntryListFragment extends SherlockFragment {
 				if (error != null) {
 					removeLoadingFragment();
 					Log.e(TAG, error.getMessage());
-					//showErrorDialog(error.getMessage());
+					// showErrorDialog(error.getMessage());
 				}
 			}
 		};
@@ -293,13 +288,16 @@ public class EntryListFragment extends SherlockFragment {
 			fragmentManager.beginTransaction().add(R.id.content_frame, loadingFragment).commit();
 		}
 	}
+
 	private void removeLoadingFragment() {
+		
 		if (getActivity() != null) {
 			FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-			if (fragmentManager.findFragmentById(loadingFragment.getId()) != null) {
+			if (fragmentManager.findFragmentById(loadingFragment.getId()) != null && loadingFragment.isResumed()) {
 				fragmentManager.beginTransaction().remove(loadingFragment).commit();
 			}
 		}
+		
 	}
 
 	/**
