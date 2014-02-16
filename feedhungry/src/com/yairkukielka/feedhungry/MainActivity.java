@@ -34,7 +34,7 @@ import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.crashlytics.android.Crashlytics;
+
 import com.actionbarsherlock.app.ActionBar.OnNavigationListener;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
@@ -45,6 +45,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.crashlytics.android.Crashlytics;
 import com.googlecode.androidannotations.annotations.AfterViews;
 import com.googlecode.androidannotations.annotations.EActivity;
 import com.googlecode.androidannotations.annotations.ViewById;
@@ -140,9 +141,8 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 		expandRefreshMenuItem();
 		mDrawerTitle = getApplicationName();
 		setTitle(getApplicationName());
-		FragmentManager fragmentManager = getSupportFragmentManager();
-		fragmentManager.beginTransaction().replace(R.id.content_frame, loadingFragment).attach(loadingFragment)
-				.addToBackStack(null).commit();
+		getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, loadingFragment)
+				.attach(loadingFragment).addToBackStack(null).commit();
 		if (isInternetAvailable(this)) {// returns true if internet available
 			accessToken = getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE).getString(
 					MainActivity.SHPREF_KEY_ACCESS_TOKEN, null);
@@ -226,7 +226,6 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 		JsonArrayRequest myReq = NetworkUtils.getJsonArrayRequest(ROOT_URL + SUBSCRIPTIONS_URI,
 				createSuscriptionsSuccessListener(), createSuscriptionsErrorListener(), accessToken);
 		queue.add(myReq);
-
 	}
 
 	private Response.Listener<JSONArray> createSuscriptionsSuccessListener() {
@@ -484,13 +483,12 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 			lastReadStreamId = id;
 
 			// Insert the fragment by replacing any existing fragment
-			FragmentManager fragmentManager = getSupportFragmentManager();
-			// fragmentManager.beginTransaction().remove(loadingFragment).commit();
-			// fragmentManager.beginTransaction().replace(R.id.content_frame,
-			// entriesFragment).commit();
+			getSupportFragmentManager().beginTransaction().remove(loadingFragment)
+					.replace(R.id.content_frame, entriesFragment).commitAllowingStateLoss();
 			// https://code.google.com/p/android/issues/detail?id=42601
-			fragmentManager.beginTransaction().detach(loadingFragment).replace(R.id.content_frame, entriesFragment)
-					.attach(entriesFragment).addToBackStack(null).commit();
+			// fragmentManager.beginTransaction().detach(loadingFragment).replace(R.id.content_frame,
+			// entriesFragment)
+			// .attach(entriesFragment).addToBackStack(null).commitAllowingStateLoss();
 		} catch (UnsupportedEncodingException uex) {
 			Log.e(TAG, "Error encoding stream or category id");
 

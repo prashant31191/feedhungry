@@ -30,7 +30,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
@@ -76,9 +75,8 @@ public class EntryListFragment extends SherlockFragment {
 	private static final String COUNT_PARAM = "&count=";
 	private static final String CONTINUATION_PARAM = "&continuation=";
 	private static final String ONLY_UNREAD_PARAM = "&unreadOnly=";
-	private Fragment loadingFragment = new LoadingFragment_();
+	private Fragment loadingFragment;
 	public String continuation = null;
-	private DisplayMetrics metrics;
 
 	@ViewById(R.id.lv_picasa)
 	ListView mLvPicasa;
@@ -94,14 +92,19 @@ public class EntryListFragment extends SherlockFragment {
 	@FragmentArg(IS_MIX)
 	Boolean isMix;
 
+	@Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+		setRetainInstance(true);
+    }
+	
 	@AfterViews
 	void afterViews() {
-		loadingFragment = new LoadingFragment_();
-		addLoadingFragment();
-		mEntries.clear();
-		metrics = new DisplayMetrics();
-		getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
+		if (!mHasData) {
+			addLoadingFragment();
+		}
+//		mEntries.clear();
 		mAdapter = new ListViewEntryArrayAdapter(getActivity(), 0, mEntries, MyVolley.getImageLoader());
 		mLvPicasa.setAdapter(mAdapter);
 		mLvPicasa.setOnScrollListener(new EndlessScrollListener());
@@ -129,7 +132,7 @@ public class EntryListFragment extends SherlockFragment {
 			}
 		});
 
-		if (!mHasData && !mInError) {
+		if (!mHasData) {
 			loadPage();
 		}
 	}
@@ -176,6 +179,9 @@ public class EntryListFragment extends SherlockFragment {
 						ListEntry e = new ListEntry((JSONObject) items.get(i));
 						mEntries.add(e);
 					}
+					if (!mHasData) {
+						mHasData = true;
+					}
 					mAdapter.notifyDataSetChanged();
 				} catch (JSONException e) {
 					showErrorDialog(e.getMessage());
@@ -189,11 +195,13 @@ public class EntryListFragment extends SherlockFragment {
 		return new Response.ErrorListener() {
 			@Override
 			public void onErrorResponse(VolleyError error) {
-				if (error != null) {
 					removeLoadingFragment();
-					Log.e(TAG, error.getMessage());
-					// showErrorDialog(error.getMessage());
-				}
+					if (error != null && error.getMessage() != null) {
+						Log.e(TAG, error.getMessage());
+						// showErrorDialog(error.getMessage());
+					} else if (error != null && error.getCause() != null) {
+						Log.e(TAG, error.getCause().toString());
+					}
 			}
 		};
 	}
@@ -283,18 +291,21 @@ public class EntryListFragment extends SherlockFragment {
 	}
 
 	private void addLoadingFragment() {
+		if (loadingFragment == null) {
+			loadingFragment = new LoadingFragment_();
+		}		
 		FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
 		if (fragmentManager.findFragmentById(loadingFragment.getId()) == null) {
 			fragmentManager.beginTransaction().add(R.id.content_frame, loadingFragment).commit();
 		}
+		
 	}
 
-	private void removeLoadingFragment() {
-		
+	private void removeLoadingFragment() {		
 		if (getActivity() != null) {
 			FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-			if (fragmentManager.findFragmentById(loadingFragment.getId()) != null && loadingFragment.isResumed()) {
-				fragmentManager.beginTransaction().remove(loadingFragment).commit();
+			if (loadingFragment != null && fragmentManager.findFragmentById(loadingFragment.getId()) != null) {
+				fragmentManager.beginTransaction().remove(loadingFragment).commitAllowingStateLoss();
 			}
 		}
 		

@@ -1,10 +1,8 @@
 package com.yairkukielka.feedhungry;
 
 import android.annotation.SuppressLint;
-import android.content.res.Resources;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;

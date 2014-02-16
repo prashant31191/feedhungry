@@ -13,8 +13,10 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
@@ -66,6 +68,7 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 	private static final String ENTRY_DATE = "entryDate";
 	public static final String ACCESS_TOKEN = "accessToken";
 	private static final String STREAM_TITLE = "streamTitle";
+	private static final String EXTRA_SCROLL_POSITION = "SROLL_POS";
 	private static final String BY = " by ";
 	private static final String encoding = "utf-8";
 	private static final int WEBVIEW_TEXT_SIZE = 18;
@@ -79,7 +82,7 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 			+ "body {font-family: 'myFont';line-height:150%;}a:link {color:#70B002;}img{max-width: 100%; width:auto; height: auto;}"
 			+ "iframe{max-width: 100%; width:auto; height: auto;}</style></head>";
 	private static final String DIV_PREFIX = "<div style='background-color:transparent;padding: 10px;color:#888;font-family: myFont';>";
-	private static final String DIV_SUFIX = "</div>";
+	private static final String DIV_SUFIX = "</div>";	
 	// the action bar menu
 	private Menu actionBarmenu;
 	// the feed entry
@@ -90,6 +93,8 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 	private Animation titleFadeInAnimation;
 	// fragment that shows while loading the entry content
 	private Fragment loadingFragment;
+	private int scroll;
+	private boolean scrolled;
 	@Extra(ACCESS_TOKEN)
 	String accessToken;
 	@Extra(ENTRY_ID)
@@ -122,9 +127,18 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 	@ViewById(R.id.entry_bg_image_view)
 	NetworkImageView bgImage;
 
+	@Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (savedInstanceState != null) {
+        	scroll = savedInstanceState.getInt(EXTRA_SCROLL_POSITION);
+		}
+    }
+	
 	@SuppressLint("SetJavaScriptEnabled")
 	@AfterViews
 	void afterViews() {
+		
 		getSupportActionBar().setBackgroundDrawable(null);
 		webView.setVisibility(View.INVISIBLE);
 		View.OnClickListener onClickListener = getOnClickListener();
@@ -168,7 +182,12 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 			Log.e(TAG, "Error encoding entryId URL");
 		}
 	}
-
+	
+	@Override
+	public void onConfigurationChanged(Configuration newConfig){        
+	    super.onConfigurationChanged(newConfig);
+	}
+	
 	private Response.Listener<JSONArray> createMyReqSuccessListener() {
 		return new Response.Listener<JSONArray>() {
 			@SuppressLint({ "NewApi", "SetJavaScriptEnabled" })
@@ -235,17 +254,11 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 							@Override
 							public void onPageFinished(WebView view, String url) {
 								FragmentManager fragmentManager = getSupportFragmentManager();
-								if (fragmentManager.findFragmentById(loadingFragment.getId()) != null
-										&& loadingFragment.isResumed()) {
-									// this is to avoid errors when the user
-									// clicks back before
-									// this can commit (the activity would be
-									// destroyed already)
-									// fragmentManager.beginTransaction().remove(loadingFragment).commit();
-									fragmentManager.beginTransaction().detach(loadingFragment).commit();
+								if (fragmentManager.findFragmentById(loadingFragment.getId()) != null) {
+									 fragmentManager.beginTransaction().detach(loadingFragment).commitAllowingStateLoss();
 								}
 								webView.setVisibility(View.VISIBLE);
-								webView.setAnimation(webViewAnimation);
+								webView.setAnimation(webViewAnimation);								
 								// mark entry as read
 								markEntry(MARK_READ, getSuccessListener(null));
 							}
@@ -260,7 +273,7 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 			}
 		};
 	}
-
+	
 	/**
 	 * Back button pressed. Go back to the article list.
 	 */
@@ -289,8 +302,9 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 			@Override
 			public void onErrorResponse(VolleyError error) {
 				Log.e(TAG, "Error loading entry");
-				Log.e(TAG, error.getMessage());
-				// showErrorDialog(getResources().getString(R.string.error_loading_entry));
+				if (error != null && error.getMessage() != null) {
+					Log.e(TAG, error.getMessage());
+				}
 			}
 		};
 	}

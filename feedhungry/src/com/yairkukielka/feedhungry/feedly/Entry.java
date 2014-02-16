@@ -39,7 +39,6 @@ public class Entry {
 	private static final String SUMMARY = "summary";
 	private static final String UNREAD = "unread";
 	private static final String PUBLISHED = "published";
-	private static final String UPDATED = "updated";
 	private static final String VISUAL = "visual";
 	private static final String CONTENT = "content";
 	private static final String URL = "url";

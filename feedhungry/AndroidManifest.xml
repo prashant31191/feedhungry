@@ -31,7 +31,8 @@
         <activity
             android:name=".FeedEntryActivity_"
             android:parentActivityName=".MainActivity_" 
-            android:hardwareAccelerated="true">
+            android:hardwareAccelerated="true"
+            android:configChanges="keyboardHidden|orientation|screenSize">
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
