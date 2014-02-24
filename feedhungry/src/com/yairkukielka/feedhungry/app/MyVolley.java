@@ -21,6 +21,7 @@ import android.content.Context;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
+import com.yairkukielka.feedhungry.okhttpstack.OkHttpStack;
 import com.yairkukielka.feedhungry.toolbox.BitmapLruCache;
 
 
@@ -41,7 +42,7 @@ public class MyVolley {
 
 
     static void init(Context context) {
-        mRequestQueue = Volley.newRequestQueue(context);
+        mRequestQueue = Volley.newRequestQueue(context, new OkHttpStack());
 
         int memClass = ((ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE))
                 .getMemoryClass();

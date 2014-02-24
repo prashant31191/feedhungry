@@ -1218,6 +1218,99 @@ com.android.volley.toolbox.StringRequest
 com.android.volley.toolbox.Volley:
     private static final java.lang.String DEFAULT_CACHE_DIR
     30:30:public Volley()
+com.crashlytics.android.CrashTest
+com.crashlytics.android.Crashlytics:
+    public static final java.lang.String TAG
+    156:169:public static void logException(java.lang.Throwable)
+    175:177:static void a(java.lang.String)
+    198:199:public static void log(java.lang.String)
+    202:210:private static void a(int,java.lang.String,java.lang.String)
+    226:230:public static void log(int,java.lang.String,java.lang.String)
+    258:259:public static void setUserIdentifier(java.lang.String)
+    267:268:public static void setUserName(java.lang.String)
+    276:277:public static void setUserEmail(java.lang.String)
+    283:284:public static void setApplicationInstallationIdentifier(java.lang.String)
+    295:315:public static void setString(java.lang.String,java.lang.String)
+    323:324:public static void setBool(java.lang.String,boolean)
+    332:333:public static void setDouble(java.lang.String,double)
+    341:342:public static void setFloat(java.lang.String,float)
+    350:351:public static void setInt(java.lang.String,int)
+    359:360:public static void setLong(java.lang.String,long)
+    373:374:public final void setListener(com.crashlytics.android.CrashlyticsListener)
+    382:383:public final void setDebugMode(boolean)
+    391:391:public final boolean getDebugMode()
+    399:431:public static void setPinningInfoProvider(com.crashlytics.android.PinningInfoProvider)
+    434:434:public static com.crashlytics.android.PinningInfoProvider getPinningInfoProvider()
+    447:450:public final boolean verifyPinning(java.net.URL)
+    488:489:public final void crash()
+    729:735:private static java.lang.String c(java.lang.String)
+com.crashlytics.android.CrashlyticsMissingDependencyException:
+    private static final long serialVersionUID
+com.crashlytics.android.P
+com.crashlytics.android.PinningInfoProvider:
+    public abstract java.io.InputStream getKeyStoreStream()
+    public abstract java.lang.String getKeyStorePassword()
+    public abstract java.lang.String[] getPins()
+com.crashlytics.android.i:
+    private static final long serialVersionUID
+com.crashlytics.android.internal.A
+com.crashlytics.android.internal.B:
+    81:81:public java.lang.String getVersion()
+    148:151:public void onException(com.crashlytics.android.internal.ae)
+com.crashlytics.android.internal.M:
+    98:100:public final void b(java.lang.String)
+com.crashlytics.android.internal.Z:
+    748:753:public static java.lang.String a(int)
+    801:815:public static java.lang.String b(int)
+com.crashlytics.android.internal.aB:
+    private static final long serialVersionUID
+com.crashlytics.android.internal.ae
+com.crashlytics.android.internal.ao:
+    495:509:public final synchronized void c()
+    513:520:private synchronized void d()
+com.crashlytics.android.internal.at:
+    47:51:public void a(com.crashlytics.android.internal.aE)
+    60:60:public com.crashlytics.android.internal.aw a(com.crashlytics.android.internal.av,java.lang.String)
+    54:56:private synchronized void a()
+com.crashlytics.android.internal.b:
+    public static final java.lang.String a
+    125:126:public b()
+    134:135:public b(java.lang.String)
+    258:292:public void b(java.lang.Object)
+    304:325:public void c(java.lang.Object)
+    342:359:private void a()
+    398:398:private java.util.Set a(java.lang.Class)
+com.crashlytics.android.internal.e
+com.crashlytics.android.internal.f
+com.crashlytics.android.internal.g:
+    73:74:public final void b()
+com.crashlytics.android.internal.h:
+    69:70:public final void b()
+com.crashlytics.android.internal.p:
+    public abstract java.lang.String getVersion()
+com.crashlytics.android.internal.r
+com.crashlytics.android.internal.s
+com.crashlytics.android.internal.t:
+    public abstract void a(int,java.lang.String,java.lang.String,boolean)
+com.crashlytics.android.internal.v:
+    232:236:public final void a(boolean)
+    311:312:public final void a(java.lang.String)
+com.crashlytics.android.internal.y:
+    68:68:public final void a(int,java.lang.String,java.lang.String,boolean)
+com.crashlytics.android.internal.z:
+    35:42:public final void c(java.lang.Object)
+    13:13:static synthetic void a(com.crashlytics.android.internal.z,java.lang.Object)
+com.crashlytics.android.j
+com.crashlytics.android.k
+com.crashlytics.android.v:
+    357:367:final void a(java.lang.Thread,java.lang.Throwable)
+    373:385:final void a(long,java.lang.String)
+    532:576:static void a(com.crashlytics.android.internal.ao,int,long,java.lang.String)
+    603:634:private boolean k()
+    66:66:static synthetic void b(com.crashlytics.android.v,java.util.Date,java.lang.Thread,java.lang.Throwable)
+    66:66:static synthetic com.crashlytics.android.internal.ao d(com.crashlytics.android.v)
+    66:66:static synthetic boolean e(com.crashlytics.android.v)
+com.crashlytics.android.x
 com.googlecode.androidannotations.annotations.AfterInject
 com.googlecode.androidannotations.annotations.AfterTextChange
 com.googlecode.androidannotations.annotations.AfterViews
@@ -1341,8 +1434,8 @@ com.yairkukielka.feedhungry.EntryListFragment:
     private static final java.lang.String CONTINUATION_PARAM
     private static final java.lang.String ONLY_UNREAD_PARAM
 com.yairkukielka.feedhungry.EntryListFragment$EndlessScrollListener:
-    304:306:public EntryListFragment$EndlessScrollListener(com.yairkukielka.feedhungry.EntryListFragment,int)
-    340:340:public int getCurrentPage()
+    333:335:public EntryListFragment$EndlessScrollListener(com.yairkukielka.feedhungry.EntryListFragment,int)
+    369:369:public int getCurrentPage()
 com.yairkukielka.feedhungry.EntryListFragment_:
     60:60:public static com.yairkukielka.feedhungry.EntryListFragment_$FragmentBuilder_ builder()
 com.yairkukielka.feedhungry.EntryListFragment_$FragmentBuilder_
@@ -1358,14 +1451,20 @@ com.yairkukielka.feedhungry.FeedEntryActivity:
     private static final java.lang.String ENTRY_DATE
     public static final java.lang.String ACCESS_TOKEN
     private static final java.lang.String STREAM_TITLE
+    private static final java.lang.String EXTRA_SCROLL_POSITION
     private static final java.lang.String BY
     private static final java.lang.String encoding
     private static final int WEBVIEW_TEXT_SIZE
     private static final java.lang.String TEXT_HTML
+    private static final java.lang.String HTML_OPEN_TAG
+    private static final java.lang.String BODY_CLOSE_HTML_CLOSE_TAGS
+    private static final java.lang.String HTML_BODY_TAG
+    private static final java.lang.String HTML_HEAD
     private static final java.lang.String DIV_PREFIX
     private static final java.lang.String DIV_SUFIX
+    private boolean scrolled
     private static final java.lang.String TEXT_PLAIN
-    298:301:private void showErrorDialog(java.lang.String)
+    313:316:private void showErrorDialog(java.lang.String)
 com.yairkukielka.feedhungry.FeedEntryActivity_:
     78:78:public static com.yairkukielka.feedhungry.FeedEntryActivity_$IntentBuilder_ intent(android.content.Context)
 com.yairkukielka.feedhungry.FeedEntryActivity_$IntentBuilder_

@@ -4928,6 +4928,18 @@ com.android.volley.toolbox.NetworkImageView: NetworkImageView(android.content.Co
 com.android.volley.toolbox.NetworkImageView: void setImageUrl(java.lang.String,com.android.volley.toolbox.ImageLoader)
 com.android.volley.toolbox.NetworkImageView: void setDefaultImageResId(int)
 com.android.volley.toolbox.NetworkImageView: void setErrorImageResId(int)
+com.crashlytics.android.internal.U: com.crashlytics.android.internal.U[] values()
+com.crashlytics.android.internal.U: com.crashlytics.android.internal.U valueOf(java.lang.String)
+com.crashlytics.android.internal.aS: com.crashlytics.android.internal.aS[] values()
+com.crashlytics.android.internal.aS: com.crashlytics.android.internal.aS valueOf(java.lang.String)
+com.crashlytics.android.internal.ab: com.crashlytics.android.internal.ab[] values()
+com.crashlytics.android.internal.ab: com.crashlytics.android.internal.ab valueOf(java.lang.String)
+com.crashlytics.android.internal.ag: com.crashlytics.android.internal.ag[] values()
+com.crashlytics.android.internal.ag: com.crashlytics.android.internal.ag valueOf(java.lang.String)
+com.crashlytics.android.internal.an: com.crashlytics.android.internal.an[] values()
+com.crashlytics.android.internal.an: com.crashlytics.android.internal.an valueOf(java.lang.String)
+com.crashlytics.android.internal.av: com.crashlytics.android.internal.av[] values()
+com.crashlytics.android.internal.av: com.crashlytics.android.internal.av valueOf(java.lang.String)
 com.googlecode.androidannotations.annotations.sharedpreferences.SharedPref$Scope: com.googlecode.androidannotations.annotations.sharedpreferences.SharedPref$Scope[] values()
 com.googlecode.androidannotations.annotations.sharedpreferences.SharedPref$Scope: com.googlecode.androidannotations.annotations.sharedpreferences.SharedPref$Scope valueOf(java.lang.String)
 com.googlecode.androidannotations.api.Scope: com.googlecode.androidannotations.api.Scope[] values()
@@ -5361,6 +5373,7 @@ com.yairkukielka.feedhungry.R$string: int abs__searchview_description_voice
 com.yairkukielka.feedhungry.R$string: int abs__shareactionprovider_share_with
 com.yairkukielka.feedhungry.R$string: int abs__shareactionprovider_share_with_application
 com.yairkukielka.feedhungry.R$string: int app_name
+com.yairkukielka.feedhungry.R$string: int com_crashlytics_android_build_id
 com.yairkukielka.feedhungry.R$string: int drawer_all
 com.yairkukielka.feedhungry.R$string: int drawer_close
 com.yairkukielka.feedhungry.R$string: int drawer_open

@@ -6585,13 +6585,1069 @@ com.android.volley.toolbox.PoolingByteArrayOutputStream -> com.android.volley.to
     90:92:void write(int) -> write
 com.android.volley.toolbox.Volley -> com.android.volley.toolbox.aa:
     43:68:com.android.volley.RequestQueue newRequestQueue$2b0c7ccd(android.content.Context) -> a
-com.googlecode.androidannotations.api.SdkVersionHelper -> com.a.a.a.a:
+com.crashlytics.android.A -> com.a.a.a:
+    com.crashlytics.android.v a -> a
+    448:448:java.lang.Object call() -> call
+com.crashlytics.android.B -> com.a.a.b:
+    com.crashlytics.android.v a -> a
+    468:473:java.lang.Boolean a() -> a
+    464:464:java.lang.Object call() -> call
+com.crashlytics.android.C -> com.a.a.c:
+    com.crashlytics.android.v a -> a
+    480:480:java.lang.Object call() -> call
+com.crashlytics.android.Crashlytics -> com.a.a.d:
+    long a -> a
+    java.util.concurrent.ConcurrentHashMap b -> b
+    com.crashlytics.android.CrashlyticsListener c -> c
+    com.crashlytics.android.v d -> d
+    com.crashlytics.android.internal.am e -> e
+    java.lang.String f -> f
+    java.lang.String g -> g
+    java.lang.String h -> h
+    java.lang.String i -> i
+    android.content.ContextWrapper j -> j
+    java.lang.String k -> k
+    java.lang.String l -> l
+    java.lang.String m -> m
+    java.lang.String n -> n
+    java.lang.String o -> o
+    java.lang.String p -> p
+    java.lang.String q -> q
+    boolean r -> r
+    com.crashlytics.android.PinningInfoProvider s -> s
+    com.crashlytics.android.internal.at t -> t
+    float u -> u
+    118:119:void start(android.content.Context) -> a
+    144:144:com.crashlytics.android.Crashlytics getInstance() -> a
+    183:185:void b(java.lang.String) -> a
+    364:364:java.util.Map a() -> b
+    492:492:com.crashlytics.android.internal.am b() -> c
+    497:512:void c() -> d
+    516:516:java.lang.String getVersion() -> e
+    520:520:java.lang.String d() -> f
+    530:530:java.lang.String e() -> g
+    534:534:java.lang.String f() -> h
+    538:538:java.lang.String g() -> i
+    542:542:java.lang.String h() -> j
+    546:546:java.lang.String i() -> k
+    554:554:boolean j() -> l
+    567:567:boolean k() -> m
+    571:572:void a$1385ff() -> n
+    575:575:com.crashlytics.android.v l() -> o
+    579:579:java.lang.String m() -> p
+    583:583:java.lang.String n() -> q
+    587:587:java.lang.String o() -> r
+    591:591:boolean p() -> s
+    611:611:com.crashlytics.android.V q() -> t
+    624:624:com.crashlytics.android.internal.aO r() -> u
+    739:841:void a(java.lang.String,android.content.Context,float) -> a
+    850:897:boolean a(android.content.Context,float) -> a
+    951:954:com.crashlytics.android.b a(com.crashlytics.android.Y) -> a
+    54:54:boolean a(com.crashlytics.android.Crashlytics,android.app.Activity,com.crashlytics.android.internal.aN) -> a
+    54:54:com.crashlytics.android.internal.at s() -> v
+    54:54:int a$6be4ac93(float,int) -> a
+    54:54:boolean a(com.crashlytics.android.Crashlytics,android.content.Context,float) -> a
+    54:54:com.crashlytics.android.v a(com.crashlytics.android.Crashlytics) -> a
+com.crashlytics.android.CrashlyticsListener -> com.a.a.e:
+com.crashlytics.android.CrashlyticsMissingDependencyException -> com.a.a.f:
+    22:31:java.lang.String a(java.lang.String,java.lang.String) -> a
+com.crashlytics.android.D -> com.a.a.g:
+    java.io.File a -> a
+    1009:1016:void a() -> a
+com.crashlytics.android.E -> com.a.a.h:
+    com.crashlytics.android.v a -> a
+    1864:1865:void run() -> run
+com.crashlytics.android.F -> com.a.a.i:
+    java.lang.String a -> a
+    1886:1886:boolean accept(java.io.File,java.lang.String) -> accept
+com.crashlytics.android.G -> com.a.a.j:
+    java.lang.Runnable a -> a
+    1962:1966:void run() -> run
+com.crashlytics.android.H -> com.a.a.k:
+    132:132:int compare(java.lang.Object,java.lang.Object) -> compare
+com.crashlytics.android.I -> com.a.a.l:
+    java.util.concurrent.Callable a -> a
+    1990:1993:java.lang.Object call() -> call
+com.crashlytics.android.J -> com.a.a.m:
+    139:139:int compare(java.lang.Object,java.lang.Object) -> compare
+com.crashlytics.android.K -> com.a.a.n:
+    152:152:boolean accept(java.io.File,java.lang.String) -> accept
+com.crashlytics.android.L -> com.a.a.o:
+    com.crashlytics.android.v a -> a
+    267:268:void onReceive(android.content.Context,android.content.Intent) -> onReceive
+com.crashlytics.android.M -> com.a.a.p:
+    com.crashlytics.android.v a -> a
+    276:277:void onReceive(android.content.Context,android.content.Intent) -> onReceive
+com.crashlytics.android.N -> com.a.a.q:
+    java.util.Date a -> a
+    java.lang.Thread b -> b
+    java.lang.Throwable c -> c
+    com.crashlytics.android.v d -> d
+    307:307:java.lang.Object call() -> call
+com.crashlytics.android.O -> com.a.a.r:
+    com.crashlytics.android.v a -> a
+    338:338:java.lang.Object call() -> call
+com.crashlytics.android.PinningInfoProvider -> com.a.a.s:
+com.crashlytics.android.Q -> com.a.a.t:
+    117:117:boolean accept(java.io.File,java.lang.String) -> accept
+com.crashlytics.android.R -> com.a.a.u:
+    java.lang.String a -> a
+    81:81:boolean accept(java.io.File,java.lang.String) -> accept
+com.crashlytics.android.S -> com.a.a.v:
+    java.lang.String a -> a
+    100:103:boolean accept(java.io.File,java.lang.String) -> accept
+com.crashlytics.android.T -> com.a.a.w:
+com.crashlytics.android.U -> com.a.a.x:
+    java.lang.String a -> a
+    com.crashlytics.android.Z b -> b
+com.crashlytics.android.V -> com.a.a.y:
+    boolean a(com.crashlytics.android.U) -> a
+com.crashlytics.android.W -> com.a.a.z:
+    53:64:boolean a(com.crashlytics.android.U) -> a
+com.crashlytics.android.X -> com.a.a.aa:
+    android.content.Context a -> a
+    com.crashlytics.android.internal.aN b -> b
+    48:48:java.lang.String a() -> a
+    55:55:java.lang.String b() -> b
+    63:63:java.lang.String c() -> c
+    71:71:java.lang.String d() -> d
+    79:79:java.lang.String e() -> e
+    92:92:java.lang.String a(java.lang.String,java.lang.String) -> a
+com.crashlytics.android.Y -> com.a.a.ab:
+    java.lang.String a -> a
+    int b -> b
+    int c -> c
+    int d -> d
+    33:56:com.crashlytics.android.Y a(android.content.Context,java.lang.String) -> a
+com.crashlytics.android.Z -> com.a.a.ac:
+    java.io.File a -> a
+    java.util.Map b -> b
+    62:63:boolean a() -> a
+    46:46:java.lang.String b() -> b
+    41:41:java.io.File d() -> c
+    57:57:java.util.Map e() -> d
+com.crashlytics.android.a -> com.a.a.ad:
+    48:64:boolean a(com.crashlytics.android.b) -> a
+    76:105:com.crashlytics.android.internal.aw a(com.crashlytics.android.internal.aw,com.crashlytics.android.b) -> a
+com.crashlytics.android.aa -> com.a.a.ae:
+    java.io.FilenameFilter b -> b
+    java.util.Map a -> a
+    short[] c -> c
+    java.lang.Object d -> d
+    com.crashlytics.android.V e -> e
+    java.lang.Thread f -> f
+    54:58:void a(float) -> a
+    74:96:boolean a(com.crashlytics.android.Z) -> a
+    100:117:java.util.List a() -> a
+    23:23:java.lang.Thread a$410eb3d6(com.crashlytics.android.aa) -> a
+    23:23:short[] b() -> b
+com.crashlytics.android.ab -> com.a.a.af:
+    28:28:boolean accept(java.io.File,java.lang.String) -> accept
+com.crashlytics.android.ac -> com.a.a.ag:
+    float a -> a
+    com.crashlytics.android.aa b -> b
+    130:135:void a() -> a
+com.crashlytics.android.ad -> com.a.a.ah:
+com.crashlytics.android.b -> com.a.a.ai:
+    java.lang.String a -> a
+    java.lang.String b -> b
+    java.lang.String c -> c
+    java.lang.String d -> d
+    java.lang.String e -> e
+    java.lang.String f -> f
+    int g -> g
+    java.lang.String h -> h
+    java.lang.String i -> i
+    com.crashlytics.android.Y j -> j
+    18:32:void a(java.io.File,java.io.FilenameFilter,int,java.util.Comparator) -> a
+com.crashlytics.android.c -> com.a.a.aj:
+    java.lang.String a -> a
+    boolean b -> b
+    32:58:void a(java.lang.String,java.lang.String) -> a
+com.crashlytics.android.d -> com.a.a.ak:
+    byte[] a -> a
+    int b -> b
+    68:68:int a() -> a
+    91:93:com.crashlytics.android.d a$2e4dd133(byte[],int) -> a
+    136:138:com.crashlytics.android.d a(java.lang.String) -> a
+    194:195:void a(byte[],int,int,int) -> a
+    253:275:boolean equals(java.lang.Object) -> equals
+    282:299:int hashCode() -> hashCode
+    309:309:java.io.InputStream b() -> b
+com.crashlytics.android.e -> com.a.a.al:
+    java.util.concurrent.atomic.AtomicLong a -> a
+    java.lang.String b -> b
+    85:90:byte[] a(long) -> a
+    94:94:java.lang.String toString() -> toString
+com.crashlytics.android.f -> com.a.a.am:
+    java.lang.String b -> b
+    java.io.File c -> c
+    boolean d -> d
+    java.io.FilenameFilter a -> a
+    47:66:void close() -> close
+    78:84:void a() -> a
+com.crashlytics.android.g -> com.a.a.an:
+    102:102:boolean accept(java.io.File,java.lang.String) -> accept
+com.crashlytics.android.h -> com.a.a.ao:
+    byte[] a -> a
+    int b -> b
+    int c -> c
+    java.io.OutputStream d -> d
+    98:98:com.crashlytics.android.h a(java.io.OutputStream) -> a
+    146:148:void a$255e752(float) -> a
+    153:155:void a(int,long) -> a
+    188:190:void a(int,boolean) -> a
+    195:197:void a$4f708078(java.lang.String) -> a
+    202:204:void a(int,com.crashlytics.android.d) -> a
+    209:211:void a(int,int) -> a
+    219:221:void b(int,int) -> b
+    240:242:void c$255f295(int) -> a
+    376:376:int b$255e745() -> a
+    384:384:int b(int,long) -> b
+    427:427:int b$2563259(int) -> b
+    445:445:int b(int,com.crashlytics.android.d) -> b
+    453:453:int d(int,int) -> c
+    462:462:int e(int,int) -> d
+    488:488:int f$255f288(int) -> c
+    660:669:void a() -> b
+    676:679:void flush() -> flush
+    734:735:void d(int) -> g
+    744:745:void a(byte[]) -> a
+    828:829:void g(int,int) -> e
+    833:833:int a(int) -> d
+    842:847:void b(int) -> e
+    858:862:int c(int) -> f
+    868:873:void a(long) -> a
+    928:928:int e(int) -> h
+com.crashlytics.android.i -> com.a.a.ap:
+com.crashlytics.android.internal.B -> com.a.a.a.a:
+    java.lang.String a -> a
+    java.lang.String b -> b
+    java.lang.String c -> c
+    com.crashlytics.android.internal.am d -> d
+    com.crashlytics.android.internal.at e -> e
+    com.crashlytics.android.internal.M f -> f
+    47:47:com.crashlytics.android.internal.B a() -> a
+    53:77:void c() -> d
+    143:143:java.lang.String b() -> b
+    155:158:void onException(com.crashlytics.android.internal.ad) -> a
+    26:26:void a(com.crashlytics.android.internal.B) -> a
+com.crashlytics.android.internal.C -> com.a.a.a.b:
+    com.crashlytics.android.internal.B a -> a
+    71:75:void a() -> a
+com.crashlytics.android.internal.D -> com.a.a.a.c:
+    android.app.Application b -> b
+    android.app.Application$ActivityLifecycleCallbacks c -> c
+    82:86:void a() -> a
+com.crashlytics.android.internal.E -> com.a.a.a.d:
+    com.crashlytics.android.internal.D a -> a
+    23:24:void onActivityCreated(android.app.Activity,android.os.Bundle) -> onActivityCreated
+    28:29:void onActivityDestroyed(android.app.Activity) -> onActivityDestroyed
+    33:34:void onActivityPaused(android.app.Activity) -> onActivityPaused
+    38:39:void onActivityResumed(android.app.Activity) -> onActivityResumed
+    43:44:void onActivitySaveInstanceState(android.app.Activity,android.os.Bundle) -> onActivitySaveInstanceState
+    48:49:void onActivityStarted(android.app.Activity) -> onActivityStarted
+    53:54:void onActivityStopped(android.app.Activity) -> onActivityStopped
+com.crashlytics.android.internal.F -> com.a.a.a.e:
+    42:50:boolean a(java.lang.String,java.util.List) -> a
+com.crashlytics.android.internal.G -> com.a.a.a.f:
+    15:15:void a() -> a
+    20:20:void a(com.crashlytics.android.internal.aH,java.lang.String) -> a
+    25:25:void b() -> b
+    30:30:void a(com.crashlytics.android.internal.T) -> a
+    35:35:void c() -> c
+com.crashlytics.android.internal.H -> com.a.a.a.g:
+    java.util.concurrent.ScheduledExecutorService a -> a
+    com.crashlytics.android.internal.I b -> b
+    com.crashlytics.android.internal.at c -> c
+    java.util.concurrent.ScheduledFuture d -> d
+    int e -> e
+    com.crashlytics.android.internal.L f -> f
+    96:102:void a() -> a
+    106:113:void a(int,int) -> a
+    117:122:void c() -> c
+    126:133:void a(com.crashlytics.android.internal.aH,java.lang.String) -> a
+    137:138:void b() -> b
+    142:149:void a(com.crashlytics.android.internal.T) -> a
+com.crashlytics.android.internal.I -> com.a.a.a.h:
+    com.crashlytics.android.internal.V a -> a
+    com.crashlytics.android.internal.af b -> b
+    com.crashlytics.android.internal.aH c -> c
+    com.crashlytics.android.internal.ah d -> d
+    int e -> e
+    java.util.List f -> f
+    69:73:void a(com.crashlytics.android.internal.T) -> a
+    80:81:void a(com.crashlytics.android.internal.ai) -> a
+    88:105:boolean a() -> a
+    140:140:int e() -> e
+    145:146:void a(com.crashlytics.android.internal.aH) -> a
+    153:160:void a$552c4e01() -> f
+    163:163:java.util.List b() -> b
+    167:168:void a(java.util.List) -> a
+    171:173:void c() -> c
+    176:206:void d() -> d
+    209:216:long b(java.lang.String) -> a
+com.crashlytics.android.internal.J -> com.a.a.a.i:
+    186:186:int compare(java.lang.Object,java.lang.Object) -> compare
+com.crashlytics.android.internal.K -> com.a.a.a.j:
+    java.io.File a -> a
+    long b -> b
+com.crashlytics.android.internal.L -> com.a.a.a.k:
+    boolean a(java.lang.String,java.util.List) -> a
+com.crashlytics.android.internal.M -> com.a.a.a.l:
+    java.lang.String b -> b
+    java.lang.String c -> c
+    java.lang.String d -> d
+    java.lang.String e -> e
+    java.lang.String f -> f
+    java.lang.String g -> g
+    java.lang.String h -> h
+    java.lang.String i -> i
+    java.util.concurrent.ScheduledExecutorService j -> j
+    com.crashlytics.android.internal.S a -> a
+    68:87:void a(java.lang.String) -> a
+    90:91:void a(android.app.Activity) -> a
+    94:95:void b(android.app.Activity) -> b
+    103:104:void c(android.app.Activity) -> c
+    107:108:void d(android.app.Activity) -> d
+    111:112:void e(android.app.Activity) -> e
+    115:116:void f(android.app.Activity) -> f
+    119:120:void g(android.app.Activity) -> g
+    123:126:void a(com.crashlytics.android.internal.U,android.app.Activity) -> a
+    144:156:void a(com.crashlytics.android.internal.aH,java.lang.String) -> a
+    160:171:void b() -> b
+    174:186:void a() -> a
+    198:202:void a(java.lang.Runnable) -> a
+    16:16:java.lang.String a(com.crashlytics.android.internal.M) -> a
+    16:16:java.lang.String b(com.crashlytics.android.internal.M) -> b
+    16:16:java.lang.String c(com.crashlytics.android.internal.M) -> c
+    16:16:java.lang.String d(com.crashlytics.android.internal.M) -> d
+    16:16:java.lang.String e(com.crashlytics.android.internal.M) -> e
+    16:16:java.lang.String f(com.crashlytics.android.internal.M) -> f
+    16:16:java.lang.String g(com.crashlytics.android.internal.M) -> g
+    16:16:java.lang.String h(com.crashlytics.android.internal.M) -> h
+com.crashlytics.android.internal.N -> com.a.a.a.m:
+    java.lang.String a -> a
+    com.crashlytics.android.internal.M b -> b
+    79:85:void run() -> run
+com.crashlytics.android.internal.O -> com.a.a.a.n:
+    com.crashlytics.android.internal.T a -> a
+    com.crashlytics.android.internal.M b -> b
+    133:138:void run() -> run
+com.crashlytics.android.internal.P -> com.a.a.a.o:
+    com.crashlytics.android.internal.aH a -> a
+    java.lang.String b -> b
+    com.crashlytics.android.internal.M c -> c
+    148:154:void run() -> run
+com.crashlytics.android.internal.Q -> com.a.a.a.p:
+    com.crashlytics.android.internal.M a -> a
+    164:169:void run() -> run
+com.crashlytics.android.internal.R -> com.a.a.a.q:
+    com.crashlytics.android.internal.M a -> a
+    178:184:void run() -> run
+com.crashlytics.android.internal.S -> com.a.a.a.r:
+    void a() -> a
+    void a(com.crashlytics.android.internal.aH,java.lang.String) -> a
+    void b() -> b
+    void a(com.crashlytics.android.internal.T) -> a
+    void c() -> c
+com.crashlytics.android.internal.T -> com.a.a.a.s:
+    java.lang.String a -> a
+    java.lang.String b -> b
+    java.lang.String c -> c
+    java.lang.String d -> d
+    java.lang.String e -> e
+    java.lang.String f -> f
+    java.lang.String g -> g
+    java.lang.String h -> h
+    long i -> i
+    com.crashlytics.android.internal.U j -> j
+    java.util.Map k -> k
+    java.lang.String l -> l
+    58:58:com.crashlytics.android.internal.T a(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.crashlytics.android.internal.U,java.util.Map) -> a
+    85:116:java.lang.String toString() -> toString
+com.crashlytics.android.internal.U -> com.a.a.a.t:
+    com.crashlytics.android.internal.U a -> a
+    com.crashlytics.android.internal.U b -> b
+    com.crashlytics.android.internal.U c -> c
+    com.crashlytics.android.internal.U d -> d
+    com.crashlytics.android.internal.U e -> e
+    com.crashlytics.android.internal.U f -> f
+    com.crashlytics.android.internal.U g -> g
+    com.crashlytics.android.internal.U h -> h
+    com.crashlytics.android.internal.U i -> i
+    com.crashlytics.android.internal.U[] j -> j
+    13:13:com.crashlytics.android.internal.U[] values() -> values
+    13:13:com.crashlytics.android.internal.U valueOf(java.lang.String) -> valueOf
+com.crashlytics.android.internal.V -> com.a.a.a.u:
+    27:42:byte[] a(com.crashlytics.android.internal.T) -> a
+    47:53:org.json.JSONObject a(java.util.Map) -> a
+com.crashlytics.android.internal.W -> com.a.a.a.v:
+    com.crashlytics.android.internal.I a -> a
+    com.crashlytics.android.internal.S b -> b
+    19:30:void run() -> run
+com.crashlytics.android.internal.X -> com.a.a.a.w:
+    java.lang.String a -> a
+    java.util.regex.Pattern b -> b
+    java.lang.String c -> c
+    com.crashlytics.android.internal.at d -> d
+    com.crashlytics.android.internal.av e -> e
+    java.lang.String f -> f
+    82:82:java.lang.String a() -> a
+    99:99:com.crashlytics.android.internal.aw b() -> b
+    119:120:com.crashlytics.android.internal.aw a(java.util.Map) -> a
+com.crashlytics.android.internal.Y -> com.a.a.a.x:
+    12:14:void run() -> run
+    void a() -> a
+com.crashlytics.android.internal.Z -> com.a.a.a.y:
+    java.lang.Boolean b -> b
+    char[] c -> c
+    long d -> d
+    java.lang.Boolean e -> e
+    java.util.Comparator a -> a
+    101:101:android.content.SharedPreferences a() -> a
+    110:132:java.lang.String a(java.io.File,java.lang.String) -> a
+    140:140:int b() -> b
+    192:219:long c() -> c
+    227:227:long a(java.lang.String,java.lang.String,int) -> a
+    232:244:android.app.ActivityManager$RunningAppProcessInfo a(java.lang.String,android.content.Context) -> a
+    251:252:java.lang.String a(java.io.InputStream) -> a
+    270:270:java.lang.String a(java.lang.String) -> a
+    283:298:java.lang.String b(java.io.InputStream) -> b
+    302:316:java.lang.String a(byte[],java.lang.String) -> a
+    329:357:java.lang.String a(java.lang.String[]) -> a
+    367:369:long a(android.content.Context) -> a
+    380:384:long b(java.lang.String) -> b
+    389:395:float b(android.content.Context) -> b
+    399:406:boolean c(android.content.Context) -> c
+    415:418:void c(java.lang.String) -> c
+    425:428:void d(java.lang.String) -> d
+    435:438:void a$4f708078(java.lang.String) -> e
+    453:458:boolean d(android.content.Context) -> d
+    465:469:boolean e(android.content.Context) -> e
+    492:510:boolean a(android.content.Context,java.lang.String,boolean) -> a
+    514:515:int a(android.content.Context,java.lang.String,java.lang.String) -> a
+    524:525:boolean d() -> d
+    534:554:boolean e() -> e
+    570:583:int f() -> f
+    594:608:int a(boolean) -> a
+    624:638:javax.crypto.Cipher b$4ef6f629(java.lang.String) -> f
+    643:650:java.lang.String a(byte[]) -> a
+    675:675:boolean f(android.content.Context) -> f
+    700:706:java.lang.String a(android.content.Context,java.lang.String) -> a
+    716:723:void a(java.io.Closeable,java.lang.String) -> a
+    726:733:void a(java.io.Flushable,java.lang.String) -> a
+    737:737:boolean e(java.lang.String) -> g
+    795:798:void a(java.io.InputStream,java.io.OutputStream,byte[]) -> a
+    824:836:java.lang.String g(android.content.Context) -> g
+    840:840:int h(android.content.Context) -> h
+    847:856:java.lang.String i(android.content.Context) -> i
+com.crashlytics.android.internal.a -> com.a.a.a.z:
+    java.util.Map a -> a
+    java.util.Map b -> b
+    49:111:void a(java.lang.Class) -> a
+    115:129:java.util.Map a(java.lang.Object) -> a
+    134:151:java.util.Map b(java.lang.Object) -> b
+com.crashlytics.android.internal.aA -> com.a.a.a.aa:
+    351:351:java.net.HttpURLConnection a(java.net.URL) -> a
+com.crashlytics.android.internal.aB -> com.a.a.a.ab:
+    578:578:java.lang.Throwable getCause() -> getCause
+com.crashlytics.android.internal.aC -> com.a.a.a.ac:
+    java.lang.Object a() -> a
+    void b() -> b
+    624:639:java.lang.Object call() -> call
+com.crashlytics.android.internal.aD -> com.a.a.a.ad:
+    java.nio.charset.CharsetEncoder a -> a
+    733:737:com.crashlytics.android.internal.aD a(java.lang.String) -> a
+com.crashlytics.android.internal.aE -> com.a.a.a.ae:
+    java.io.InputStream a() -> a
+    java.lang.String b() -> b
+    java.lang.String[] c() -> c
+com.crashlytics.android.internal.aF -> com.a.a.a.af:
+    javax.net.ssl.TrustManager[] a -> a
+    com.crashlytics.android.internal.aG b -> b
+    long c -> c
+    java.util.List d -> d
+    java.util.Set e -> e
+    85:92:javax.net.ssl.TrustManager[] a(com.crashlytics.android.internal.aG) -> a
+    98:110:boolean a(java.security.cert.X509Certificate) -> a
+    148:148:void checkClientTrusted(java.security.cert.X509Certificate[],java.lang.String) -> checkClientTrusted
+    153:163:void checkServerTrusted(java.security.cert.X509Certificate[],java.lang.String) -> checkServerTrusted
+    166:166:java.security.cert.X509Certificate[] getAcceptedIssuers() -> getAcceptedIssuers
+    170:178:byte[] a(java.lang.String) -> a
+com.crashlytics.android.internal.aG -> com.a.a.a.ag:
+    java.security.KeyStore a -> a
+    java.util.HashMap b -> b
+    34:35:boolean a(java.security.cert.X509Certificate) -> a
+    39:55:java.security.cert.X509Certificate b(java.security.cert.X509Certificate) -> b
+    60:75:java.util.HashMap a(java.security.KeyStore) -> a
+    81:98:java.security.KeyStore a(java.io.InputStream,java.lang.String) -> a
+com.crashlytics.android.internal.aH -> com.a.a.a.ah:
+    java.lang.String a -> a
+    int b -> b
+    int c -> c
+com.crashlytics.android.internal.aI -> com.a.a.a.ai:
+com.crashlytics.android.internal.aJ -> com.a.a.a.aj:
+    java.lang.String a -> a
+    java.lang.String b -> b
+    java.lang.String c -> c
+    boolean d -> d
+com.crashlytics.android.internal.aK -> com.a.a.a.ak:
+    21:43:org.json.JSONObject a() -> a
+com.crashlytics.android.internal.aL -> com.a.a.a.al:
+    52:72:org.json.JSONObject a(com.crashlytics.android.internal.aW) -> a
+com.crashlytics.android.internal.aM -> com.a.a.a.am:
+    boolean a -> a
+    boolean b -> b
+    boolean c -> c
+com.crashlytics.android.internal.aN -> com.a.a.a.an:
+    java.lang.String a -> a
+    java.lang.String b -> b
+    java.lang.String c -> c
+    boolean d -> d
+    java.lang.String e -> e
+    boolean f -> f
+    java.lang.String g -> g
+com.crashlytics.android.internal.aO -> com.a.a.a.ao:
+    int a -> a
+com.crashlytics.android.internal.aP -> com.a.a.a.ap:
+    java.util.concurrent.atomic.AtomicReference a -> a
+    com.crashlytics.android.internal.aT b -> b
+    boolean c -> c
+    42:42:com.crashlytics.android.internal.aP a() -> a
+    59:90:com.crashlytics.android.internal.aP a(android.content.Context,com.crashlytics.android.internal.at,java.lang.String,java.lang.String,java.lang.String) -> a
+    94:94:com.crashlytics.android.internal.aU b() -> b
+    116:117:java.lang.Object a(com.crashlytics.android.internal.aR,java.lang.Object) -> a
+    125:127:boolean c() -> c
+    135:142:boolean d() -> d
+    158:210:java.lang.String a(java.lang.String,java.lang.String,android.content.Context) -> a
+com.crashlytics.android.internal.aQ -> com.a.a.a.aq:
+    com.crashlytics.android.internal.aP a -> a
+    33:33:com.crashlytics.android.internal.aP a() -> a
+com.crashlytics.android.internal.aR -> com.a.a.a.ar:
+    java.lang.Object a(com.crashlytics.android.internal.aU) -> a
+com.crashlytics.android.internal.aS -> com.a.a.a.as:
+    com.crashlytics.android.internal.aS a -> a
+    com.crashlytics.android.internal.aS b -> b
+    com.crashlytics.android.internal.aS c -> c
+    com.crashlytics.android.internal.aS[] d -> d
+    8:8:com.crashlytics.android.internal.aS[] values() -> values
+    8:8:com.crashlytics.android.internal.aS valueOf(java.lang.String) -> valueOf
+com.crashlytics.android.internal.aT -> com.a.a.a.at:
+    com.crashlytics.android.internal.aW a -> a
+    com.crashlytics.android.internal.aV b -> b
+    com.crashlytics.android.internal.af c -> c
+    com.crashlytics.android.internal.aK d -> d
+    com.crashlytics.android.internal.aX e -> e
+    40:64:com.crashlytics.android.internal.aU a(com.crashlytics.android.internal.aS) -> a
+    68:99:com.crashlytics.android.internal.aU b(com.crashlytics.android.internal.aS) -> b
+    103:108:void a(org.json.JSONObject,java.lang.String) -> a
+com.crashlytics.android.internal.aU -> com.a.a.a.au:
+    com.crashlytics.android.internal.aJ a -> a
+    com.crashlytics.android.internal.aO b -> b
+    com.crashlytics.android.internal.aN c -> c
+    com.crashlytics.android.internal.aM d -> d
+    com.crashlytics.android.internal.aH e -> e
+    long f -> f
+com.crashlytics.android.internal.aV -> com.a.a.a.av:
+    18:29:com.crashlytics.android.internal.aU a$54490654(org.json.JSONObject) -> a
+com.crashlytics.android.internal.aW -> com.a.a.a.aw:
+    java.lang.String a -> a
+    java.lang.String b -> b
+    java.lang.String c -> c
+    java.lang.String d -> d
+    java.lang.String e -> e
+    int f -> f
+    java.lang.String g -> g
+com.crashlytics.android.internal.aX -> com.a.a.a.ax:
+    org.json.JSONObject a(com.crashlytics.android.internal.aW) -> a
+com.crashlytics.android.internal.aa -> com.a.a.a.ay:
+    682:682:int compare(java.lang.Object,java.lang.Object) -> compare
+com.crashlytics.android.internal.ab -> com.a.a.a.az:
+    com.crashlytics.android.internal.ab a -> a
+    com.crashlytics.android.internal.ab b -> b
+    com.crashlytics.android.internal.ab c -> c
+    com.crashlytics.android.internal.ab d -> d
+    com.crashlytics.android.internal.ab e -> e
+    com.crashlytics.android.internal.ab f -> f
+    com.crashlytics.android.internal.ab g -> g
+    com.crashlytics.android.internal.ab h -> h
+    com.crashlytics.android.internal.ab i -> i
+    com.crashlytics.android.internal.ab j -> j
+    java.util.Map k -> k
+    com.crashlytics.android.internal.ab[] l -> l
+    147:147:com.crashlytics.android.internal.ab[] values() -> values
+    147:147:com.crashlytics.android.internal.ab valueOf(java.lang.String) -> valueOf
+    171:183:com.crashlytics.android.internal.ab a() -> a
+com.crashlytics.android.internal.ac -> com.a.a.a.ba:
+    java.lang.String a -> a
+    16:16:java.lang.String a() -> a
+com.crashlytics.android.internal.ad -> com.a.a.a.bb:
+com.crashlytics.android.internal.af -> com.a.a.a.bc:
+    22:25:java.util.concurrent.ExecutorService a(java.lang.String) -> a
+    29:32:java.util.concurrent.ScheduledExecutorService b(java.lang.String) -> b
+    36:38:java.util.concurrent.ThreadFactory c(java.lang.String) -> c
+    54:55:void a(java.lang.String,java.util.concurrent.ExecutorService) -> a
+com.crashlytics.android.internal.ag -> com.a.a.a.bd:
+    com.crashlytics.android.internal.ag a -> a
+    com.crashlytics.android.internal.ag b -> b
+    com.crashlytics.android.internal.ag c -> c
+    com.crashlytics.android.internal.ag d -> d
+    int e -> e
+    com.crashlytics.android.internal.ag[] f -> f
+    8:8:com.crashlytics.android.internal.ag[] values() -> values
+    8:8:com.crashlytics.android.internal.ag valueOf(java.lang.String) -> valueOf
+    18:18:int a() -> a
+    23:23:java.lang.String toString() -> toString
+    33:36:com.crashlytics.android.internal.ag a(java.lang.String) -> a
+com.crashlytics.android.internal.ah -> com.a.a.a.be:
+    java.io.File a -> a
+    java.lang.String b -> b
+    com.crashlytics.android.internal.ao c -> c
+    java.io.File d -> d
+    java.io.File e -> e
+    50:51:void a(byte[]) -> a
+    55:55:int a() -> a
+    139:139:boolean b() -> b
+    60:65:void a(java.lang.String) -> a
+    104:112:java.util.List a$22f3aa59() -> c
+    125:125:java.util.List c() -> d
+    117:121:void a(java.util.List) -> a
+    131:135:void d() -> e
+    144:144:boolean a(int,int) -> a
+com.crashlytics.android.internal.ai -> com.a.a.a.bf:
+    void b() -> b
+com.crashlytics.android.internal.aj -> com.a.a.a.bg:
+    java.lang.String a -> a
+    java.util.concurrent.atomic.AtomicLong b -> b
+    41:48:java.lang.Thread newThread(java.lang.Runnable) -> newThread
+com.crashlytics.android.internal.ak -> com.a.a.a.bh:
+    java.lang.Runnable a -> a
+    44:45:void a() -> a
+com.crashlytics.android.internal.al -> com.a.a.a.bi:
+    java.lang.String a -> a
+    java.util.concurrent.ExecutorService b -> b
+    long c -> c
+    java.util.concurrent.TimeUnit d -> d
+    63:76:void a() -> a
+com.crashlytics.android.internal.am -> com.a.a.a.bj:
+    java.util.regex.Pattern a -> a
+    java.lang.String b -> b
+    java.util.concurrent.locks.ReentrantLock c -> c
+    boolean d -> d
+    boolean e -> e
+    android.content.Context f -> f
+    100:100:boolean a() -> a
+    105:108:boolean a(java.lang.String) -> a
+    116:116:java.lang.String b(java.lang.String) -> b
+    127:138:java.lang.String b() -> b
+    146:146:java.lang.String c() -> c
+    154:154:java.lang.String d() -> d
+    159:159:java.lang.String c(java.lang.String) -> c
+    169:184:java.lang.String e() -> e
+    193:204:java.lang.String a(android.content.SharedPreferences) -> a
+    215:223:java.util.Map f() -> f
+    227:230:void a(java.util.Map,com.crashlytics.android.internal.an,java.lang.String) -> a
+    233:243:java.lang.String g() -> g
+    283:293:java.lang.String h() -> h
+    298:306:java.lang.String i() -> i
+com.crashlytics.android.internal.an -> com.a.a.a.bk:
+    com.crashlytics.android.internal.an a -> a
+    com.crashlytics.android.internal.an b -> b
+    com.crashlytics.android.internal.an c -> c
+    com.crashlytics.android.internal.an d -> d
+    com.crashlytics.android.internal.an e -> e
+    int f -> f
+    com.crashlytics.android.internal.an[] g -> g
+    60:60:com.crashlytics.android.internal.an[] values() -> values
+    60:60:com.crashlytics.android.internal.an valueOf(java.lang.String) -> valueOf
+com.crashlytics.android.internal.ao -> com.a.a.a.bl:
+    java.util.logging.Logger a -> a
+    java.io.RandomAccessFile b -> b
+    int c -> c
+    int d -> d
+    com.crashlytics.android.internal.aq e -> e
+    com.crashlytics.android.internal.aq f -> f
+    byte[] g -> g
+    128:132:void a(byte[],int,int) -> a
+    139:144:void a(byte[],int[]) -> a
+    148:148:int a(byte[],int) -> a
+    175:178:void a(int,int,int,int) -> a
+    182:186:com.crashlytics.android.internal.aq a(int) -> a
+    212:212:java.io.RandomAccessFile a(java.io.File) -> a
+    217:217:int b(int) -> b
+    229:242:void a$101cc16b(int,byte[],int) -> a
+    273:274:void a(byte[]) -> a
+    286:313:void b$1cf967a4(byte[],int) -> b
+    317:328:int a() -> a
+    341:341:boolean b() -> b
+    350:391:void c(int) -> c
+    422:428:void a(com.crashlytics.android.internal.as) -> a
+    436:439:java.lang.Object b(java.lang.Object,java.lang.String) -> b
+    524:525:void close() -> close
+    532:532:boolean a(int,int) -> a
+    537:562:java.lang.String toString() -> toString
+    56:56:int a(com.crashlytics.android.internal.ao,int) -> a
+    56:56:java.lang.Object a(java.lang.Object,java.lang.String) -> a
+    56:56:void a(com.crashlytics.android.internal.ao,int,byte[],int,int) -> a
+    56:56:java.io.RandomAccessFile a(com.crashlytics.android.internal.ao) -> a
+com.crashlytics.android.internal.ap -> com.a.a.a.bm:
+    boolean a -> a
+    java.lang.StringBuilder b -> b
+    550:556:void a(java.io.InputStream,int) -> a
+com.crashlytics.android.internal.aq -> com.a.a.a.bn:
+    com.crashlytics.android.internal.aq a -> a
+    int b -> b
+    int c -> c
+    593:593:java.lang.String toString() -> toString
+com.crashlytics.android.internal.ar -> com.a.a.a.bo:
+    int a -> a
+    int b -> b
+    com.crashlytics.android.internal.ao c -> c
+    454:467:int read(byte[],int,int) -> read
+    473:480:int read() -> read
+com.crashlytics.android.internal.as -> com.a.a.a.bp:
+    void a(java.io.InputStream,int) -> a
+com.crashlytics.android.internal.at -> com.a.a.a.bq:
+    com.crashlytics.android.internal.t a -> a
+    com.crashlytics.android.internal.aE b -> b
+    javax.net.ssl.SSLSocketFactory c -> c
+    boolean d -> d
+    23:55:java.security.cert.X509Certificate[] a(java.security.cert.X509Certificate[],com.crashlytics.android.internal.aG) -> a
+    60:70:boolean a(java.security.cert.X509Certificate,java.security.cert.X509Certificate) -> a
+    67:98:com.crashlytics.android.internal.aw a(com.crashlytics.android.internal.av,java.lang.String,java.util.Map) -> a
+    106:109:javax.net.ssl.SSLSocketFactory b() -> a
+    113:126:javax.net.ssl.SSLSocketFactory c() -> b
+com.crashlytics.android.internal.au -> com.a.a.a.br:
+    int[] a -> a
+com.crashlytics.android.internal.av -> com.a.a.a.bs:
+    com.crashlytics.android.internal.av a -> a
+    com.crashlytics.android.internal.av b -> b
+    com.crashlytics.android.internal.av c -> c
+    com.crashlytics.android.internal.av d -> d
+    com.crashlytics.android.internal.av[] e -> e
+    3:3:com.crashlytics.android.internal.av[] values() -> values
+    3:3:com.crashlytics.android.internal.av valueOf(java.lang.String) -> valueOf
+com.crashlytics.android.internal.aw -> com.a.a.a.bt:
+    com.crashlytics.android.internal.az a -> a
+    java.net.HttpURLConnection b -> b
+    java.net.URL c -> c
+    java.lang.String d -> d
+    com.crashlytics.android.internal.aD e -> e
+    boolean f -> f
+    boolean g -> g
+    boolean h -> h
+    int i -> i
+    259:262:java.lang.String c(java.lang.String) -> c
+    756:776:java.lang.String c(java.lang.CharSequence) -> c
+    791:820:java.lang.String a(java.lang.CharSequence,java.util.Map) -> c
+    900:901:com.crashlytics.android.internal.aw a$210b2815(java.lang.CharSequence,java.util.Map) -> a
+    956:957:com.crashlytics.android.internal.aw b$210b2815(java.lang.CharSequence,java.util.Map) -> b
+    985:985:com.crashlytics.android.internal.aw a(java.lang.CharSequence) -> a
+    1041:1041:com.crashlytics.android.internal.aw b(java.lang.CharSequence) -> b
+    1331:1338:java.net.HttpURLConnection e() -> g
+    1344:1344:java.lang.String toString() -> toString
+    1353:1355:java.net.HttpURLConnection a() -> a
+    1388:1391:int b() -> b
+    1574:1579:java.lang.String d(java.lang.String) -> d
+    1590:1590:java.lang.String c() -> c
+    1664:1680:java.io.InputStream f() -> h
+    1852:1853:com.crashlytics.android.internal.aw a$17d553c5() -> d
+    1864:1865:com.crashlytics.android.internal.aw a(java.lang.String,java.lang.String) -> a
+    1900:1900:com.crashlytics.android.internal.aw a(java.util.Map$Entry) -> a
+    1911:1912:java.lang.String a(java.lang.String) -> a
+    2071:2101:java.lang.String c(java.lang.String,java.lang.String) -> c
+    2140:2141:com.crashlytics.android.internal.aw a$413b178c() -> e
+    2401:2401:com.crashlytics.android.internal.aw a(java.io.InputStream,java.io.OutputStream) -> a
+    2444:2457:com.crashlytics.android.internal.aw g() -> i
+    2469:2471:com.crashlytics.android.internal.aw h() -> j
+    2482:2487:com.crashlytics.android.internal.aw i() -> k
+    2497:2503:com.crashlytics.android.internal.aw j() -> l
+    2529:2537:com.crashlytics.android.internal.aw a(java.lang.String,java.lang.String,java.lang.String) -> a
+    2548:2548:com.crashlytics.android.internal.aw b(java.lang.String,java.lang.String) -> b
+    2578:2584:com.crashlytics.android.internal.aw a$178ab92a$443694e0(java.lang.String,java.lang.String) -> d
+    2596:2596:com.crashlytics.android.internal.aw a(java.lang.String,java.lang.Number) -> a
+    2650:2661:com.crashlytics.android.internal.aw a(java.lang.String,java.lang.String,java.lang.String,java.io.File) -> a
+    2691:2697:com.crashlytics.android.internal.aw a(java.lang.String,java.lang.String,java.lang.String,java.io.InputStream) -> a
+    2709:2709:com.crashlytics.android.internal.aw d(java.lang.String,java.lang.String) -> e
+    2796:2801:com.crashlytics.android.internal.aw d(java.lang.CharSequence) -> d
+    2970:2970:java.lang.String d() -> f
+    94:94:java.lang.String b(java.lang.String) -> b
+    94:94:int a(com.crashlytics.android.internal.aw) -> a
+com.crashlytics.android.internal.ax -> com.a.a.a.bu:
+    java.io.InputStream a -> a
+    java.io.OutputStream b -> b
+    com.crashlytics.android.internal.aw c -> c
+    2401:2401:java.lang.Object a() -> a
+com.crashlytics.android.internal.ay -> com.a.a.a.bv:
+    java.io.Closeable a -> a
+    boolean b -> b
+    668:678:void b() -> b
+com.crashlytics.android.internal.az -> com.a.a.a.bw:
+    com.crashlytics.android.internal.az a -> a
+    java.net.HttpURLConnection a(java.net.URL) -> a
+com.crashlytics.android.internal.b -> com.a.a.a.bx:
+    java.util.concurrent.ConcurrentMap b -> a
+    java.util.concurrent.ConcurrentMap c -> b
+    java.lang.String d -> c
+    com.crashlytics.android.internal.m e -> d
+    com.crashlytics.android.internal.i f -> e
+    java.lang.ThreadLocal g -> f
+    java.lang.ThreadLocal h -> g
+    java.util.Map i -> h
+    170:170:java.lang.String toString() -> toString
+    185:236:void a(java.lang.Object) -> a
+    239:249:void a(com.crashlytics.android.internal.g,com.crashlytics.android.internal.h) -> a
+    442:446:void a(java.lang.String,java.lang.reflect.InvocationTargetException) -> a
+com.crashlytics.android.internal.c -> com.a.a.a.by:
+    110:110:java.lang.Object initialValue() -> initialValue
+com.crashlytics.android.internal.d -> com.a.a.a.bz:
+    117:117:java.lang.Object initialValue() -> initialValue
+com.crashlytics.android.internal.g -> com.a.a.a.ca:
+    java.lang.Object a -> a
+    java.lang.reflect.Method b -> b
+    int c -> c
+    boolean d -> d
+    64:64:boolean a() -> a
+    85:96:void a(java.lang.Object) -> a
+    101:101:java.lang.String toString() -> toString
+    105:105:int hashCode() -> hashCode
+    109:123:boolean equals(java.lang.Object) -> equals
+com.crashlytics.android.internal.h -> com.a.a.a.cb:
+    java.lang.Object a -> a
+    java.lang.reflect.Method b -> b
+    int c -> c
+    boolean d -> d
+    60:60:boolean a() -> a
+    80:91:java.lang.Object c() -> b
+    96:96:java.lang.String toString() -> toString
+    100:100:int hashCode() -> hashCode
+    104:118:boolean equals(java.lang.Object) -> equals
+com.crashlytics.android.internal.i -> com.a.a.a.cc:
+    com.crashlytics.android.internal.i a -> a
+    java.util.Map a(java.lang.Object) -> a
+    java.util.Map b(java.lang.Object) -> b
+com.crashlytics.android.internal.j -> com.a.a.a.cd:
+    33:33:java.util.Map a(java.lang.Object) -> a
+    38:38:java.util.Map b(java.lang.Object) -> b
+com.crashlytics.android.internal.k -> com.a.a.a.ce:
+com.crashlytics.android.internal.l -> com.a.a.a.cf:
+com.crashlytics.android.internal.m -> com.a.a.a.cg:
+    com.crashlytics.android.internal.m a -> a
+    com.crashlytics.android.internal.m b -> b
+    void a(com.crashlytics.android.internal.b) -> a
+com.crashlytics.android.internal.n -> com.a.a.a.ch:
+    40:40:void a(com.crashlytics.android.internal.b) -> a
+com.crashlytics.android.internal.o -> com.a.a.a.ci:
+    46:49:void a(com.crashlytics.android.internal.b) -> a
+com.crashlytics.android.internal.p -> com.a.a.a.cj:
+    android.content.Context a -> a
+    boolean b -> b
+    void c() -> d
+    com.crashlytics.android.internal.b t() -> w
+    39:51:void a(android.content.Context) -> b
+    58:58:android.content.Context getContext() -> x
+    65:65:boolean u() -> y
+com.crashlytics.android.internal.q -> com.a.a.a.ck:
+    9:9:boolean b(int) -> b
+    42:45:void a(java.lang.String,java.lang.String,java.lang.Throwable) -> a
+    49:50:void a(java.lang.String,java.lang.String) -> a
+    59:60:void b(java.lang.String,java.lang.String) -> b
+    64:65:void c(java.lang.String,java.lang.String) -> c
+    69:70:void d(java.lang.String,java.lang.String) -> d
+    74:75:void a$6ef37c42(java.lang.String,java.lang.String) -> e
+    19:52:java.lang.String a(android.content.Context,boolean) -> a
+    26:36:int a(int) -> a
+com.crashlytics.android.internal.t -> com.a.a.a.cl:
+    void a(java.lang.String,java.lang.String,java.lang.Throwable) -> a
+    void a(java.lang.String,java.lang.String) -> a
+    void b(java.lang.String,java.lang.String) -> b
+    void c(java.lang.String,java.lang.String) -> c
+    void d(java.lang.String,java.lang.String) -> d
+    void a$6ef37c42(java.lang.String,java.lang.String) -> e
+com.crashlytics.android.internal.u -> com.a.a.a.cm:
+    21:21:com.crashlytics.android.internal.b t() -> w
+com.crashlytics.android.internal.v -> com.a.a.a.cn:
+    com.crashlytics.android.internal.b a -> a
+    java.util.concurrent.atomic.AtomicReference b -> b
+    boolean c -> c
+    java.io.File d -> d
+    android.app.Application e -> e
+    java.lang.ref.WeakReference f -> f
+    java.lang.String g -> g
+    int h -> h
+    java.util.concurrent.ConcurrentHashMap i -> i
+    62:62:com.crashlytics.android.internal.v a() -> a
+    81:90:void a(android.content.Context,java.lang.Class[]) -> a
+    99:102:com.crashlytics.android.internal.u a(java.lang.Class) -> a
+    111:120:com.crashlytics.android.internal.t b() -> b
+    129:130:void a(com.crashlytics.android.internal.t) -> a
+    136:136:android.app.Application d() -> c
+    145:146:com.crashlytics.android.internal.v a(android.app.Activity) -> a
+    154:157:android.app.Activity e() -> e
+    162:187:void c() -> d
+    199:199:com.crashlytics.android.internal.b t() -> w
+    203:223:com.crashlytics.android.internal.v a(java.lang.Class[]) -> a
+    244:244:boolean f() -> f
+    248:248:int g() -> g
+    303:303:java.io.File h() -> h
+    315:315:java.lang.String i() -> i
+    22:22:com.crashlytics.android.internal.v a(com.crashlytics.android.internal.v,android.app.Activity) -> a
+com.crashlytics.android.internal.w -> com.a.a.a.co:
+    com.crashlytics.android.internal.v a -> a
+    266:267:void onActivityCreated(android.app.Activity,android.os.Bundle) -> onActivityCreated
+    271:272:void onActivityStarted(android.app.Activity) -> onActivityStarted
+    276:277:void onActivityResumed(android.app.Activity) -> onActivityResumed
+    282:282:void onActivityPaused(android.app.Activity) -> onActivityPaused
+    287:287:void onActivityStopped(android.app.Activity) -> onActivityStopped
+    292:292:void onActivitySaveInstanceState(android.app.Activity,android.os.Bundle) -> onActivitySaveInstanceState
+    297:297:void onActivityDestroyed(android.app.Activity) -> onActivityDestroyed
+com.crashlytics.android.internal.x -> com.a.a.a.cp:
+    com.crashlytics.android.internal.v a -> a
+    53:53:com.crashlytics.android.internal.v a() -> a
+com.crashlytics.android.internal.y -> com.a.a.a.cq:
+    33:33:void a(java.lang.String,java.lang.String,java.lang.Throwable) -> a
+    38:38:void a(java.lang.String,java.lang.String) -> a
+    48:48:void b(java.lang.String,java.lang.String) -> b
+    53:53:void c(java.lang.String,java.lang.String) -> c
+    58:58:void d(java.lang.String,java.lang.String) -> d
+    63:63:void a$6ef37c42(java.lang.String,java.lang.String) -> e
+com.crashlytics.android.internal.z -> com.a.a.a.cr:
+    android.os.Handler b -> a
+com.crashlytics.android.l -> com.a.a.aq:
+    com.crashlytics.android.Crashlytics a -> a
+    554:554:java.lang.Object a(com.crashlytics.android.internal.aU) -> a
+com.crashlytics.android.m -> com.a.a.ar:
+    com.crashlytics.android.Crashlytics a -> a
+    591:591:java.lang.Object a(com.crashlytics.android.internal.aU) -> a
+com.crashlytics.android.n -> com.a.a.as:
+    611:611:java.lang.Object a(com.crashlytics.android.internal.aU) -> a
+com.crashlytics.android.o -> com.a.a.at:
+    624:624:java.lang.Object a(com.crashlytics.android.internal.aU) -> a
+com.crashlytics.android.p -> com.a.a.au:
+    android.app.Activity c -> c
+    com.crashlytics.android.u a -> a
+    com.crashlytics.android.X d -> d
+    com.crashlytics.android.internal.aN e -> e
+    com.crashlytics.android.Crashlytics b -> b
+    646:703:void run() -> run
+com.crashlytics.android.q -> com.a.a.av:
+    com.crashlytics.android.p a -> a
+    651:653:void onClick(android.content.DialogInterface,int) -> onClick
+com.crashlytics.android.r -> com.a.a.aw:
+    com.crashlytics.android.p a -> a
+    683:685:void onClick(android.content.DialogInterface,int) -> onClick
+com.crashlytics.android.s -> com.a.a.ax:
+    com.crashlytics.android.p a -> a
+    694:697:void onClick(android.content.DialogInterface,int) -> onClick
+com.crashlytics.android.t -> com.a.a.ay:
+    android.content.Context a -> a
+    float b -> b
+    java.util.concurrent.CountDownLatch c -> c
+    com.crashlytics.android.Crashlytics d -> d
+    813:821:void a() -> a
+com.crashlytics.android.u -> com.a.a.az:
+    boolean a -> a
+    java.util.concurrent.CountDownLatch b -> b
+    964:966:void a(boolean) -> a
+    969:969:boolean a() -> a
+    974:978:void b() -> b
+com.crashlytics.android.v -> com.a.a.ba:
+    java.io.FilenameFilter a -> a
+    java.util.Comparator b -> b
+    java.util.Comparator c -> c
+    java.util.regex.Pattern d -> d
+    java.util.Map e -> e
+    com.crashlytics.android.d f -> f
+    java.util.concurrent.atomic.AtomicInteger g -> g
+    java.util.concurrent.atomic.AtomicBoolean h -> h
+    int i -> i
+    java.lang.Thread$UncaughtExceptionHandler j -> j
+    java.io.File k -> k
+    java.io.File l -> l
+    java.util.concurrent.atomic.AtomicBoolean m -> m
+    java.lang.String n -> n
+    android.content.BroadcastReceiver o -> o
+    android.content.BroadcastReceiver p -> p
+    com.crashlytics.android.d q -> q
+    com.crashlytics.android.d r -> r
+    java.util.concurrent.ExecutorService s -> s
+    android.app.ActivityManager$RunningAppProcessInfo t -> t
+    com.crashlytics.android.internal.ao u -> u
+    boolean v -> v
+    java.lang.Thread[] w -> w
+    java.util.List x -> x
+    java.lang.StackTraceElement[] y -> y
+    288:288:boolean a() -> a
+    293:319:void uncaughtException(java.lang.Thread,java.lang.Throwable) -> uncaughtException
+    338:338:boolean b() -> b
+    402:429:com.crashlytics.android.d a(com.crashlytics.android.internal.ao) -> a
+    436:445:void c() -> c
+    448:458:void d() -> d
+    464:477:void e() -> e
+    480:480:boolean f() -> f
+    580:580:boolean g() -> g
+    714:723:void l() -> k
+    729:759:void m() -> l
+    771:773:java.lang.String n() -> m
+    786:786:java.lang.String a(java.io.File) -> a
+    882:892:void a(com.crashlytics.android.h,java.io.File[],java.lang.String) -> a
+    895:907:void a(com.crashlytics.android.h,java.lang.String) -> a
+    913:916:void a(java.lang.String) -> a
+    930:930:java.io.File[] o() -> n
+    941:941:java.io.File[] a(java.io.FilenameFilter) -> a
+    1003:1019:void p() -> o
+    1089:1092:void a(java.lang.Throwable,java.io.OutputStream) -> a
+    1122:1142:void a(java.lang.Throwable,java.io.Writer) -> a
+    1160:1165:int q() -> p
+    1210:1210:com.crashlytics.android.d b(java.lang.String) -> b
+    1218:1278:void c(java.lang.String) -> c
+    1283:1286:int a(com.crashlytics.android.internal.an,java.lang.String) -> a
+    1292:1312:int a$140f39d0(int,com.crashlytics.android.d,com.crashlytics.android.d,int,long,long,java.util.Map,int,com.crashlytics.android.d,com.crashlytics.android.d) -> a
+    1319:1343:void a(com.crashlytics.android.h,java.io.File) -> a
+    1406:1467:void a$3f8bc74d(java.util.Date,com.crashlytics.android.h,java.lang.Thread,java.lang.Throwable,java.lang.String) -> a
+    1491:1520:void a(com.crashlytics.android.h,java.lang.Thread,java.lang.Throwable) -> a
+    1525:1533:void a(com.crashlytics.android.h,java.util.Map) -> a
+    1536:1545:int r() -> q
+    1582:1591:int a(java.lang.Thread,java.lang.StackTraceElement[],int,boolean) -> a
+    1596:1605:void a(com.crashlytics.android.h,java.lang.Thread,java.lang.StackTraceElement[],int,boolean) -> a
+    1608:1633:int a(java.lang.StackTraceElement,boolean) -> a
+    1638:1667:void a(com.crashlytics.android.h,int,java.lang.StackTraceElement,boolean) -> a
+    1714:1736:int a(java.lang.Thread,java.lang.Throwable,java.util.Map) -> a
+    1740:1764:int b(java.lang.Thread,java.lang.Throwable) -> a
+    1768:1770:int a(java.lang.String,java.lang.String) -> a
+    1775:1784:int a$45a61cda(int,int,long,long) -> a
+    1793:1830:int a(java.lang.Throwable,int) -> a
+    1834:1840:int s() -> r
+    1861:1867:void h() -> h
+    1875:1896:void a(java.io.File[]) -> a
+    1936:1942:java.lang.Object a(java.util.concurrent.Callable) -> a
+    1958:1970:java.util.concurrent.Future a(java.lang.Runnable) -> a
+    1986:1999:java.util.concurrent.Future b(java.util.concurrent.Callable) -> b
+    66:66:java.util.regex.Pattern i() -> i
+    66:66:boolean a(com.crashlytics.android.v,boolean) -> a
+    66:66:void a(com.crashlytics.android.v,java.util.Date,java.lang.Thread,java.lang.Throwable) -> a
+    66:66:java.util.concurrent.atomic.AtomicBoolean a(com.crashlytics.android.v) -> a
+    66:66:void b(com.crashlytics.android.v) -> b
+    66:66:void c(com.crashlytics.android.v) -> c
+    66:66:java.io.File f(com.crashlytics.android.v) -> d
+    66:66:java.util.Map j() -> j
+    66:66:java.io.File[] a(com.crashlytics.android.v,java.io.FilenameFilter) -> a
+com.crashlytics.android.w -> com.a.a.bb:
+    127:127:boolean accept(java.io.File,java.lang.String) -> accept
+com.crashlytics.android.y -> com.a.a.bc:
+    byte[] a -> a
+    int[] b -> b
+    418:421:void a(java.io.InputStream,int) -> a
+com.crashlytics.android.z -> com.a.a.bd:
+    com.crashlytics.android.v a -> a
+    436:436:java.lang.Object call() -> call
+com.googlecode.androidannotations.api.SdkVersionHelper -> com.b.a.a.a:
     24:27:int getSdkInt() -> a
 com.yairkukielka.feedhungry.EntryListFragment -> com.yairkukielka.feedhungry.a:
     java.lang.String TAG -> j
+    android.support.v4.app.Fragment loadingFragment -> k
     java.lang.String continuation -> a
-    android.util.DisplayMetrics metrics -> k
-    java.lang.String streamTitle -> l
     android.widget.ListView mLvPicasa -> b
     boolean mHasData -> c
     boolean mInError -> d
@@ -6600,33 +7656,33 @@ com.yairkukielka.feedhungry.EntryListFragment -> com.yairkukielka.feedhungry.a:
     java.lang.String streamId -> g
     java.lang.String accessToken -> h
     java.lang.Boolean isMix -> i
-    99:133:void afterViews() -> a
-    136:140:void loadPage() -> c
-    214:217:java.lang.String getContinuationParameter() -> d
-    227:230:java.lang.String getOnlyUnreadParameter() -> e
-    135:135:void access$0(com.yairkukielka.feedhungry.EntryListFragment) -> a
-    81:81:java.lang.String access$1(com.yairkukielka.feedhungry.EntryListFragment) -> b
-    81:81:void access$2(com.yairkukielka.feedhungry.EntryListFragment,java.lang.String) -> a
-    201:201:void access$3$3f9ade71(com.yairkukielka.feedhungry.EntryListFragment) -> c
-    62:62:java.lang.String access$4() -> b
+    98:100:void onCreate(android.os.Bundle) -> onCreate
+    105:139:void afterViews() -> a
+    142:146:void loadPage() -> c
+    223:226:java.lang.String getContinuationParameter() -> d
+    236:239:java.lang.String getOnlyUnreadParameter() -> e
+    141:141:void access$0(com.yairkukielka.feedhungry.EntryListFragment) -> a
+    210:210:void access$1$3f9ade71(com.yairkukielka.feedhungry.EntryListFragment) -> b
+    305:305:void access$2(com.yairkukielka.feedhungry.EntryListFragment) -> c
+    62:62:java.lang.String access$3() -> b
 com.yairkukielka.feedhungry.EntryListFragment$1 -> com.yairkukielka.feedhungry.b:
     com.yairkukielka.feedhungry.EntryListFragment this$0 -> a
-    110:127:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+    116:133:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
 com.yairkukielka.feedhungry.EntryListFragment$2 -> com.yairkukielka.feedhungry.c:
     com.yairkukielka.feedhungry.EntryListFragment this$0 -> a
     1:1:void onResponse(java.lang.Object) -> a
 com.yairkukielka.feedhungry.EntryListFragment$3 -> com.yairkukielka.feedhungry.d:
     com.yairkukielka.feedhungry.EntryListFragment this$0 -> a
-    193:197:void onErrorResponse(com.android.volley.VolleyError) -> a
+    199:206:void onErrorResponse(com.android.volley.VolleyError) -> a
 com.yairkukielka.feedhungry.EntryListFragment$EndlessScrollListener -> com.yairkukielka.feedhungry.e:
     int visibleThreshold -> c
     int currentPage -> d
     int previousTotal -> e
     boolean loading -> f
-    android.support.v4.app.Fragment loadingFragment -> a
+    android.support.v4.app.Fragment srcollerLoadingFragment -> a
     com.yairkukielka.feedhungry.EntryListFragment this$0 -> b
-    310:332:void onScroll(android.widget.AbsListView,int,int,int) -> onScroll
-    337:337:void onScrollStateChanged(android.widget.AbsListView,int) -> onScrollStateChanged
+    339:361:void onScroll(android.widget.AbsListView,int,int,int) -> onScroll
+    366:366:void onScrollStateChanged(android.widget.AbsListView,int) -> onScrollStateChanged
 com.yairkukielka.feedhungry.EntryListFragment_ -> com.yairkukielka.feedhungry.f:
     android.view.View contentView_ -> j
     28:30:void onCreate(android.os.Bundle) -> onCreate
@@ -6653,6 +7709,7 @@ com.yairkukielka.feedhungry.FeedEntryActivity -> com.yairkukielka.feedhungry.Fee
     android.view.animation.Animation webViewAnimation -> q
     android.view.animation.Animation titleFadeInAnimation -> r
     android.support.v4.app.Fragment loadingFragment -> s
+    int scroll -> t
     java.lang.String accessToken -> a
     java.lang.String entryId -> b
     java.lang.String entryAuthor -> c
@@ -6666,39 +7723,41 @@ com.yairkukielka.feedhungry.FeedEntryActivity -> com.yairkukielka.feedhungry.Fee
     android.view.View transparentView -> k
     android.widget.RelativeLayout titleLayout -> l
     com.android.volley.toolbox.NetworkImageView bgImage -> m
-    120:151:void afterViews() -> a
-    274:277:void onBackPressed() -> onBackPressed
-    287:287:com.android.volley.Response$ErrorListener createMyReqErrorListener() -> c
-    328:332:void openEntryInBrowser(java.lang.String) -> a
-    336:337:void setTitle(java.lang.CharSequence) -> setTitle
-    341:344:boolean onCreateOptionsMenu(com.actionbarsherlock.view.Menu) -> onCreateOptionsMenu
-    349:366:boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem) -> onOptionsItemSelected
-    373:379:boolean onPrepareOptionsMenu(com.actionbarsherlock.view.Menu) -> onPrepareOptionsMenu
-    435:449:void markEntry(java.lang.String,com.android.volley.Response$Listener) -> a
-    452:452:com.android.volley.Response$Listener getSuccessListener(java.lang.String) -> b
-    78:78:void access$0(com.yairkukielka.feedhungry.FeedEntryActivity,com.yairkukielka.feedhungry.feedly.Entry) -> a
-    78:78:com.yairkukielka.feedhungry.feedly.Entry access$1(com.yairkukielka.feedhungry.FeedEntryActivity) -> a
-    82:82:android.view.animation.Animation access$2(com.yairkukielka.feedhungry.FeedEntryActivity) -> b
-    84:84:android.support.v4.app.Fragment access$3(com.yairkukielka.feedhungry.FeedEntryActivity) -> c
-    80:80:android.view.animation.Animation access$4(com.yairkukielka.feedhungry.FeedEntryActivity) -> d
-    451:451:com.android.volley.Response$Listener access$5$68a42c8a(com.yairkukielka.feedhungry.FeedEntryActivity) -> e
-    434:434:void access$6(com.yairkukielka.feedhungry.FeedEntryActivity,java.lang.String,com.android.volley.Response$Listener) -> a
-    282:282:void access$7(com.yairkukielka.feedhungry.FeedEntryActivity,java.lang.String) -> a
-    57:57:java.lang.String access$8() -> b
-    327:327:void access$9(com.yairkukielka.feedhungry.FeedEntryActivity,java.lang.String) -> b
+    132:136:void onCreate(android.os.Bundle) -> onCreate
+    142:172:void afterViews() -> a
+    188:189:void onConfigurationChanged(android.content.res.Configuration) -> onConfigurationChanged
+    282:285:void onBackPressed() -> onBackPressed
+    301:301:com.android.volley.Response$ErrorListener createMyReqErrorListener() -> c
+    343:347:void openEntryInBrowser(java.lang.String) -> a
+    351:352:void setTitle(java.lang.CharSequence) -> setTitle
+    356:359:boolean onCreateOptionsMenu(com.actionbarsherlock.view.Menu) -> onCreateOptionsMenu
+    364:381:boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem) -> onOptionsItemSelected
+    388:394:boolean onPrepareOptionsMenu(com.actionbarsherlock.view.Menu) -> onPrepareOptionsMenu
+    450:464:void markEntry(java.lang.String,com.android.volley.Response$Listener) -> a
+    467:467:com.android.volley.Response$Listener getSuccessListener(java.lang.String) -> b
+    89:89:void access$0(com.yairkukielka.feedhungry.FeedEntryActivity,com.yairkukielka.feedhungry.feedly.Entry) -> a
+    89:89:com.yairkukielka.feedhungry.feedly.Entry access$1(com.yairkukielka.feedhungry.FeedEntryActivity) -> a
+    93:93:android.view.animation.Animation access$2(com.yairkukielka.feedhungry.FeedEntryActivity) -> b
+    95:95:android.support.v4.app.Fragment access$3(com.yairkukielka.feedhungry.FeedEntryActivity) -> c
+    91:91:android.view.animation.Animation access$4(com.yairkukielka.feedhungry.FeedEntryActivity) -> d
+    466:466:com.android.volley.Response$Listener access$5$68a42c8a(com.yairkukielka.feedhungry.FeedEntryActivity) -> e
+    449:449:void access$6(com.yairkukielka.feedhungry.FeedEntryActivity,java.lang.String,com.android.volley.Response$Listener) -> a
+    290:290:void access$7(com.yairkukielka.feedhungry.FeedEntryActivity,java.lang.String) -> a
+    59:59:java.lang.String access$8() -> b
+    342:342:void access$9(com.yairkukielka.feedhungry.FeedEntryActivity,java.lang.String) -> b
 com.yairkukielka.feedhungry.FeedEntryActivity$1 -> com.yairkukielka.feedhungry.h:
     com.yairkukielka.feedhungry.FeedEntryActivity this$0 -> a
     1:1:void onResponse(java.lang.Object) -> a
 com.yairkukielka.feedhungry.FeedEntryActivity$1$1 -> com.yairkukielka.feedhungry.i:
     com.yairkukielka.feedhungry.FeedEntryActivity$1 this$1 -> a
-    230:232:boolean shouldOverrideUrlLoading(android.webkit.WebView,java.lang.String) -> shouldOverrideUrlLoading
-    245:256:void onPageFinished(android.webkit.WebView,java.lang.String) -> onPageFinished
+    249:251:boolean shouldOverrideUrlLoading(android.webkit.WebView,java.lang.String) -> shouldOverrideUrlLoading
+    256:264:void onPageFinished(android.webkit.WebView,java.lang.String) -> onPageFinished
 com.yairkukielka.feedhungry.FeedEntryActivity$2 -> com.yairkukielka.feedhungry.j:
     com.yairkukielka.feedhungry.FeedEntryActivity this$0 -> a
-    290:293:void onErrorResponse(com.android.volley.VolleyError) -> a
+    304:308:void onErrorResponse(com.android.volley.VolleyError) -> a
 com.yairkukielka.feedhungry.FeedEntryActivity$3 -> com.yairkukielka.feedhungry.k:
     com.yairkukielka.feedhungry.FeedEntryActivity this$0 -> a
-    312:316:void onClick(android.view.View) -> onClick
+    327:331:void onClick(android.view.View) -> onClick
 com.yairkukielka.feedhungry.FeedEntryActivity$4 -> com.yairkukielka.feedhungry.l:
     com.yairkukielka.feedhungry.FeedEntryActivity this$0 -> a
     java.lang.String val$message -> b
@@ -6718,28 +7777,28 @@ com.yairkukielka.feedhungry.ListViewEntryArrayAdapter -> com.yairkukielka.feedhu
     boolean cards -> d
     android.app.Activity context -> e
     android.view.animation.Animation animation -> a
-    86:159:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-    239:239:com.android.volley.Response$Listener getActionListenerEntrySuccessListener(java.lang.String) -> a
-    248:248:com.android.volley.Response$ErrorListener createMyReqErrorListener() -> b
-    71:71:android.app.Activity access$0(com.yairkukielka.feedhungry.ListViewEntryArrayAdapter) -> a
-    217:217:void access$1(com.yairkukielka.feedhungry.ListViewEntryArrayAdapter,java.lang.String,com.yairkukielka.feedhungry.feedly.ListEntry,java.lang.String) -> a
-    286:286:void access$2(com.yairkukielka.feedhungry.ListViewEntryArrayAdapter,int,com.yairkukielka.feedhungry.feedly.ListEntry,java.lang.String) -> a
-    60:60:java.lang.String access$3() -> a
+    87:166:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+    246:246:com.android.volley.Response$Listener getActionListenerEntrySuccessListener(java.lang.String) -> a
+    255:255:com.android.volley.Response$ErrorListener createMyReqErrorListener() -> b
+    72:72:android.app.Activity access$0(com.yairkukielka.feedhungry.ListViewEntryArrayAdapter) -> a
+    224:224:void access$1(com.yairkukielka.feedhungry.ListViewEntryArrayAdapter,java.lang.String,com.yairkukielka.feedhungry.feedly.ListEntry,java.lang.String) -> a
+    293:293:void access$2(com.yairkukielka.feedhungry.ListViewEntryArrayAdapter,int,com.yairkukielka.feedhungry.feedly.ListEntry,java.lang.String) -> a
+    61:61:java.lang.String access$3() -> a
 com.yairkukielka.feedhungry.ListViewEntryArrayAdapter$1 -> com.yairkukielka.feedhungry.n:
     com.yairkukielka.feedhungry.ListViewEntryArrayAdapter this$0 -> a
     java.lang.String val$successMessage -> b
     1:1:void onResponse(java.lang.Object) -> a
 com.yairkukielka.feedhungry.ListViewEntryArrayAdapter$2 -> com.yairkukielka.feedhungry.o:
     com.yairkukielka.feedhungry.ListViewEntryArrayAdapter this$0 -> a
-    251:253:void onErrorResponse(com.android.volley.VolleyError) -> a
+    258:260:void onErrorResponse(com.android.volley.VolleyError) -> a
 com.yairkukielka.feedhungry.ListViewEntryArrayAdapter$MyCheckReadListener -> com.yairkukielka.feedhungry.p:
     com.yairkukielka.feedhungry.feedly.ListEntry entry -> a
     com.yairkukielka.feedhungry.ListViewEntryArrayAdapter this$0 -> b
-    209:214:void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
+    216:221:void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
 com.yairkukielka.feedhungry.ListViewEntryArrayAdapter$MySaveListener -> com.yairkukielka.feedhungry.q:
     com.yairkukielka.feedhungry.feedly.ListEntry entry -> a
     com.yairkukielka.feedhungry.ListViewEntryArrayAdapter this$0 -> b
-    271:282:void onClick(android.view.View) -> onClick
+    278:289:void onClick(android.view.View) -> onClick
 com.yairkukielka.feedhungry.ListViewEntryArrayAdapter$ViewHolder -> com.yairkukielka.feedhungry.r:
     com.android.volley.toolbox.NetworkImageView image -> a
     android.widget.TextView title -> b
@@ -6779,94 +7838,94 @@ com.yairkukielka.feedhungry.MainActivity -> com.yairkukielka.feedhungry.MainActi
     android.widget.ExpandableListView mDrawerList -> g
     android.support.v4.widget.DrawerLayout mDrawerLayout -> h
     android.view.View$OnClickListener mAboutDeveloperOnClickListener -> v
-    115:135:void afterViews() -> a
-    141:160:void startConnection() -> d
-    174:178:void getAccessToken(com.yairkukielka.feedhungry.toolbox.MyListener$TokenListener,com.yairkukielka.feedhungry.toolbox.MyListener$ErrorTokenListener) -> a
-    187:187:com.yairkukielka.feedhungry.toolbox.MyListener$TokenListener mSuccessTokenListener() -> e
-    203:203:com.yairkukielka.feedhungry.toolbox.MyListener$ErrorTokenListener mErrorTokenListener() -> f
-    224:231:void getSubscriptions() -> g
-    324:326:void paintDrawerSubscriptions() -> h
-    341:344:void onPostCreate(android.os.Bundle) -> onPostCreate
-    348:350:void onConfigurationChanged(android.content.res.Configuration) -> onConfigurationChanged
-    354:371:boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem) -> onOptionsItemSelected
-    379:383:void refresh() -> i
-    402:409:void collapseRefreshMenuItem() -> b
-    413:418:void onBackPressed() -> onBackPressed
-    425:428:boolean onPrepareOptionsMenu(com.actionbarsherlock.view.Menu) -> onPrepareOptionsMenu
-    479:499:void showEntriesFragment(java.lang.String) -> a
-    562:562:boolean onNavigationItemSelected(int,long) -> onNavigationItemSelected
-    567:570:boolean onCreateOptionsMenu(com.actionbarsherlock.view.Menu) -> onCreateOptionsMenu
-    584:589:void onActivityResult(int,int,android.content.Intent) -> onActivityResult
-    593:609:void onPostResume() -> onPostResume
-    703:705:void setTitle(java.lang.CharSequence) -> setTitle
-    827:828:java.lang.String getApplicationName() -> j
-    837:840:java.lang.Object onRetainCustomNonConfigurationInstance() -> onRetainCustomNonConfigurationInstance
-    98:98:void access$0(com.yairkukielka.feedhungry.MainActivity,java.lang.String) -> a
-    223:223:void access$1(com.yairkukielka.feedhungry.MainActivity) -> a
-    217:217:void access$2$2c797bed(com.yairkukielka.feedhungry.MainActivity) -> b
-    99:99:java.lang.String access$3(com.yairkukielka.feedhungry.MainActivity) -> c
-    477:477:void access$4(com.yairkukielka.feedhungry.MainActivity,java.lang.String) -> b
-    100:100:void access$5(com.yairkukielka.feedhungry.MainActivity,java.util.List) -> a
-    100:100:java.util.List access$6(com.yairkukielka.feedhungry.MainActivity) -> d
-    63:63:java.lang.String access$7() -> c
-    504:504:void access$8(com.yairkukielka.feedhungry.MainActivity,java.util.List) -> b
-    277:277:void access$9$68c70bd4(com.yairkukielka.feedhungry.MainActivity) -> e
-    323:323:void access$10(com.yairkukielka.feedhungry.MainActivity) -> f
-    186:186:com.yairkukielka.feedhungry.toolbox.MyListener$TokenListener access$11(com.yairkukielka.feedhungry.MainActivity) -> g
-    202:202:com.yairkukielka.feedhungry.toolbox.MyListener$ErrorTokenListener access$12(com.yairkukielka.feedhungry.MainActivity) -> h
-    172:172:void access$13(com.yairkukielka.feedhungry.MainActivity,com.yairkukielka.feedhungry.toolbox.MyListener$TokenListener,com.yairkukielka.feedhungry.toolbox.MyListener$ErrorTokenListener) -> a
-    97:97:java.lang.CharSequence access$14(com.yairkukielka.feedhungry.MainActivity) -> i
-    96:96:java.lang.CharSequence access$15(com.yairkukielka.feedhungry.MainActivity) -> j
-    438:438:void access$16(com.yairkukielka.feedhungry.MainActivity,android.widget.ExpandableListView,int,int) -> a
-    458:458:void access$17(com.yairkukielka.feedhungry.MainActivity,android.widget.ExpandableListView,int) -> a
+    114:135:void afterViews() -> a
+    141:159:void startConnection() -> d
+    173:177:void getAccessToken(com.yairkukielka.feedhungry.toolbox.MyListener$TokenListener,com.yairkukielka.feedhungry.toolbox.MyListener$ErrorTokenListener) -> a
+    186:186:com.yairkukielka.feedhungry.toolbox.MyListener$TokenListener mSuccessTokenListener() -> e
+    202:202:com.yairkukielka.feedhungry.toolbox.MyListener$ErrorTokenListener mErrorTokenListener() -> f
+    223:229:void getSubscriptions() -> g
+    322:324:void paintDrawerSubscriptions() -> h
+    339:342:void onPostCreate(android.os.Bundle) -> onPostCreate
+    346:348:void onConfigurationChanged(android.content.res.Configuration) -> onConfigurationChanged
+    352:369:boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem) -> onOptionsItemSelected
+    377:381:void refresh() -> i
+    400:407:void collapseRefreshMenuItem() -> b
+    411:416:void onBackPressed() -> onBackPressed
+    423:426:boolean onPrepareOptionsMenu(com.actionbarsherlock.view.Menu) -> onPrepareOptionsMenu
+    477:496:void showEntriesFragment(java.lang.String) -> a
+    559:559:boolean onNavigationItemSelected(int,long) -> onNavigationItemSelected
+    564:567:boolean onCreateOptionsMenu(com.actionbarsherlock.view.Menu) -> onCreateOptionsMenu
+    581:586:void onActivityResult(int,int,android.content.Intent) -> onActivityResult
+    590:606:void onPostResume() -> onPostResume
+    700:702:void setTitle(java.lang.CharSequence) -> setTitle
+    824:825:java.lang.String getApplicationName() -> j
+    834:837:java.lang.Object onRetainCustomNonConfigurationInstance() -> onRetainCustomNonConfigurationInstance
+    97:97:void access$0(com.yairkukielka.feedhungry.MainActivity,java.lang.String) -> a
+    222:222:void access$1(com.yairkukielka.feedhungry.MainActivity) -> a
+    216:216:void access$2$2c797bed(com.yairkukielka.feedhungry.MainActivity) -> b
+    98:98:java.lang.String access$3(com.yairkukielka.feedhungry.MainActivity) -> c
+    475:475:void access$4(com.yairkukielka.feedhungry.MainActivity,java.lang.String) -> b
+    99:99:void access$5(com.yairkukielka.feedhungry.MainActivity,java.util.List) -> a
+    99:99:java.util.List access$6(com.yairkukielka.feedhungry.MainActivity) -> d
+    62:62:java.lang.String access$7() -> c
+    501:501:void access$8(com.yairkukielka.feedhungry.MainActivity,java.util.List) -> b
+    275:275:void access$9$68c70bd4(com.yairkukielka.feedhungry.MainActivity) -> e
+    321:321:void access$10(com.yairkukielka.feedhungry.MainActivity) -> f
+    185:185:com.yairkukielka.feedhungry.toolbox.MyListener$TokenListener access$11(com.yairkukielka.feedhungry.MainActivity) -> g
+    201:201:com.yairkukielka.feedhungry.toolbox.MyListener$ErrorTokenListener access$12(com.yairkukielka.feedhungry.MainActivity) -> h
+    171:171:void access$13(com.yairkukielka.feedhungry.MainActivity,com.yairkukielka.feedhungry.toolbox.MyListener$TokenListener,com.yairkukielka.feedhungry.toolbox.MyListener$ErrorTokenListener) -> a
+    96:96:java.lang.CharSequence access$14(com.yairkukielka.feedhungry.MainActivity) -> i
+    95:95:java.lang.CharSequence access$15(com.yairkukielka.feedhungry.MainActivity) -> j
+    436:436:void access$16(com.yairkukielka.feedhungry.MainActivity,android.widget.ExpandableListView,int,int) -> a
+    456:456:void access$17(com.yairkukielka.feedhungry.MainActivity,android.widget.ExpandableListView,int) -> a
 com.yairkukielka.feedhungry.MainActivity$1 -> com.yairkukielka.feedhungry.u:
     com.yairkukielka.feedhungry.MainActivity this$0 -> a
-    641:648:void onClick(android.view.View) -> onClick
+    638:645:void onClick(android.view.View) -> onClick
 com.yairkukielka.feedhungry.MainActivity$10 -> com.yairkukielka.feedhungry.v:
     com.yairkukielka.feedhungry.MainActivity this$0 -> a
-    692:693:boolean onGroupClick(android.widget.ExpandableListView,android.view.View,int,long) -> onGroupClick
+    689:690:boolean onGroupClick(android.widget.ExpandableListView,android.view.View,int,long) -> onGroupClick
 com.yairkukielka.feedhungry.MainActivity$11 -> com.yairkukielka.feedhungry.w:
     com.yairkukielka.feedhungry.MainActivity this$0 -> a
     1:1:void onResponse(java.lang.Object) -> a
 com.yairkukielka.feedhungry.MainActivity$12 -> com.yairkukielka.feedhungry.x:
     com.yairkukielka.feedhungry.MainActivity this$0 -> a
-    781:782:void onErrorResponse(com.android.volley.VolleyError) -> a
+    778:779:void onErrorResponse(com.android.volley.VolleyError) -> a
 com.yairkukielka.feedhungry.MainActivity$2 -> com.yairkukielka.feedhungry.y:
     com.yairkukielka.feedhungry.MainActivity this$0 -> a
-    190:192:void onResponse(java.lang.String) -> a
+    189:191:void onResponse(java.lang.String) -> a
 com.yairkukielka.feedhungry.MainActivity$3 -> com.yairkukielka.feedhungry.z:
     com.yairkukielka.feedhungry.MainActivity this$0 -> a
-    206:207:void onErrorResponse$552c4e01() -> a
+    205:206:void onErrorResponse$552c4e01() -> a
 com.yairkukielka.feedhungry.MainActivity$4 -> com.yairkukielka.feedhungry.aa:
     com.yairkukielka.feedhungry.MainActivity this$0 -> a
     1:1:void onResponse(java.lang.Object) -> a
 com.yairkukielka.feedhungry.MainActivity$5 -> com.yairkukielka.feedhungry.ab:
     com.yairkukielka.feedhungry.MainActivity this$0 -> a
-    259:267:void onErrorResponse(com.android.volley.VolleyError) -> a
+    257:265:void onErrorResponse(com.android.volley.VolleyError) -> a
 com.yairkukielka.feedhungry.MainActivity$6 -> com.yairkukielka.feedhungry.ac:
     com.yairkukielka.feedhungry.MainActivity this$0 -> a
     1:1:void onResponse(java.lang.Object) -> a
 com.yairkukielka.feedhungry.MainActivity$7 -> com.yairkukielka.feedhungry.ad:
     com.yairkukielka.feedhungry.MainActivity this$0 -> a
-    332:335:void onErrorResponse(com.android.volley.VolleyError) -> a
+    330:333:void onErrorResponse(com.android.volley.VolleyError) -> a
 com.yairkukielka.feedhungry.MainActivity$8 -> com.yairkukielka.feedhungry.ae:
     com.yairkukielka.feedhungry.MainActivity this$0 -> a
-    664:667:void onDrawerClosed$3c7ec8c3() -> d
-    671:674:void onDrawerOpened$3c7ec8c3() -> c
+    661:664:void onDrawerClosed$3c7ec8c3() -> d
+    668:671:void onDrawerOpened$3c7ec8c3() -> c
 com.yairkukielka.feedhungry.MainActivity$9 -> com.yairkukielka.feedhungry.af:
     com.yairkukielka.feedhungry.MainActivity this$0 -> a
-    684:685:boolean onChildClick(android.widget.ExpandableListView,android.view.View,int,int,long) -> onChildClick
+    681:682:boolean onChildClick(android.widget.ExpandableListView,android.view.View,int,int,long) -> onChildClick
 com.yairkukielka.feedhungry.MainActivity$ActivityData -> com.yairkukielka.feedhungry.ag:
     java.util.List categories -> b
     java.util.HashMap subscriptionsMap -> c
     java.lang.String lastReadStreamId -> d
     com.yairkukielka.feedhungry.MainActivity this$0 -> a
-    796:796:java.util.List getCategories() -> a
-    800:801:void setCategories(java.util.List) -> a
-    804:804:java.util.HashMap getSubscriptionsMap() -> b
-    808:809:void setSubscriptionsMap(java.util.HashMap) -> a
-    812:812:java.lang.String getLastReadStreamId() -> c
-    816:817:void setLastReadStreamId(java.lang.String) -> a
+    793:793:java.util.List getCategories() -> a
+    797:798:void setCategories(java.util.List) -> a
+    801:801:java.util.HashMap getSubscriptionsMap() -> b
+    805:806:void setSubscriptionsMap(java.util.HashMap) -> a
+    809:809:java.lang.String getLastReadStreamId() -> c
+    813:814:void setLastReadStreamId(java.lang.String) -> a
 com.yairkukielka.feedhungry.MainActivity_ -> com.yairkukielka.feedhungry.MainActivity_:
     30:33:void onCreate(android.os.Bundle) -> onCreate
     39:44:void afterSetContentView_() -> d
@@ -6884,11 +7943,11 @@ com.yairkukielka.feedhungry.WebviewFragment -> com.yairkukielka.feedhungry.ah:
     com.yairkukielka.feedhungry.toolbox.MyListener$ErrorTokenListener mErrorTokenListener -> b
     com.yairkukielka.feedhungry.toolbox.MyListener$TokenListener mTokenListener -> c
     61:64:com.yairkukielka.feedhungry.WebviewFragment getInstance(com.yairkukielka.feedhungry.toolbox.MyListener$TokenListener,com.yairkukielka.feedhungry.toolbox.MyListener$ErrorTokenListener) -> a
-    70:118:void afterViews() -> a
-    129:157:void getTokens(java.lang.Boolean,java.lang.String) -> a
-    219:219:java.lang.String access$0$6b583846(java.lang.String) -> a
-    212:212:java.lang.String access$1$6b583846(java.lang.String) -> b
-    128:128:void access$2(com.yairkukielka.feedhungry.WebviewFragment,java.lang.Boolean,java.lang.String) -> a
+    70:117:void afterViews() -> a
+    128:156:void getTokens(java.lang.Boolean,java.lang.String) -> a
+    218:218:java.lang.String access$0$6b583846(java.lang.String) -> a
+    211:211:java.lang.String access$1$6b583846(java.lang.String) -> b
+    127:127:void access$2(com.yairkukielka.feedhungry.WebviewFragment,java.lang.Boolean,java.lang.String) -> a
     54:54:android.app.Activity access$3(com.yairkukielka.feedhungry.WebviewFragment) -> a
     53:53:void access$4(com.yairkukielka.feedhungry.WebviewFragment,java.lang.String) -> a
     51:51:void access$5(com.yairkukielka.feedhungry.WebviewFragment,java.lang.String) -> b
@@ -6899,16 +7958,16 @@ com.yairkukielka.feedhungry.WebviewFragment -> com.yairkukielka.feedhungry.ah:
     52:52:java.lang.String access$10(com.yairkukielka.feedhungry.WebviewFragment) -> d
 com.yairkukielka.feedhungry.WebviewFragment$1 -> com.yairkukielka.feedhungry.ai:
     com.yairkukielka.feedhungry.WebviewFragment this$0 -> a
-    92:105:boolean shouldOverrideUrlLoading(android.webkit.WebView,java.lang.String) -> shouldOverrideUrlLoading
+    91:104:boolean shouldOverrideUrlLoading(android.webkit.WebView,java.lang.String) -> shouldOverrideUrlLoading
 com.yairkukielka.feedhungry.WebviewFragment$2 -> com.yairkukielka.feedhungry.aj:
     com.yairkukielka.feedhungry.WebviewFragment this$0 -> a
-    151:153:java.util.Map getHeaders() -> h
+    150:152:java.util.Map getHeaders() -> h
 com.yairkukielka.feedhungry.WebviewFragment$3 -> com.yairkukielka.feedhungry.ak:
     com.yairkukielka.feedhungry.WebviewFragment this$0 -> a
     1:1:void onResponse(java.lang.Object) -> a
 com.yairkukielka.feedhungry.WebviewFragment$4 -> com.yairkukielka.feedhungry.al:
     com.yairkukielka.feedhungry.WebviewFragment this$0 -> a
-    200:202:void onErrorResponse(com.android.volley.VolleyError) -> a
+    199:201:void onErrorResponse(com.android.volley.VolleyError) -> a
 com.yairkukielka.feedhungry.WebviewFragment_ -> com.yairkukielka.feedhungry.am:
     android.view.View contentView_ -> d
     26:28:void onCreate(android.os.Bundle) -> onCreate

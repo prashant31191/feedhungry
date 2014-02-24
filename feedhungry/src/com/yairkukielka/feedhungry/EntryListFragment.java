@@ -296,7 +296,7 @@ public class EntryListFragment extends SherlockFragment {
 		}		
 		FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
 		if (fragmentManager.findFragmentById(loadingFragment.getId()) == null) {
-			fragmentManager.beginTransaction().add(R.id.content_frame, loadingFragment).commit();
+			fragmentManager.beginTransaction().add(R.id.content_frame, loadingFragment).commitAllowingStateLoss();
 		}
 		
 	}

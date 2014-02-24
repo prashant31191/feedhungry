@@ -44,7 +44,7 @@ public class developerFragment extends SherlockFragment {
 					FragmentManager fragmentManager = getActivity().getSupportFragmentManager();				
 					if (fragmentManager.findFragmentById(loadingFragment.getId()) != null) {
 						//fragmentManager.beginTransaction().remove(loadingFragment).commit();
-						fragmentManager.beginTransaction().remove(loadingFragment).addToBackStack(null).commit();
+						fragmentManager.beginTransaction().remove(loadingFragment).addToBackStack(null).commitAllowingStateLoss();
 					}
 				}
 				webView.setAnimation(webViewAnimation);
