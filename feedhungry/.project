@@ -30,11 +30,4 @@
 		<nature>com.android.ide.eclipse.adt.AndroidNature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>v4</name>
-			<type>2</type>
-			<location>/home/superyair/dev/android-sdk-linux/extras/android/support/v4</location>
-		</link>
-	</linkedResources>
 </projectDescription>
