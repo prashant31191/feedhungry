@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.yairkukielka.feedhungry"
-    android:versionCode="7"
-    android:versionName="1.6" >
+    android:versionCode="8"
+    android:versionName="1.7" >
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -39,6 +39,11 @@
                 android:value=".MainActivity_" />
         </activity>
         <activity android:name=".settings.PreferencesActivity" >
+        </activity>
+        <activity android:name=".settings.LicencesActivity_" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".settings.PreferencesActivity" />
         </activity>
         <meta-data android:name="com.crashlytics.ApiKey" android:value="3a6f255eaec73bceb0c9219b19a78fa2c21bcc11"/>
     </application>

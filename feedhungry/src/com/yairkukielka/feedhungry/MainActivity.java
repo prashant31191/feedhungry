@@ -14,6 +14,7 @@ import org.json.JSONObject;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.ConnectivityManager;
@@ -52,6 +53,7 @@ import com.googlecode.androidannotations.annotations.ViewById;
 import com.yairkukielka.feedhungry.app.MyVolley;
 import com.yairkukielka.feedhungry.feedly.Category;
 import com.yairkukielka.feedhungry.feedly.Subscription;
+import com.yairkukielka.feedhungry.network.JsonCustomRequest;
 import com.yairkukielka.feedhungry.settings.PreferencesActivity;
 import com.yairkukielka.feedhungry.toolbox.MyListener;
 import com.yairkukielka.feedhungry.toolbox.NetworkUtils;
@@ -77,7 +79,8 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 	public static final String GLOBAL_ALL_SUFFIX = "/category/global.all";
 	public static final String GLOBAL_UNCATEGORIZED_SUFFIX = "/category/global.uncategorized";
 	public static final String GLOBAL_MUST_SUFFIX = "/category/global.must";
-	public static final String GLOBAL_SAVED_SUFFIX = "/tag/global.saved";
+	public static final String TAG_URL_PART = "/tag/";
+	public static final String GLOBAL_SAVED = "global.saved";
 	private boolean preferencesChanged = false;
 	public static final String UTF_8 = "utf-8";
 	private ActivityData activityData;
@@ -411,7 +414,15 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 		if (!mDrawerLayout.isDrawerOpen(linearLayout)) {
 			mDrawerLayout.openDrawer(linearLayout);
 		} else {
-			super.onBackPressed();
+			new AlertDialog.Builder(this)
+	        .setTitle(getResources().getString(R.string.exit_confirmation))
+	        .setMessage(getResources().getString(R.string.exit_confirmation_text))
+	        .setNegativeButton(android.R.string.no, null)
+	        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+	            public void onClick(DialogInterface arg0, int arg1) {
+	                MainActivity.this.finish();
+	            }
+	        }).create().show();
 		}
 	}
 
@@ -517,7 +528,7 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 
 		// add saved subscription to feedly categories
 		Subscription savedSubscription = new Subscription();
-		savedSubscription.setId(USERS_PREFIX_PATH + userId + GLOBAL_SAVED_SUFFIX);
+		savedSubscription.setId(USERS_PREFIX_PATH + userId + TAG_URL_PART + GLOBAL_SAVED);
 		String savedLabel = getResources().getString(R.string.drawer_saved);
 		savedSubscription.setTitle(savedLabel);
 
@@ -735,7 +746,7 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 			jsonRequest.put(typeName, entries);
 			// set the time
 			jsonRequest.put("asOf", String.valueOf(new Date().getTime()));
-			JsonObjectRequest myReq = NetworkUtils.getJsonPostRequest(ROOT_URL + MARKERS_PATH, jsonRequest,
+			JsonCustomRequest myReq = NetworkUtils.getJsonCustomPostRequest(ROOT_URL + MARKERS_PATH, jsonRequest,
 					getMarkEntrySuccessListener(), createMyReqErrorListener(), accessToken);
 			queue.add(myReq);
 		} catch (JSONException uex) {

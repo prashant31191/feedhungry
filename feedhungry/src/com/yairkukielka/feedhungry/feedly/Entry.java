@@ -54,7 +54,11 @@ public class Entry {
 		id = jobject.getString(ID);
 		if (jobject.has(ORIGIN)) {
 			JSONObject originObject = jobject.getJSONObject(ORIGIN);
-			originTitle = originObject.getString(TITLE);	
+			if (originObject.has(TITLE)) {
+				originTitle = originObject.getString(TITLE);
+			} else {
+				originTitle = "";
+			}
 		}
 		if (jobject.has(ORIGIN_ID)) {
 			originId = jobject.getString(ORIGIN_ID);	

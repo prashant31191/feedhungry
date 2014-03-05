@@ -93,18 +93,18 @@ public class EntryListFragment extends SherlockFragment {
 	Boolean isMix;
 
 	@Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 		setRetainInstance(true);
-    }
-	
+	}
+
 	@AfterViews
 	void afterViews() {
 
 		if (!mHasData) {
 			addLoadingFragment();
 		}
-//		mEntries.clear();
+		// mEntries.clear();
 		mAdapter = new ListViewEntryArrayAdapter(getActivity(), 0, mEntries, MyVolley.getImageLoader());
 		mLvPicasa.setAdapter(mAdapter);
 		mLvPicasa.setOnScrollListener(new EndlessScrollListener());
@@ -184,6 +184,9 @@ public class EntryListFragment extends SherlockFragment {
 					}
 					mAdapter.notifyDataSetChanged();
 				} catch (JSONException e) {
+					if (e != null && e.getMessage() != null) {
+						Log.e(TAG, e.getMessage());
+					}
 					showErrorDialog(e.getMessage());
 				}
 				removeLoadingFragment();
@@ -195,13 +198,13 @@ public class EntryListFragment extends SherlockFragment {
 		return new Response.ErrorListener() {
 			@Override
 			public void onErrorResponse(VolleyError error) {
-					removeLoadingFragment();
-					if (error != null && error.getMessage() != null) {
-						Log.e(TAG, error.getMessage());
-						// showErrorDialog(error.getMessage());
-					} else if (error != null && error.getCause() != null) {
-						Log.e(TAG, error.getCause().toString());
-					}
+				removeLoadingFragment();
+				if (error != null && error.getMessage() != null) {
+					Log.e(TAG, error.getMessage());
+					// showErrorDialog(error.getMessage());
+				} else if (error != null && error.getCause() != null) {
+					Log.e(TAG, error.getCause().toString());
+				}
 			}
 		};
 	}
@@ -293,22 +296,22 @@ public class EntryListFragment extends SherlockFragment {
 	private void addLoadingFragment() {
 		if (loadingFragment == null) {
 			loadingFragment = new LoadingFragment_();
-		}		
+		}
 		FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
 		if (fragmentManager.findFragmentById(loadingFragment.getId()) == null) {
 			fragmentManager.beginTransaction().add(R.id.content_frame, loadingFragment).commitAllowingStateLoss();
 		}
-		
+
 	}
 
-	private void removeLoadingFragment() {		
+	private void removeLoadingFragment() {
 		if (getActivity() != null) {
 			FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
 			if (loadingFragment != null && fragmentManager.findFragmentById(loadingFragment.getId()) != null) {
 				fragmentManager.beginTransaction().remove(loadingFragment).commitAllowingStateLoss();
 			}
 		}
-		
+
 	}
 
 	/**

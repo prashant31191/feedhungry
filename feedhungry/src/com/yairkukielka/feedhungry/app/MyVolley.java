@@ -21,7 +21,7 @@ import android.content.Context;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
-import com.yairkukielka.feedhungry.okhttpstack.OkHttpStack;
+import com.yairkukielka.feedhungry.network.OkHttpStack;
 import com.yairkukielka.feedhungry.toolbox.BitmapLruCache;
 
 

@@ -23,6 +23,8 @@
             android:dialogTitle="@string/pref_page_size"
             android:defaultValue="30" />
         
+        <Preference android:title="@string/licences" android:key="pref_key_licences"></Preference>
+        
         <Preference android:title="@string/logout" android:key="pref_key_logout"></Preference>
     </PreferenceCategory>
 </PreferenceScreen>

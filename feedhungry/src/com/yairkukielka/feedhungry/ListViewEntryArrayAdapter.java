@@ -49,10 +49,10 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NetworkImageView;
 import com.yairkukielka.feedhungry.app.MyVolley;
 import com.yairkukielka.feedhungry.feedly.ListEntry;
+import com.yairkukielka.feedhungry.network.JsonCustomRequest;
 import com.yairkukielka.feedhungry.settings.PreferencesActivity;
 import com.yairkukielka.feedhungry.toolbox.DateUtils;
 import com.yairkukielka.feedhungry.toolbox.NetworkUtils;
@@ -105,7 +105,7 @@ public class ListViewEntryArrayAdapter extends ArrayAdapter<ListEntry> {
 		}
 
 		ListEntry entry = getItem(position);
-		
+
 		holder.image.getLayoutParams().height = LayoutParams.WRAP_CONTENT;
 		if (entry.getVisual() != null) {
 			holder.image.setImageUrl(entry.getVisual(), mImageLoader);
@@ -224,18 +224,19 @@ public class ListViewEntryArrayAdapter extends ArrayAdapter<ListEntry> {
 	private void markEntryAs(String mark, ListEntry entry, String successMessage) {
 		RequestQueue queue = MyVolley.getRequestQueue();
 		try {
+			String accessToken = context.getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE)
+					.getString(MainActivity.SHPREF_KEY_ACCESS_TOKEN, null);
 			JSONObject jsonRequest = new JSONObject();
 			jsonRequest.put(ACTION, mark);
 			jsonRequest.put(TYPE, ENTRIES);
 			JSONArray entries = new JSONArray();
 			entries.put(entry.getId());
 			jsonRequest.put(ENTRIES_IDS, entries);
-			String accessToken = context.getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE)
-					.getString(MainActivity.SHPREF_KEY_ACCESS_TOKEN, null);
-			JsonObjectRequest myReq = NetworkUtils.getJsonPostRequest(
-					MainActivity.ROOT_URL + MainActivity.MARKERS_PATH, jsonRequest,
-					getActionListenerEntrySuccessListener(successMessage), createMyReqErrorListener(), accessToken);
+			JsonCustomRequest myReq = NetworkUtils.getJsonCustomRequest(Method.POST, MainActivity.ROOT_URL
+					+ MainActivity.MARKERS_PATH, jsonRequest, getActionListenerEntrySuccessListener(successMessage),
+					createMyReqErrorListener(), accessToken);
 			queue.add(myReq);
+
 		} catch (JSONException uex) {
 			uex.printStackTrace();
 			Log.e(TAG, "JSONException marking as read/unread");
@@ -256,7 +257,6 @@ public class ListViewEntryArrayAdapter extends ArrayAdapter<ListEntry> {
 			@Override
 			public void onErrorResponse(VolleyError error) {
 				Log.e(TAG, "Error marking entry in stream list" + error.getMessage());
-				// showErrorDialog(error.getMessage());
 			}
 		};
 	}
@@ -296,19 +296,28 @@ public class ListViewEntryArrayAdapter extends ArrayAdapter<ListEntry> {
 			JSONObject jsonRequest = new JSONObject();
 			JSONArray entries = new JSONArray();
 			entries.put(entry.getId());
-			jsonRequest.put(ENTRIES_IDS, entries);
 			SharedPreferences sprPreferences = context.getSharedPreferences(MainActivity.APP_PREFERENCES,
 					Context.MODE_PRIVATE);
 			String accessToken = sprPreferences.getString(MainActivity.SHPREF_KEY_ACCESS_TOKEN, null);
 			String userId = sprPreferences.getString(MainActivity.SHPREF_KEY_USERID_TOKEN, null);
+			String userIdEncoded = URLEncoder.encode("/" + userId.toString() + "/tag/", MainActivity.UTF_8);
+			StringBuilder url = new StringBuilder();
+			url.append(MainActivity.ROOT_URL).append(MainActivity.TAGS_PATH).append("/user").append(userIdEncoded)
+			.append(MainActivity.GLOBAL_SAVED);
 			if (accessToken != null && userId != null) {
-				String userIdEncoded = URLEncoder.encode("/" + userId.toString() + "/tag/", MainActivity.UTF_8);
-				StringBuilder url = new StringBuilder();
-				url.append(MainActivity.ROOT_URL).append(MainActivity.TAGS_PATH).append("/user").append(userIdEncoded)
-						.append("global.saved");
-				JsonObjectRequest myReq = NetworkUtils.getJsonRequestWithMethod(method, url.toString(), jsonRequest,
-						getActionListenerEntrySuccessListener(successMessage), createMyReqErrorListener(), accessToken);
-				queue.add(myReq);
+				if (method == Method.PUT) {
+					jsonRequest.put(ENTRIES_IDS, entries);
+					JsonCustomRequest myReq = NetworkUtils.getJsonCustomRequest(method, url.toString(), jsonRequest,
+							getActionListenerEntrySuccessListener(successMessage), createMyReqErrorListener(),
+							accessToken);
+					queue.add(myReq);
+				} else {
+					url.append("/" + entry.getId());
+					JsonCustomRequest myReq = NetworkUtils.getJsonCustomRequest(method, url.toString(), jsonRequest,
+							getActionListenerEntrySuccessListener(successMessage), createMyReqErrorListener(),
+							accessToken);
+					queue.add(myReq);
+				}
 			}
 		} catch (JSONException uex) {
 			Log.e(TAG, "JSONException marking as read/unread");

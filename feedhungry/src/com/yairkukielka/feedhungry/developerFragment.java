@@ -17,7 +17,7 @@ import com.googlecode.androidannotations.annotations.ViewById;
 
 @EFragment(R.layout.developer_layout)
 public class developerFragment extends SherlockFragment {
-	
+	private static final String ABOUT_ME_URL = "http://www.about.me/yair.kukielka"; 
 	// animation to show the feed content after the loading fragment shows
 	private Animation webViewAnimation;
 	// fragment that shows while loading the entry content
@@ -34,9 +34,9 @@ public class developerFragment extends SherlockFragment {
 		webViewAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.push_up_in);
 		loadingFragment = new LoadingFragment_();
 		//getFragmentManager().beginTransaction().replace(R.id.developer_frame_webview, loadingFragment).commit();
-		getFragmentManager().beginTransaction().replace(R.id.developer_frame_webview, loadingFragment).attach(loadingFragment).addToBackStack(null).commit();
+		getFragmentManager().beginTransaction().replace(R.id.developer_frame_webview, loadingFragment).attach(loadingFragment).addToBackStack(null).commitAllowingStateLoss();
 
-		webView.loadUrl("http://www.about.me/yair.kukielka");
+		webView.loadUrl(ABOUT_ME_URL);
 		webView.setWebViewClient(new WebViewClient() {
 			@Override
 			public void onPageFinished(WebView view, String url) {

@@ -9,7 +9,6 @@ import org.json.JSONObject;
 
 import android.R.color;
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -43,7 +42,6 @@ import com.android.volley.Response;
 import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NetworkImageView;
 import com.googlecode.androidannotations.annotations.AfterViews;
 import com.googlecode.androidannotations.annotations.EActivity;
@@ -51,6 +49,7 @@ import com.googlecode.androidannotations.annotations.Extra;
 import com.googlecode.androidannotations.annotations.ViewById;
 import com.yairkukielka.feedhungry.app.MyVolley;
 import com.yairkukielka.feedhungry.feedly.Entry;
+import com.yairkukielka.feedhungry.network.JsonCustomRequest;
 import com.yairkukielka.feedhungry.toolbox.DateUtils;
 import com.yairkukielka.feedhungry.toolbox.NetworkUtils;
 
@@ -68,7 +67,6 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 	private static final String ENTRY_DATE = "entryDate";
 	public static final String ACCESS_TOKEN = "accessToken";
 	private static final String STREAM_TITLE = "streamTitle";
-	private static final String EXTRA_SCROLL_POSITION = "SROLL_POS";
 	private static final String BY = " by ";
 	private static final String encoding = "utf-8";
 	private static final int WEBVIEW_TEXT_SIZE = 18;
@@ -82,7 +80,7 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 			+ "body {font-family: 'myFont';line-height:150%;}a:link {color:#70B002;}img{max-width: 100%; width:auto; height: auto;}"
 			+ "iframe{max-width: 100%; width:auto; height: auto;}</style></head>";
 	private static final String DIV_PREFIX = "<div style='background-color:transparent;padding: 10px;color:#888;font-family: myFont';>";
-	private static final String DIV_SUFIX = "</div>";	
+	private static final String DIV_SUFIX = "</div>";
 	// the action bar menu
 	private Menu actionBarmenu;
 	// the feed entry
@@ -93,8 +91,6 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 	private Animation titleFadeInAnimation;
 	// fragment that shows while loading the entry content
 	private Fragment loadingFragment;
-	private int scroll;
-	private boolean scrolled;
 	@Extra(ACCESS_TOKEN)
 	String accessToken;
 	@Extra(ENTRY_ID)
@@ -128,22 +124,18 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 	NetworkImageView bgImage;
 
 	@Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (savedInstanceState != null) {
-        	scroll = savedInstanceState.getInt(EXTRA_SCROLL_POSITION);
-		}
-    }
-	
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+	}
+
 	@SuppressLint("SetJavaScriptEnabled")
 	@AfterViews
 	void afterViews() {
-		
-		getSupportActionBar().setBackgroundDrawable(null);
+
+		// getSupportActionBar().setBackgroundDrawable(null);
 		webView.setVisibility(View.INVISIBLE);
 		View.OnClickListener onClickListener = getOnClickListener();
 		titleLayout.setOnClickListener(onClickListener);
-		// tvTitle.setOnClickListener(onClickListener);
 		// action bar icon navagable up
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		// animate webview content
@@ -155,9 +147,10 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 		fragmentManager.beginTransaction().replace(R.id.frame_webview, loadingFragment).attach(loadingFragment)
 				.addToBackStack(null).commit();
 
-		if (streamTitle != null) {
-			setTitle(streamTitle);
+		if (streamTitle == null) {
+			streamTitle = "";
 		}
+		setTitle(streamTitle);
 		tvTitle.setText(entryTitle);
 
 		if (entryAuthor != null) {
@@ -174,20 +167,21 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 	private void loadPage() {
 		RequestQueue queue = MyVolley.getRequestQueue();
 		try {
-			JsonArrayRequest myReq = NetworkUtils.getJsonArrayRequest(
-					MainActivity.ROOT_URL + ENTRY_PATH + URLEncoder.encode(entryId, encoding),
-					createMyReqSuccessListener(), createMyReqErrorListener(), accessToken);
+			JsonArrayRequest myReq = NetworkUtils
+					.getJsonArrayRequest(MainActivity.ROOT_URL + ENTRY_PATH + URLEncoder.encode(entryId, encoding),
+							createMyReqSuccessListener(), createMyReqErrorListener(ERROR_LISTNENER_ORIGIN.LOADING),
+							accessToken);
 			queue.add(myReq);
 		} catch (UnsupportedEncodingException uex) {
 			Log.e(TAG, "Error encoding entryId URL");
 		}
 	}
-	
+
 	@Override
-	public void onConfigurationChanged(Configuration newConfig){        
-	    super.onConfigurationChanged(newConfig);
+	public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
 	}
-	
+
 	private Response.Listener<JSONArray> createMyReqSuccessListener() {
 		return new Response.Listener<JSONArray>() {
 			@SuppressLint({ "NewApi", "SetJavaScriptEnabled" })
@@ -232,13 +226,7 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 							webView.getSettings().setLayoutAlgorithm(LayoutAlgorithm.NORMAL);
 							// for HTML5 videos
 							webView.getSettings().setPluginState(PluginState.ON);
-							webView.getSettings().setDomStorageEnabled(true); // I
-																				// think
-																				// you
-																				// will
-																				// need
-																				// this
-																				// one
+							webView.getSettings().setDomStorageEnabled(true);
 						}
 						webView.getSettings().setDefaultFontSize(WEBVIEW_TEXT_SIZE);
 						webView.setWebChromeClient(new WebChromeClient());
@@ -255,10 +243,11 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 							public void onPageFinished(WebView view, String url) {
 								FragmentManager fragmentManager = getSupportFragmentManager();
 								if (fragmentManager.findFragmentById(loadingFragment.getId()) != null) {
-									 fragmentManager.beginTransaction().detach(loadingFragment).commitAllowingStateLoss();
+									fragmentManager.beginTransaction().detach(loadingFragment)
+											.commitAllowingStateLoss();
 								}
 								webView.setVisibility(View.VISIBLE);
-								webView.setAnimation(webViewAnimation);								
+								webView.setAnimation(webViewAnimation);
 								// mark entry as read
 								markEntry(MARK_READ, getSuccessListener(null));
 							}
@@ -273,7 +262,7 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 			}
 		};
 	}
-	
+
 	/**
 	 * Back button pressed. Go back to the article list.
 	 */
@@ -297,11 +286,24 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 		return sBuilder.toString();
 	}
 
-	private Response.ErrorListener createMyReqErrorListener() {
+	private Response.ErrorListener createMyReqErrorListener(final ERROR_LISTNENER_ORIGIN origin) {
 		return new Response.ErrorListener() {
 			@Override
 			public void onErrorResponse(VolleyError error) {
-				Log.e(TAG, "Error loading entry");
+				switch (origin) {
+				case LOADING:
+					Log.e(TAG, "Error loading entry");
+					break;
+				case SAVING:
+					Log.e(TAG, "Error saving entry");
+					break;
+				case MARKING:
+					Log.e(TAG, "Error marking entry");
+					break;
+
+				default:
+					break;
+				}
 				if (error != null && error.getMessage() != null) {
 					Log.e(TAG, error.getMessage());
 				}
@@ -309,10 +311,8 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 		};
 	}
 
-	private void showErrorDialog(String error) {
-		AlertDialog.Builder b = new AlertDialog.Builder(this);
-		b.setMessage(error);
-		b.show();
+	enum ERROR_LISTNENER_ORIGIN {
+		LOADING, SAVING, MARKING;
 	}
 
 	/**
@@ -423,11 +423,15 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 			jsonRequest.put(ENTRIES_IDS, entries);
 			if (accessToken != null && userId != null) {
 				String userIdEncoded = URLEncoder.encode("/" + userId.toString() + "/tag/", MainActivity.UTF_8);
+				// String userIdEncoded = "/" +
+				// URLEncoder.encode(userId.toString(), MainActivity.UTF_8)+
+				// "/tag/";
 				StringBuilder url = new StringBuilder();
 				url.append(MainActivity.ROOT_URL).append(MainActivity.TAGS_PATH).append("/user").append(userIdEncoded)
-						.append("global.saved");
-				JsonObjectRequest myReq = NetworkUtils.getJsonRequestWithMethod(method, url.toString(), jsonRequest,
-						getSuccessListener(successMessage), createMyReqErrorListener(), accessToken);
+						.append(MainActivity.GLOBAL_SAVED);
+				JsonCustomRequest myReq = NetworkUtils.getJsonCustomRequest(method, url.toString(), jsonRequest,
+						getSuccessListener(successMessage), createMyReqErrorListener(ERROR_LISTNENER_ORIGIN.SAVING),
+						accessToken);
 				queue.add(myReq);
 			}
 		} catch (JSONException uex) {
@@ -455,8 +459,9 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 			JSONArray entries = new JSONArray();
 			entries.put(entryId);
 			jsonRequest.put("entryIds", entries);
-			JsonObjectRequest myReq = NetworkUtils.getJsonPostRequest(MainActivity.ROOT_URL + MARKERS_PATH,
-					jsonRequest, successListener, createMyReqErrorListener(), accessToken);
+			JsonCustomRequest myReq = NetworkUtils.getJsonCustomRequest(Method.POST, MainActivity.ROOT_URL
+					+ MARKERS_PATH, jsonRequest, successListener,
+					createMyReqErrorListener(ERROR_LISTNENER_ORIGIN.MARKING), accessToken);
 			queue.add(myReq);
 		} catch (JSONException uex) {
 			Log.e(TAG, "Error marking read or unread");

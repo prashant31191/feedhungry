@@ -1,79 +1,94 @@
 <resources>
 
-	<string name="app_name">feedhungry</string>
-	<string name="menu_settings">Settings</string>
-	<string name="prueba">test</string>
-	<string name="drawer_open">drawer open</string>
-	<string name="drawer_close">drawer closed</string>
-	<string name="empty"></string>
-	
-	<!-- Feed Entry -->	
-	<string name="entry_without_content">This item has no content</string>
-	
-	<!-- drawer list -->
-	<string name="zero">0</string>
-	<string name="drawer_popular">Popular items</string>
-	<string name="drawer_saved">Saved items</string>
-	<string name="drawer_all">All items</string>
-	<string name="drawer_uncategorized">Uncategorized</string>
-	<string name="about_developer">About the developer</string>
-	
-	<!-- items list -->
-	<string name="popular">Popular</string>
-	<string name="saved_article">Saved article</string>
-	<string name="unsaved_article">Unsaved article</string>
+    <string name="app_name">feedhungry</string>
+    <string name="menu_settings">Settings</string>
+    <string name="prueba">test</string>
+    <string name="drawer_open">drawer open</string>
+    <string name="drawer_close">drawer closed</string>
+    <string name="empty"></string>
 
-	<!-- no internet connection message -->
-	<string name="no_internet_connection">No Internet Connection</string>
-	
-	<!-- preferences -->	
-	<string name="preferences_category_summary">Refresh after changing values</string>
-	<string name="only_unread">Only unread</string>
-	<string name="only_unread_summary">Don\'t show read articles</string>
-	<string name="pref_page_size">Page Size</string>
-	<string name="pref_page_size_summary">How many articles are read every connection</string>
-	<string name="list_with_cards">Article list in \'card\' style</string>
-	<string name="list_with_cards_summary">Images will be bigger</string>
-	<string name="logout">Log out</string>
-	
-	<!-- MAIN ACTION BAR -->	
-	<!--  menu refresh -->	
-	<string name="menu_refresh">Refresh</string>
-	<!--  menu mark as read -->	
-	<string name="menu_mark_all_read">Mark all as read</string>
-	<!-- marked as read success message -->
-	<string name="marked_all_as_read_success_message">Marked all as read</string>
-	
-	
-	<!-- ENTRY ACTION BAR -->
-	<!-- share -->	
-	<string name="entry_menu_share">Share</string>
-	<!-- share dialog text after share clicked  -->		
-	<string name="share_text">Share via</string>
-	<!-- mark unread  -->	
-	<string name="entry_menu_mark_unread">Mark unread</string>
-	<!-- open in browser  -->	
-	<string name="open_in_browser">Open in browser</string>
-	<!-- mark saved -->	
-	<string name="mark_saved">Mark saved</string>
-	<!-- mark unsaved -->	
-	<string name="mark_unsaved">Mark unsaved</string>
-	
-	
-	
-	<!-- Message to show when cliked on keep as unread -->
-	<string name="kept_as_unread">Kept as unread</string>
-	<string name="marked_as_read">Marked as read</string>
-	<string name="marked_as_unread">Marked as unread</string>
-		
-	<!-- ERRORS -->
-	<string name="parsing_subscriptions_exception">Error parsing suscription</string>
-	<string name="receiving_subscriptions_exception">Error receiving subscriptions</string>
-	<string name="receiving_unread_subscriptions_exception">Error reading unread suscriptions</string>
-	<string name="error_login">Failed to log in</string>
-	<string name="error_loading_entry">Error loading entry</string>
-	<string name="error_marking_entry">Error marking entry</string>
-	<string name="generic_exception">Error</string>
-	
-	
+    <!-- onbackpressed -->
+    <string name="exit_confirmation">Really exit?</string>
+    <string name="exit_confirmation_text">"Are you sure you want to exit?"</string>
+
+    <!-- Feed Entry -->
+    <string name="entry_without_content">This item has no content</string>
+
+    <!-- drawer list -->
+    <string name="zero">0</string>
+    <string name="drawer_popular">Popular items</string>
+    <string name="drawer_saved">Saved items</string>
+    <string name="drawer_all">All items</string>
+    <string name="drawer_uncategorized">Uncategorized</string>
+    <string name="about_developer">About the developer</string>
+
+    <!-- items list -->
+    <string name="popular">Popular</string>
+    <string name="saved_article">Saved article</string>
+    <string name="unsaved_article">Unsaved article</string>
+
+    <!-- no internet connection message -->
+    <string name="no_internet_connection">No Internet Connection</string>
+
+    <!-- preferences -->
+    <string name="preferences_category_summary">Refresh after changing values</string>
+    <string name="only_unread">Only unread</string>
+    <string name="only_unread_summary">Don\'t show read articles</string>
+    <string name="pref_page_size">Page Size</string>
+    <string name="pref_page_size_summary">How many articles are read every connection</string>
+    <string name="list_with_cards">Article list in \'card\' style</string>
+    <string name="list_with_cards_summary">Images will be bigger</string>
+    <string name="logout">Log out</string>
+
+    <!-- MAIN ACTION BAR -->
+    <!-- menu refresh -->
+    <string name="menu_refresh">Refresh</string>
+    <!-- menu mark as read -->
+    <string name="menu_mark_all_read">Mark all as read</string>
+    <!-- marked as read success message -->
+    <string name="marked_all_as_read_success_message">Marked all as read</string>
+
+    <!-- ENTRY ACTION BAR -->
+    <!-- share -->
+    <string name="entry_menu_share">Share</string>
+    <!-- share dialog text after share clicked -->
+    <string name="share_text">Share via</string>
+    <!-- mark unread -->
+    <string name="entry_menu_mark_unread">Mark unread</string>
+    <!-- open in browser -->
+    <string name="open_in_browser">Open in browser</string>
+    <!-- mark saved -->
+    <string name="mark_saved">Mark saved</string>
+    <!-- mark unsaved -->
+    <string name="mark_unsaved">Mark unsaved</string>
+
+    <!-- Message to show when cliked on keep as unread -->
+    <string name="kept_as_unread">Kept as unread</string>
+    <string name="marked_as_read">Marked as read</string>
+    <string name="marked_as_unread">Marked as unread</string>
+
+    <!-- ERRORS -->
+    <string name="parsing_subscriptions_exception">Error parsing suscription</string>
+    <string name="receiving_subscriptions_exception">Error receiving subscriptions</string>
+    <string name="receiving_unread_subscriptions_exception">Error reading unread suscriptions</string>
+    <string name="error_login">Failed to log in</string>
+    <string name="error_loading_entry">Error loading entry</string>
+    <string name="error_marking_entry">Error marking entry</string>
+    <string name="generic_exception">Error</string>
+
+    <!-- licences -->
+     <string name="licences">Open source licences</string>
+     <string name="licencing_feedhungry_text">Feedhungry</string>
+    <string name="licences_text"><![CDATA[
+        
+        Many thanks to these open source projects:<br><br>
+
+        <b><a href="http://actionbarsherlock.com/">ActionBarSherlock</a>&nbsp;</b><br>
+        <i>by Jake Wharton</i><br><br>
+
+        <b><a href="https://android.googlesource.com/platform/frameworks/volley">Volley</a>&nbsp;</b><br>
+        <i>by Google</i><br><br>
+    ]]></string>
+    <string name="about_version_template">v%1$s</string>
+
 </resources>

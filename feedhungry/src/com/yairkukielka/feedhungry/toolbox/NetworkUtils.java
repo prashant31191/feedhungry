@@ -13,6 +13,7 @@ import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.yairkukielka.feedhungry.network.JsonCustomRequest;
 
 public class NetworkUtils {
 	public static final String AUTORIZATION_HEADER = "Authorization";
@@ -101,5 +102,23 @@ public class NetworkUtils {
 			Listener<JSONObject> successListener, ErrorListener errorListener, final String accessToken) {
 		int method = Method.POST;
 		return getJsonRequestWithMethod(method, url, jsonRequest, successListener, errorListener, accessToken);
+	}
+	
+	public static JsonCustomRequest getJsonCustomPostRequest(String url, JSONObject jsonRequest,
+			Listener<JSONObject> successListener, ErrorListener errorListener, final String accessToken) {
+		int method = Method.POST;
+		return getJsonCustomRequest(method, url, jsonRequest, successListener, errorListener, accessToken);
+	}
+	
+	public static JsonCustomRequest getJsonCustomRequest(int method, String url, JSONObject jsonRequest,
+			Listener<JSONObject> successListener, ErrorListener errorListener, final String accessToken) {
+		return new JsonCustomRequest(method, url, jsonRequest, successListener, errorListener) {
+			@Override
+			public Map<String, String> getHeaders() throws AuthFailureError {
+				Map<String, String> params = new HashMap<String, String>();
+				params.put(AUTORIZATION_HEADER, OAUTH_HEADER_PART + accessToken);
+				return params;
+			}
+		};
 	}
 }

@@ -99,10 +99,9 @@ public class WebviewFragment extends SherlockFragment {
 						}
 						// don't go to redirectUri
 						return true;
-					} 
+					}
 					// load the webpage from url (login and grant access)
-					return super.shouldOverrideUrlLoading(view, url); // return
-																		// false;
+					return false;//super.shouldOverrideUrlLoading(view, url);
 				}
 			});
 

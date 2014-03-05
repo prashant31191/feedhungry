@@ -1,4 +1,4 @@
-package com.yairkukielka.feedhungry.okhttpstack;
+package com.yairkukielka.feedhungry.network;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
