@@ -803,6 +803,7 @@ containing a value of this type.
         /**  Minimum width of the search view text entry area. 
          */
         public static final int abs__search_view_text_min_width=0x7f09000b;
+        public static final int settings_text_size_normal=0x7f09000f;
     }
     public static final class drawable {
         public static final int abs__ab_bottom_solid_dark_holo=0x7f020000;
@@ -978,13 +979,14 @@ containing a value of this type.
         public static final int abs__textButton=0x7f060014;
         public static final int abs__title=0x7f06001c;
         public static final int abs__up=0x7f06000b;
-        public static final int action_mark_read=0x7f06005c;
-        public static final int action_mark_saved=0x7f060057;
-        public static final int action_mark_unread=0x7f060059;
-        public static final int action_open_in_browser=0x7f060058;
-        public static final int action_refresh=0x7f06005a;
-        public static final int action_settings=0x7f06005b;
-        public static final int action_share=0x7f060056;
+        public static final int action_mark_read=0x7f060060;
+        public static final int action_mark_saved=0x7f06005b;
+        public static final int action_mark_unread=0x7f06005d;
+        public static final int action_open_in_browser=0x7f06005c;
+        public static final int action_refresh=0x7f06005e;
+        public static final int action_settings=0x7f06005f;
+        public static final int action_share=0x7f06005a;
+        public static final int app_version=0x7f060054;
         public static final int check_list_read=0x7f06004e;
         public static final int content_frame=0x7f060038;
         public static final int developer_frame_webview=0x7f060034;
@@ -1011,18 +1013,21 @@ containing a value of this type.
         public static final int image_list_thumb=0x7f060051;
         public static final int item_webview=0x7f060033;
         public static final int layout_check=0x7f060049;
+        public static final int licencesScrollView=0x7f060055;
+        public static final int licencesTextView=0x7f060056;
         public static final int linear_layout=0x7f060039;
         public static final int listMode=0x7f060002;
-        public static final int loadingPanel=0x7f060053;
+        public static final int loadingPanel=0x7f060057;
         public static final int lv_picasa=0x7f060052;
         public static final int normal=0x7f060001;
-        public static final int progressBar1=0x7f060054;
-        public static final int progressBarRefresh=0x7f060055;
+        public static final int progressBar1=0x7f060058;
+        public static final int progressBarRefresh=0x7f060059;
         public static final int scroll_view_entry=0x7f060040;
         public static final int showCustom=0x7f060008;
         public static final int showHome=0x7f060005;
         public static final int showTitle=0x7f060007;
         public static final int tabMode=0x7f060003;
+        public static final int textViewLicencingFeedhungry=0x7f060053;
         public static final int transparent_view=0x7f060041;
         public static final int tv_about_developer=0x7f06003a;
         public static final int tv_list_date=0x7f06004d;
@@ -1069,17 +1074,19 @@ containing a value of this type.
         public static final int feed_list_row=0x7f03001d;
         public static final int feed_list_row_big=0x7f03001e;
         public static final int feed_list_view=0x7f03001f;
-        public static final int loading_panel=0x7f030020;
-        public static final int progressbar=0x7f030021;
-        public static final int sherlock_spinner_dropdown_item=0x7f030022;
-        public static final int sherlock_spinner_item=0x7f030023;
+        public static final int licences_layout=0x7f030020;
+        public static final int loading_panel=0x7f030021;
+        public static final int progressbar=0x7f030022;
+        public static final int sherlock_spinner_dropdown_item=0x7f030023;
+        public static final int sherlock_spinner_item=0x7f030024;
     }
     public static final class menu {
         public static final int entry=0x7f0e0000;
         public static final int main=0x7f0e0001;
     }
     public static final class string {
-        public static final int about_developer=0x7f0b001a;
+        public static final int about_developer=0x7f0b001c;
+        public static final int about_version_template=0x7f0b003f;
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
          */
         public static final int abs__action_bar_home_description=0x7f0b0000;
@@ -1128,101 +1135,111 @@ containing a value of this type.
 
          */
         public static final int com_crashlytics_android_build_id=0x7f0b000d;
-        public static final int drawer_all=0x7f0b0018;
+        public static final int drawer_all=0x7f0b001a;
         public static final int drawer_close=0x7f0b0012;
         public static final int drawer_open=0x7f0b0011;
-        public static final int drawer_popular=0x7f0b0016;
-        public static final int drawer_saved=0x7f0b0017;
-        public static final int drawer_uncategorized=0x7f0b0019;
+        public static final int drawer_popular=0x7f0b0018;
+        public static final int drawer_saved=0x7f0b0019;
+        public static final int drawer_uncategorized=0x7f0b001b;
         public static final int empty=0x7f0b0013;
-        /**  mark unread  
+        /**  mark unread 
  mark unread  
          */
-        public static final int entry_menu_mark_unread=0x7f0b002c;
+        public static final int entry_menu_mark_unread=0x7f0b002f;
         /**  ENTRY ACTION BAR 
  share 
  ENTRY ACTION BAR 
  share 
          */
-        public static final int entry_menu_share=0x7f0b002a;
+        public static final int entry_menu_share=0x7f0b002d;
         /**  Feed Entry 
  Feed Entry 
          */
-        public static final int entry_without_content=0x7f0b0014;
-        public static final int error_loading_entry=0x7f0b0037;
-        public static final int error_login=0x7f0b0036;
-        public static final int error_marking_entry=0x7f0b0038;
-        public static final int generic_exception=0x7f0b0039;
+        public static final int entry_without_content=0x7f0b0016;
+        public static final int error_loading_entry=0x7f0b003a;
+        public static final int error_login=0x7f0b0039;
+        public static final int error_marking_entry=0x7f0b003b;
+        /**  onbackpressed 
+ onbackpressed 
+         */
+        public static final int exit_confirmation=0x7f0b0014;
+        public static final int exit_confirmation_text=0x7f0b0015;
+        public static final int generic_exception=0x7f0b003c;
         /**  Message to show when cliked on keep as unread 
  Message to show when cliked on keep as unread 
          */
-        public static final int kept_as_unread=0x7f0b0030;
-        public static final int list_with_cards=0x7f0b0024;
-        public static final int list_with_cards_summary=0x7f0b0025;
-        public static final int logout=0x7f0b0026;
+        public static final int kept_as_unread=0x7f0b0033;
+        public static final int licences=0x7f0b0028;
+        public static final int licences_text=0x7f0b003e;
+        /**  licences 
+ licences 
+         */
+        public static final int licencing_feedhungry_text=0x7f0b003d;
+        public static final int list_with_cards=0x7f0b0026;
+        public static final int list_with_cards_summary=0x7f0b0027;
+        public static final int logout=0x7f0b0029;
         /**  mark saved 
  mark saved  
          */
-        public static final int mark_saved=0x7f0b002e;
+        public static final int mark_saved=0x7f0b0031;
         /**  mark unsaved 
  mark unsaved  
          */
-        public static final int mark_unsaved=0x7f0b002f;
+        public static final int mark_unsaved=0x7f0b0032;
         /**  marked as read success message 
  marked as read success message 
          */
-        public static final int marked_all_as_read_success_message=0x7f0b0029;
-        public static final int marked_as_read=0x7f0b0031;
-        public static final int marked_as_unread=0x7f0b0032;
-        /**   menu mark as read 
+        public static final int marked_all_as_read_success_message=0x7f0b002c;
+        public static final int marked_as_read=0x7f0b0034;
+        public static final int marked_as_unread=0x7f0b0035;
+        /**  menu mark as read 
   menu mark as read 
          */
-        public static final int menu_mark_all_read=0x7f0b0028;
+        public static final int menu_mark_all_read=0x7f0b002b;
         /**  MAIN ACTION BAR 
-  menu refresh 
+ menu refresh 
  MAIN ACTION BAR 
   menu refresh 
          */
-        public static final int menu_refresh=0x7f0b0027;
+        public static final int menu_refresh=0x7f0b002a;
         public static final int menu_settings=0x7f0b000f;
         /**  no internet connection message 
  no internet connection message 
          */
-        public static final int no_internet_connection=0x7f0b001e;
-        /**  preferences 
-         */
-        public static final int only_unread=0x7f0b0020;
-        public static final int only_unread_summary=0x7f0b0021;
-        /**  open in browser  
+        public static final int no_internet_connection=0x7f0b0020;
+        public static final int only_unread=0x7f0b0022;
+        public static final int only_unread_summary=0x7f0b0023;
+        /**  open in browser 
  open in browser  
          */
-        public static final int open_in_browser=0x7f0b002d;
+        public static final int open_in_browser=0x7f0b0030;
         /**  ERRORS 
  ERRORS 
          */
-        public static final int parsing_subscriptions_exception=0x7f0b0033;
+        public static final int parsing_subscriptions_exception=0x7f0b0036;
         /**  items list 
  items list 
          */
-        public static final int popular=0x7f0b001b;
-        public static final int pref_page_size=0x7f0b0022;
-        public static final int pref_page_size_summary=0x7f0b0023;
+        public static final int popular=0x7f0b001d;
+        public static final int pref_page_size=0x7f0b0024;
+        public static final int pref_page_size_summary=0x7f0b0025;
         /**  preferences 
+ preferences 
          */
-        public static final int preferences_category_summary=0x7f0b001f;
+        public static final int preferences_category_summary=0x7f0b0021;
         public static final int prueba=0x7f0b0010;
-        public static final int receiving_subscriptions_exception=0x7f0b0034;
-        public static final int receiving_unread_subscriptions_exception=0x7f0b0035;
-        public static final int saved_article=0x7f0b001c;
-        /**  share dialog text after share clicked  
+        public static final int receiving_subscriptions_exception=0x7f0b0037;
+        public static final int receiving_unread_subscriptions_exception=0x7f0b0038;
+        public static final int saved_article=0x7f0b001e;
+        /**  share dialog text after share clicked 
  share dialog text after share clicked  
          */
-        public static final int share_text=0x7f0b002b;
-        public static final int unsaved_article=0x7f0b001d;
+        public static final int share_text=0x7f0b002e;
+        public static final int unsaved_article=0x7f0b001f;
         /**  drawer list 
  drawer list 
          */
-        public static final int zero=0x7f0b0015;
+        public static final int zero=0x7f0b0017;
     }
     public static final class style {
         public static final int GenericProgressBackground=0x7f0c005c;
