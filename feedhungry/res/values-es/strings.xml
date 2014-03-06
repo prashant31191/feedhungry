@@ -7,6 +7,10 @@
 	<string name="drawer_close">cerrar cajón</string>
 	<string name="empty"></string>
 	
+    <!-- onbackpressed -->
+    <string name="exit_confirmation">Cerrar la app</string>
+    <string name="exit_confirmation_text">"¿Está seguro?"</string>
+    
 	<!-- Feed Entry -->	
 	<string name="entry_without_content">Sin contenido</string>
 	
@@ -26,13 +30,15 @@
 	<!-- no internet connection message -->
 	<string name="no_internet_connection">Sin conexión a internet</string>
 	
-	<!-- preferences -->	
+	<!-- preferences -->
+    <string name="preferences_category_summary">Se auto-actualizarán los feeds</string>
 	<string name="only_unread">Sólo no leídos</string>
 	<string name="only_unread_summary">No mostrar los artículos leídos</string>
 	<string name="pref_page_size">Paginación</string>
 	<string name="pref_page_size_summary">Cuántos artículos se leen en cada conexión</string>
 	<string name="list_with_cards">Artículos en estilo \'cards\'</string>
 	<string name="list_with_cards_summary">Las imágenes serán más grandes</string>
+     <string name="licences">Licencias open source</string>
 	<string name="logout">Cerrar sesión</string>
 	
 	<!-- MAIN ACTION BAR -->	
@@ -72,6 +78,23 @@
 	<string name="error_loading_entry">Error al cargar el artículo</string>
 	<string name="error_marking_entry">Error marcando el artículo</string>
 	<string name="generic_exception">Error</string>
+	
+    <!-- licences -->
+     <string name="licencing_feedhungry_text">Feedhungry</string>
+    <string name="licences_text"><![CDATA[
+        Gracias a estos proyectos open source:<br><br>
+
+        <b><a href="http://actionbarsherlock.com/">ActionBarSherlock</a>&nbsp;</b><br>
+        <i>de Jake Wharton</i><br><br>
+
+        <b><a href="https://android.googlesource.com/platform/frameworks/volley">Volley</a>&nbsp;</b><br>
+        <i>de Google</i><br><br>        
+        
+        <b><a href="http://square.github.io/okhttp/">OkHttp</a>&nbsp;</b><br>
+        <i>de Square</i><br><br>
+        
+    ]]></string>
+    <string name="about_version_template">v%1$s</string>
 	
 	
 </resources>
