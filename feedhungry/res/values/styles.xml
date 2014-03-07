@@ -21,6 +21,4 @@
         <item name="android:indeterminate">true</item>
     </style>
         
-<!--         <item name="android:indeterminateDrawable">@drawable/spinner2</item> -->
-    
 </resources>

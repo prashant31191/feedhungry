@@ -37,7 +37,7 @@
     <string name="pref_page_size">Page Size</string>
     <string name="pref_page_size_summary">How many articles are read every connection</string>
     <string name="list_with_cards">Article list in \'card\' style</string>
-    <string name="list_with_cards_summary">Images will be bigger</string>
+    <string name="list_with_cards_summary">Images will be bigger (this will be the default for big screens)</string>
      <string name="licences">Open source licences</string>
     <string name="logout">Log out</string>
 
