@@ -1,0 +1,5 @@
+<resources>
+	<dimen name="item_layout_min_height">120dp</dimen>
+	<dimen name="item_card_layout_min_height">200dp</dimen>
+	<dimen name="image_card_layout_max_height">170dp</dimen>
+</resources>

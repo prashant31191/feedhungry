@@ -24,6 +24,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.R.integer;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -71,7 +72,9 @@ public class ListViewEntryArrayAdapter extends ArrayAdapter<ListEntry> {
 	private boolean cards;
 	private Activity context;
 	Animation animation;
-
+	LayoutInflater layoutInflater;
+	int imageHeight, imageWidth;
+	
 	public ListViewEntryArrayAdapter(Activity context, int textViewResourceId, List<ListEntry> objects,
 			ImageLoader imageLoader) {
 		super(context, textViewResourceId, objects);
@@ -80,6 +83,9 @@ public class ListViewEntryArrayAdapter extends ArrayAdapter<ListEntry> {
 		animation = AnimationUtils.loadAnimation(context, R.anim.wave_scale);
 		this.cards = PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
 				PreferencesActivity.KEY_LIST_WITH_CARDS, false);
+		layoutInflater = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		imageHeight = getContext().getResources().getDimensionPixelSize(R.dimen.item_image_height);
+		imageWidth = getContext().getResources().getDimensionPixelSize(R.dimen.item_image_width);
 	}
 
 	@Override
@@ -87,13 +93,22 @@ public class ListViewEntryArrayAdapter extends ArrayAdapter<ListEntry> {
 		View v = convertView;
 		boolean makeAnimation = false;
 		if (v == null) {
-			LayoutInflater vi = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			makeAnimation = true;
-			if (cards) {
-				// cards style
-				v = vi.inflate(R.layout.feed_list_row_big, null);
+			int numColumns = getContext().getResources().getInteger(R.integer.num_columns);
+			if (numColumns == 1) {
+				if (cards) {
+					// cards style
+					v = layoutInflater.inflate(R.layout.grid_item_layout, null);
+				} else {
+					v = layoutInflater.inflate(R.layout.list_item_layout, null);
+				}
 			} else {
-				v = vi.inflate(R.layout.feed_list_row, null);
+				if (cards) {
+					// width > 500dp
+					v = layoutInflater.inflate(R.layout.grid_item_layout, null);
+				} else {
+					v = layoutInflater.inflate(R.layout.list_item_layout, null);
+				}
 			}
 		}
 
@@ -104,16 +119,12 @@ public class ListViewEntryArrayAdapter extends ArrayAdapter<ListEntry> {
 			v.setTag(R.id.id_holder, holder);
 		}
 
-		ListEntry entry = getItem(position);
-
-		holder.image.getLayoutParams().height = LayoutParams.WRAP_CONTENT;
+		ListEntry entry = getItem(position);		
 		if (entry.getVisual() != null) {
+			// there is an image
 			holder.image.setImageUrl(entry.getVisual(), mImageLoader);
 		} else {
-			if (cards) {
-				// if cardUI setting is chosen and there is no image
-				holder.image.getLayoutParams().height = 60;
-			}
+			// no image found
 			holder.image.setImageResource(R.drawable.black_pixel);
 		}
 
@@ -303,7 +314,7 @@ public class ListViewEntryArrayAdapter extends ArrayAdapter<ListEntry> {
 			String userIdEncoded = URLEncoder.encode("/" + userId.toString() + "/tag/", MainActivity.UTF_8);
 			StringBuilder url = new StringBuilder();
 			url.append(MainActivity.ROOT_URL).append(MainActivity.TAGS_PATH).append("/user").append(userIdEncoded)
-			.append(MainActivity.GLOBAL_SAVED);
+					.append(MainActivity.GLOBAL_SAVED);
 			if (accessToken != null && userId != null) {
 				if (method == Method.PUT) {
 					jsonRequest.put(ENTRIES_IDS, entries);

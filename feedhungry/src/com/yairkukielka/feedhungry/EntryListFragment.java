@@ -36,7 +36,6 @@ import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ListView;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.android.volley.RequestQueue;
@@ -56,7 +55,7 @@ import com.yairkukielka.feedhungry.toolbox.NetworkUtils;
 /**
  * Shows the list of entries for a stream
  */
-@EFragment(R.layout.feed_list_view)
+@EFragment(R.layout.feed_grid_view)
 public class EntryListFragment extends SherlockFragment {
 	private static final String TAG = EntryListFragment.class.getSimpleName();
 	private static final String STREAM_PATH = "/v3/streams/contents?streamId=";
@@ -79,7 +78,7 @@ public class EntryListFragment extends SherlockFragment {
 	public String continuation = null;
 
 	@ViewById(R.id.lv_picasa)
-	ListView mLvPicasa;
+	AbsListView mLvPicasa;
 	boolean mHasData = false;
 	boolean mInError = false;
 	ArrayList<ListEntry> mEntries = new ArrayList<ListEntry>();
@@ -106,7 +105,7 @@ public class EntryListFragment extends SherlockFragment {
 		}
 		// mEntries.clear();
 		mAdapter = new ListViewEntryArrayAdapter(getActivity(), 0, mEntries, MyVolley.getImageLoader());
-		mLvPicasa.setAdapter(mAdapter);
+		((AdapterView)mLvPicasa).setAdapter(mAdapter);
 		mLvPicasa.setOnScrollListener(new EndlessScrollListener());
 
 		mLvPicasa.setOnItemClickListener(new OnItemClickListener() {
