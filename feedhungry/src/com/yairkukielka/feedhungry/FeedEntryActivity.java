@@ -16,8 +16,6 @@ import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -86,11 +84,11 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 	// the feed entry
 	private Entry entry;
 	// animation to show the feed content after the loading fragment shows
-	private Animation webViewAnimation;
+	private Animation webviewContentPushUpAnimation;
 	// animation to show the title fading in
 	private Animation titleFadeInAnimation;
 	// fragment that shows while loading the entry content
-	private Fragment loadingFragment;
+//	private Fragment loadingFragment;
 	@Extra(ACCESS_TOKEN)
 	String accessToken;
 	@Extra(ENTRY_ID)
@@ -133,19 +131,19 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 	void afterViews() {
 
 		// getSupportActionBar().setBackgroundDrawable(null);
-		webView.setVisibility(View.INVISIBLE);
+		webView.setBackgroundColor(0x00000000);
 		View.OnClickListener onClickListener = getOnClickListener();
 		titleLayout.setOnClickListener(onClickListener);
 		// action bar icon navagable up
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		// animate webview content
-		webViewAnimation = AnimationUtils.loadAnimation(this, R.anim.push_up_in);
+		webviewContentPushUpAnimation = AnimationUtils.loadAnimation(this, R.anim.push_up_in);
 		titleFadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_in_title);
-		loadingFragment = new LoadingFragment_();
-		FragmentManager fragmentManager = getSupportFragmentManager();
+//		loadingFragment = new LoadingFragment_();
+//		FragmentManager fragmentManager = getSupportFragmentManager();
 		// https://code.google.com/p/android/issues/detail?id=42601
-		fragmentManager.beginTransaction().replace(R.id.frame_webview, loadingFragment).attach(loadingFragment)
-				.addToBackStack(null).commit();
+//		fragmentManager.beginTransaction().replace(R.id.frame_webview, loadingFragment).attach(loadingFragment)
+//				.addToBackStack(null).commit();
 
 		if (streamTitle == null) {
 			streamTitle = "";
@@ -241,18 +239,17 @@ public class FeedEntryActivity extends SherlockFragmentActivity {
 
 							@Override
 							public void onPageFinished(WebView view, String url) {
-								FragmentManager fragmentManager = getSupportFragmentManager();
-								if (fragmentManager.findFragmentById(loadingFragment.getId()) != null) {
-									fragmentManager.beginTransaction().detach(loadingFragment)
-											.commitAllowingStateLoss();
-								}
-								webView.setVisibility(View.VISIBLE);
-								webView.setAnimation(webViewAnimation);
+//								FragmentManager fragmentManager = getSupportFragmentManager();
+//								if (fragmentManager.findFragmentById(loadingFragment.getId()) != null) {
+//									fragmentManager.beginTransaction().detach(loadingFragment)
+//											.commitAllowingStateLoss();
+//								}
 								// mark entry as read
 								markEntry(MARK_READ, getSuccessListener(null));
 							}
 						});
-						loadEntryInInnerBrowser(entry.getContent());
+						loadEntryInInnerBrowser(entry.getContent());						
+						webView.setAnimation(webviewContentPushUpAnimation);
 					}
 				} catch (JSONException e) {
 					Log.e(TAG, "Error parsing feed entry");
